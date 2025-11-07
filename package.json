@@ -1,0 +1,27 @@
+{
+	"name": "wattnet.eu",
+	"description": "An open-source service for tracking the environmental footprint of electricity across Europe",
+	"author": "Jaime Iglesias Blanco",
+	"homepage": "https://wattnet.eu",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jaimeib/wattnet.eu"
+	},
+	"type": "module",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro build && astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/alpinejs": "^0.4.8",
+		"@lottiefiles/dotlottie-web": "^0.52.2",
+		"@tailwindcss/vite": "^4.1.11",
+		"alpinejs": "^3.14.9",
+		"astro": "^5.14.3",
+		"lottie-web": "^5.13.0",
+		"tailwindcss": "^4.1.11"
+	}
+}

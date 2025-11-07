@@ -1,0 +1,117 @@
+---
+
+const pages = [
+  { name: "Home", href: "/" },
+  { name: "Features", href: "/features" },
+  { name: "Services", href: "/services" },
+  { name: "Contact", href: "/contact" },
+];
+
+import { Image } from "astro:assets";
+import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-transparent.png";
+
+---
+<header class="sticky top-0 bg-white/80 dark:bg-secondary-950/80 backdrop-blur-xs z-50 py-3 transition-colors duration-300 shadow-sm">
+  <div class="container-custom flex items-center justify-between px-4 sm:px-6">
+    <a href="/" class="flex items-center" aria-label="Go to homepage">
+      <!-- wattnet logo png -->
+      <Image 
+        src={wattnetLogo}
+        alt="wattnet Logo"
+        class="h-10 w-auto"
+        width={500}
+        height={500}
+        loading={"eager"}
+      />
+      <span class="ml-2 text-2xl font-display font-bold text-secondary-900 dark:text-white">wattnet</span>
+    </a>
+    
+    <nav class="hidden lg:flex items-center space-x-8 text-lg">
+      {pages.map((page) => (
+        <a 
+          href={page.href} 
+          class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors"
+        >{page.name}</a>
+      ))}
+    </nav>
+    
+    <div class="flex items-center space-x-4">
+      <!-- Botón GitHub -->
+      <a 
+        href="https://github.com/wattnet" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="p-2 rounded-full text-secondary-500 hover:text-primary-500 dark:text-secondary-400 dark:hover:text-primary-400 transition-colors"
+        aria-label="Go to Wattnet GitHub organization"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
+          <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.63 2 12.26c0 4.49 2.87 8.3 6.84 9.65.5.1.68-.22.68-.48 0-.23-.01-.82-.01-1.6-2.78.62-3.37-1.38-3.37-1.38-.45-1.18-1.1-1.49-1.1-1.49-.9-.64.07-.63.07-.63 1 .07 1.53 1.07 1.53 1.07.89 1.58 2.34 1.13 2.91.87.09-.66.35-1.13.63-1.39-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.38-2.03 1-2.74-.1-.26-.44-1.31.1-2.73 0 0 .83-.27 2.73 1.04A9.2 9.2 0 0 1 12 6.84c.84 0 1.69.12 2.48.35 1.9-1.31 2.73-1.04 2.73-1.04.54 1.42.2 2.47.1 2.73.62.71 1 1.62 1 2.74 0 3.94-2.34 4.81-4.57 5.07.36.32.68.95.68 1.93 0 1.39-.01 2.51-.01 2.86 0 .26.18.59.69.48A10.06 10.06 0 0 0 22 12.26C22 6.63 17.52 2 12 2Z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+
+      <button 
+        x-on:click="darkMode = !darkMode" 
+        class="p-2 rounded-full text-secondary-500 hover:text-secondary-700 dark:text-secondary-400 dark:hover:text-secondary-200 focus:outline-hidden focus:ring-2 focus:ring-primary-500"
+        aria-label="Toggle dark mode"
+      >
+        <svg x-show="!darkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+        <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
+      
+      <a 
+      href="https://api.wattnet.eu/docs"  
+      class="hidden lg:inline-flex btn-primary" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      >Get Started</a>
+
+      <!-- Mobile Menu Button and Dropdown -->
+      <div x-data="{ open: false, showAllPages: false }">
+        <button 
+          @click="open = !open"
+          class="lg:hidden p-2 rounded-md text-secondary-600 hover:text-secondary-900 dark:text-secondary-300 dark:hover:text-white focus:outline-hidden focus:ring-2 focus:ring-primary-500"
+          aria-label="Toggle menu"
+        >
+          <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+        <div 
+          x-show="open" 
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0 scale-95"
+          x-transition:enter-end="opacity-100 scale-100"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100 scale-100"
+          x-transition:leave-end="opacity-0 scale-95"
+          class="absolute top-16 right-4 w-48 py-2 bg-white dark:bg-secondary-900 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden"
+          x-cloak
+        >
+          {pages.map((page) => (
+            <a 
+              href={page.href} 
+              class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors block px-4 py-2"
+              @click="open = false"
+            >{page.name}</a>
+          ))}
+
+          <a 
+            href="https://api.wattnet.eu/docs" 
+            class="mt-2 mx-4 mb-4 btn-primary w-auto text-center block" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            @click="open = false"
+          >Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

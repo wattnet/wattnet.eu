@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+---
+
+<Layout title="Services - wattnet.eu">
+  <Header />
+  <main>
+    <HeroSection
+      title="Next-Level Services"
+      highlightText="Services"
+      description="Track, visualize, and analyze electricity generation, cross-border exchanges, and carbon & water footprints with our dashboard, API, and curated datasets."
+    />
+
+    <!-- Dashboard Preview Section -->
+    <section class="section bg-gray-50/50 dark:bg-gray-900/50 relative overflow-hidden py-12 md:py-16">
+      <div class="container-custom">
+        <!-- Explanatory Text Outside the Preview -->
+        <div class="text-center max-w-3xl mx-auto mb-12 px-4">
+          <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
+            Web Dashboard
+          </span>
+          <h2 class="text-2xl md:text-3xl mb-4 md:mb-6 text-gray-900 dark:text-white">
+            Visualize All Metrics at a Glance
+          </h2>
+          <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg">
+            The dashboard lets you explore all key metrics: electricity generation by type, cross-zone electricity exchanges, carbon and water footprints, and more.
+          </p>
+          <br>
+          <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg">
+            All in a clear, interactive, and visually engaging interface.
+          </p>
+        </div>
+
+        <!-- Dashboard Preview Box -->
+        <div class="interactive-demo bg-white dark:bg-secondary-900 rounded-xl shadow-xl overflow-hidden mx-4 sm:mx-auto">
+          <div class="demo-header bg-secondary-100 dark:bg-secondary-800 p-3 md:p-4 flex items-center">
+            <div class="flex space-x-2 mr-3 md:mr-4">
+              <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500"></div>
+              <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="flex-1 bg-white dark:bg-secondary-700 rounded-full h-6 md:h-8 flex items-center px-3 md:px-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+              dashboard.wattnet.eu
+            </div>
+          </div>
+          <div class="demo-content p-6 md:p-8 h-72 md:h-96 flex flex-col items-center justify-center relative overflow-hidden">
+            <!-- In-development Overlay with Warning Stripes -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div class="text-center relative z-10 px-4 sm:px-6 md:px-0">
+                <!-- Emoji o icono -->
+                <h2 class="text-5xl sm:text-6xl md:text-6xl font-bold mb-3 text-yellow-400 animate-pulse mb-10">🚧</h2>
+                
+                <!-- Título principal -->
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-3 text-gray-600 dark:text-gray-300">
+                  <strong>wattnet</strong> dashboard is under development
+                </h3>
+                
+                <!-- Texto descriptivo -->
+                <p class="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300">
+                  Soon you'll explore all energy data and environmental footprints in one place.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Section -->
+    <section class="section bg-gray-50 dark:bg-gray-800/10 relative overflow-hidden py-12 md:py-16">
+      <div class="container-custom">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="md:col-span-1 px-4 sm:px-0">
+            <span class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4">
+              Developer API
+            </span>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Build Custom Integrations</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-justify">
+              Our API allows seamless integration of <strong>wattnet</strong> into your workflow. Create dashboards, analyze footprints, and extend functionality with ease.
+            </p>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">RESTful API with comprehensive endpoints</p>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">Complete OpenAPI Specification (OAS 3.1)</p>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">Secure authentication with OAuth 2.0</p>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="https://api.wattnet.eu/docs" target="_blank"class="btn-primary">API Documentation</a>
+              <a href="https://api.wattnet.eu/token-request" target="_blank" class="btn-secondary">Developer Portal</a>
+            </div>
+          </div>
+
+          <div class="rounded-lg overflow-hidden shadow-xl md:col-span-1">
+            <div class="bg-gray-900 text-white p-4 font-mono text-sm">
+              <div class="flex items-center mb-4">
+                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <pre class="text-green-400">
+curl -X GET "https://api.wattnet.eu/v1/footprints?\
+lat=43.4717&lon=-3.8024&footprint_type=carbon&\
+start=2025-09-01T01%3A02%3A03Z&end=2025-09-01T04%3A05%3A06Z&\
+aggregate=true" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"</pre>
+              <pre class="text-blue-400 mt-4">
+{`
+[
+  {
+  "footprint_type": "carbon",
+  "scope": "life-cycle",
+  "zone": "ES",
+  "unit": "gCO2/kWh",
+  "coverage": "global",
+  "start": "2025-09-01T01:02:03Z",
+  "end": "2025-09-01T04:05:06Z",
+  "value": 91.96293340125035,
+  "valid": true,
+  "zone_status": "complete",
+  "aggregation_method": "time-weighted-average"
+  }
+]
+`}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated Datasets Section -->
+    <section id="datasets" class="section bg-gray-50/50 dark:bg-gray-800/50">
+      <div class="container-custom">
+        <div class="text-center max-w-6xl mx-auto mb-16">
+          <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-6">
+            Curated Datasets
+          </span>
+          <h2 class="mb-6 text-gray-900 dark:text-white">Ready-to-use, High-Quality Data Collections</h2>
+          <p class="text-gray-600 dark:text-gray-300">
+                  Explore curated datasets covering energy generation, cross-border exchanges, and environmental footprints for research and analysis.
+          </p>
+        </div>
+
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Electricity Generation -->
+            <div class="card p-6 border border-gray-200 dark:border-gray-700 slide-up" style="animation-delay: 0ms">
+              <div class="w-12 h-12 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Electricity Generation</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Detailed 15-minute resolution insights into electricity production by generation type across Europe.
+              </p>
+            </div>
+
+            <!-- Cross-Border Exchanges -->
+            <div class="card p-6 border border-gray-200 dark:border-gray-700 slide-up" style="animation-delay: 100ms">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m0 0l-3-3m3 3l-3 3" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 17H5m0 0l3-3m-3 3l3 3" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Cross-Border Exchanges</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Track imports and exports of electricity between European countries and regions in real time.
+              </p>
+            </div>
+
+            <!-- Carbon & Water Footprints -->
+            <div class="card p-6 border border-gray-200 dark:border-gray-700 slide-up" style="animation-delay: 200ms">
+              <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21V12" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12C7 12 4 8 4 5c0 0 4 1 8 5z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c5 0 7-4 7-6 0 0-3 1-7 6z" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Carbon & Water Footprints</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Monitor carbon emissions and water consumption for electricity, helping track environmental impact.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container-custom">
+        <div class="bg-gradient-to-r from-primary-900 to-primary-700 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+          <div class="relative z-10 text-center md:text-left md:flex items-center justify-between">
+            <div class="mb-6 md:mb-0 md:mr-8">
+              <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+                Ready to explore all energy insights?
+              </h3>
+              <p class="text-white/80 max-w-2xl">
+                Everything you need to track electricity generation, cross-zone flows, and environmental footprints.
+              </p>
+            </div>
+            <a href="https://api.wattnet.eu/docs" target="_blank" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-hidden focus:ring-2 focus:ring-offset-2 bg-white text-primary-600 hover:bg-gray-100 focus:ring-white">
+              Get Started Now
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

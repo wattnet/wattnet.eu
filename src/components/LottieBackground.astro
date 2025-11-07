@@ -1,0 +1,47 @@
+<script
+  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js"
+  type="module"
+></script>
+
+<div class="lottie-container">
+  <dotlottie-wc
+    src="/animations/wattnet-hero-full.lottie"
+    class="lottie"
+    autoplay
+    loop
+    speed="0.5"
+    mode="bounce"
+    preserveAspectRatio="xMidYMid slice"
+  ></dotlottie-wc>
+</div>
+
+<style>
+  .lottie-container {
+    position: absolute;
+    top: 0;
+    right: -5%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Ensure it stays in the background */
+  }
+
+  .lottie {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    right: 0 !important;
+    transform: translate(-50%, -50%);
+    min-width: 2560px;
+    width: auto;
+    height: 100dvh;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .lottie {
+      display: none; /* Hide on smaller screens for performance and clarity */
+    }
+  }
+
+</style>

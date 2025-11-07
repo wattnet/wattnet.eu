@@ -1,0 +1,103 @@
+---
+const people = [
+  {
+    name: "Jaime Iglesias Blanco",
+    role: "Lead Backend Software Engineer",
+    email: "iglesias@ifca.unican.es",
+  },
+  {
+    name: "María Castrillo Melguizo",
+    role: "Environmental Data Modeling Expert",
+    email: "castrillo@ifca.unican.es",
+  },
+  {
+    name: "Álvaro López García",
+    role: "Technical Supervisor & Business Strategy",
+    email: "aloga@ifca.unican.es",
+  },
+    {
+    name: "Marta Obregón Ruiz",
+    role: "Frontend Developer & UX Designer",
+    email: "obregonm@ifca.unican.es",
+  },
+    {
+    name: "Judith Sáinz-Pardo Díaz",
+    role: "Predictive Modeling Data Scientist",
+    email: "sainzpardo@ifca.unican.es",
+  },
+];
+
+import { Image } from "astro:assets";
+import profileBanner from '../assets/profile-background.png';
+import jaimeAvatar from '../assets/team/jaime-iglesias.jpg';
+---
+
+    <!-- Team Members Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {people.map((person) => (
+        <div class="w-full max-w-sm bg-white dark:bg-gray-900 rounded-2xl shadow-md overflow-hidden relative group hover:shadow-xl transition-shadow duration-500">
+          <div class="h-24 relative overflow-hidden rounded-t-2xl group">
+          <!-- Banner image with blur and hover zoom -->
+          <div
+            class="absolute inset-0 bg-cover bg-center filter opacity-25 blur-[2px] transform transition-transform duration-500 ease-in-out group-hover:scale-110"
+            style={`background-image: url(${profileBanner.src})`}
+          ></div>
+
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-primary-900/20 dark:bg-primary-900/40 transition-all duration-500 ease-in-out group-hover:bg-primary-900/30"></div>
+        </div>
+
+          <!-- Avatar -->
+          <div class="absolute top-12 left-8 w-20 h-20 rounded-full border-4 border-white dark:border-gray-900 overflow-hidden bg-primary-100 dark:bg-gray-800 flex items-center justify-center">
+            {person.avatar ? (
+              <Image
+                src={person.avatar}
+                alt={`Avatar of ${person.name}`}
+                class="w-full h-full object-cover"
+                width={500}
+                height={500}
+              />
+            ) : (
+              <svg
+                class="w-10 h-10 pt-1 text-primary-600 dark:text-primary-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M5.121 17.804A4 4 0 0112 15a4 4 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z"
+                />
+              </svg>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="mt-14 px-8 pb-8 flex flex-col">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">{person.name}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{person.role}</p>
+            <a
+              href={`mailto:${person.email}`}
+              class="mt-2 flex items-center text-primary-600 hover:underline"
+            >
+              <svg
+                class="w-4 h-4 mr-1 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              {person.email}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
