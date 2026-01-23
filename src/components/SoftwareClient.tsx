@@ -44,7 +44,6 @@ export default function SoftwareClient() {
 				const res = await fetch("/api/repos");
 				if (!res.ok) throw new Error("Failed to fetch repos");
 				const data: Repo[] = await res.json();
-
 				setRepos(data);
 			} catch (err) {
 				console.error(err);
@@ -56,6 +55,7 @@ export default function SoftwareClient() {
 
 		fetchRepos();
 	}, []);
+
 	if (loading) {
 		return <p className="text-center text-gray-400 text-sm">Loading repositories...</p>;
 	}
@@ -70,13 +70,14 @@ export default function SoftwareClient() {
 				<div
 					key={repo.id}
 					className="
-        flex flex-col md:flex-row
-        bg-gray-900/60 backdrop-blur-md border border-gray-700/70
-        rounded-xl overflow-hidden transition-all duration-200
-        hover:shadow-2xl hover:border-gray-600
-      ">
+						flex flex-col md:flex-row
+						bg-white dark:bg-gray-900/60
+						backdrop-blur-md border border-gray-300 dark:border-gray-700/70
+						rounded-xl overflow-hidden transition-all duration-200
+						hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-600
+					">
 					{/* Desktop logo */}
-					<div className="hidden md:flex w-36 flex-shrink-0 items-center justify-center border-r border-gray-700/70 bg-gray-800/30 p-4">
+					<div className="hidden md:flex w-36 flex-shrink-0 items-center justify-center border-r border-gray-300 dark:border-gray-700/70 bg-gray-100 dark:bg-gray-800/30 p-4">
 						<img
 							src={repo.owner.avatar_url}
 							alt={repo.name}
@@ -91,7 +92,7 @@ export default function SoftwareClient() {
 							alt={repo.name}
 							className="w-10 h-10 rounded-md object-cover"
 						/>
-						<h3 className="text-white font-semibold text-base">
+						<h3 className="text-black dark:text-white font-semibold text-base">
 							<a
 								href={repo.html_url}
 								target="_blank"
@@ -104,7 +105,7 @@ export default function SoftwareClient() {
 					{/* Center info */}
 					<div className="flex-1 flex flex-col justify-between px-4 pt-0 pb-6 md:pt-4 md:pb-4">
 						{/* Desktop title */}
-						<h3 className="hidden md:block text-white font-semibold text-base mb-2">
+						<h3 className="hidden md:block text-black dark:text-white font-semibold text-base mb-2">
 							<a
 								href={repo.html_url}
 								target="_blank"
@@ -115,7 +116,7 @@ export default function SoftwareClient() {
 
 						{/* Description */}
 						{repo.description && (
-							<p className="text-gray-300 text-sm leading-snug mb-3 break-words">
+							<p className="text-gray-800 dark:text-gray-300 text-sm leading-snug mb-3 break-words">
 								{repo.description}
 							</p>
 						)}
@@ -126,7 +127,7 @@ export default function SoftwareClient() {
 								{repo.topics.map((t) => (
 									<span
 										key={t}
-										className="px-2 py-0.5 text-xs rounded bg-blue-500/15 text-blue-300">
+										className="px-2 py-0.5 text-xs rounded bg-blue-100 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300">
 										{t}
 									</span>
 								))}
@@ -134,40 +135,61 @@ export default function SoftwareClient() {
 						)}
 
 						{/* Meta */}
-						<div className="flex flex-wrap items-center text-gray-400 text-sm gap-1">
+						<div className="flex flex-wrap items-center text-gray-700 dark:text-gray-400 text-sm gap-1">
 							{[
 								repo.language && (
 									<span key="lang" className="flex items-center gap-1">
-										<Code size={16} className="text-green-400" />
+										<Code
+											size={16}
+											className="text-green-600 dark:text-green-400"
+										/>
 										{repo.language}
 									</span>
 								),
 								repo.license && (
 									<span key="license" className="flex items-center gap-1">
-										<Scale size={16} className="text-purple-400" />
+										<Scale
+											size={16}
+											className="text-purple-600 dark:text-purple-400"
+										/>
 										{repo.license.name}
 									</span>
 								),
 								<span key="stars" className="flex items-center gap-1">
-									<Star size={16} className="text-yellow-400" />
+									<Star
+										size={16}
+										className="text-yellow-600 dark:text-yellow-400"
+									/>
 									{repo.stargazers_count}
 								</span>,
 								<span key="forks" className="flex items-center gap-1">
-									<GitFork size={16} className="text-accent-400" />
+									<GitFork
+										size={16}
+										className="text-accent-600 dark:text-accent-400"
+									/>
 									{repo.forks_count}
 								</span>,
 								<span key="issues" className="flex items-center gap-1">
-									<AlertCircle size={16} className="text-red-400" />
+									<AlertCircle
+										size={16}
+										className="text-red-600 dark:text-red-400"
+									/>
 									{repo.open_issues_count}
 								</span>,
 								repo.open_prs !== undefined && (
 									<span key="prs" className="flex items-center gap-1">
-										<GitPullRequestArrow size={16} className="text-blue-400" />
+										<GitPullRequestArrow
+											size={16}
+											className="text-blue-600 dark:text-blue-400"
+										/>
 										{repo.open_prs}
 									</span>
 								),
 								<span key="updated" className="flex items-center gap-1">
-									<Calendar size={16} className="text-primary-400" />
+									<Calendar
+										size={16}
+										className="text-primary-600 dark:text-primary-400"
+									/>
 									{formatUpdatedDate(repo.pushed_at)}
 								</span>,
 							]
@@ -186,14 +208,20 @@ export default function SoftwareClient() {
 						className="
 							w-full md:w-48
 							flex flex-col justify-start gap-3
-							border-t md:border-t-0 md:border-l border-gray-700/70
-							bg-gray-800/30
+							border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70
+							bg-gray-100 dark:bg-gray-800/30
 							p-4 md:p-3
-						">
+							">
 						<a
 							href={repo.html_url}
 							target="_blank"
-							className="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md bg-gray-700/50 text-gray-200 hover:bg-gray-600 transition">
+							className="
+								flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
+								bg-gray-200 dark:bg-gray-700/50
+								text-gray-900 dark:text-gray-200
+								hover:bg-gray-300 dark:hover:bg-gray-600
+								transition
+							">
 							{/* GitHub Logo */}
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
