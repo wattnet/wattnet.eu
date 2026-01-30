@@ -15,8 +15,8 @@ import HeroSection from '../components/HeroSection.astro';
     />
 
     <!-- Dashboard Preview Section -->
-    <section class="section bg-gray-50/50 dark:bg-gray-900/50 relative overflow-hidden py-12 md:py-16">
-      <div class="container-custom">
+    <section class="section bg-gray-50/50 dark:bg-gray-900/50 relative overflow-hidden">
+      <div class="container-custom slide-up">
         <!-- Explanatory Text Outside the Preview -->
         <div class="text-center max-w-3xl mx-auto mb-12 px-4">
           <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
@@ -70,8 +70,8 @@ import HeroSection from '../components/HeroSection.astro';
     </section>
 
     <!-- API Section -->
-    <section class="section bg-gray-50 dark:bg-gray-800/10 relative overflow-hidden py-12 md:py-16">
-      <div class="container-custom">
+    <section class="section bg-gray-50 dark:bg-gray-800/10 relative overflow-hidden">
+      <div class="container-custom slide-up">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="md:col-span-1 px-4 sm:px-0">
             <span class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4">
@@ -147,7 +147,7 @@ aggregate=true" \
 
     <!-- Curated Datasets Section -->
     <section id="datasets" class="section bg-gray-50/50 dark:bg-gray-800/50">
-      <div class="container-custom">
+      <div class="container-custom slide-up">
         <div class="text-center max-w-6xl mx-auto mb-16">
           <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-6">
             Curated Datasets
@@ -202,12 +202,24 @@ aggregate=true" \
               </p>
             </div>
           </div>
+
+          <div class="flex justify-end mt-8">
+            <a
+              href="/resources#datasets"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 dark:bg-primary-500 text-white font-semibold rounded-xl shadow-md hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors duration-300"
+            >
+              Explore All Datasets
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container-custom">
+      <div class="container-custom slide-up">
         <div class="bg-gradient-to-r from-primary-900 to-primary-700 rounded-2xl p-8 md:p-12 relative overflow-hidden">
           <div class="relative z-10 text-center md:text-left md:flex items-center justify-between">
             <div class="mb-6 md:mb-0 md:mr-8">

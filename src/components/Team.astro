@@ -4,32 +4,43 @@ const people = [
     name: "Jaime Iglesias Blanco",
     role: "Lead Backend Software Engineer",
     email: "iglesias@ifca.unican.es",
+    orcid: "https://orcid.org/0009-0007-7761-5600",
+    avatar: null,
   },
   {
     name: "María Castrillo Melguizo",
     role: "Environmental Data Modeling Expert",
     email: "castrillo@ifca.unican.es",
+    orcid: "https://orcid.org/0000-0001-7033-6907",
+    avatar: null,
   },
   {
     name: "Álvaro López García",
     role: "Technical Supervisor & Business Strategy",
     email: "aloga@ifca.unican.es",
+    orcid: "https://orcid.org/0000-0002-0013-4602",
+    avatar: null,
   },
-    {
+  {
     name: "Marta Obregón Ruiz",
     role: "Frontend Developer & UX Designer",
     email: "obregonm@ifca.unican.es",
+    orcid: "https://orcid.org/0009-0004-9750-7066",
+    avatar: null,
   },
-    {
+  {
     name: "Judith Sáinz-Pardo Díaz",
     role: "Predictive Modeling Data Scientist",
     email: "sainzpardo@ifca.unican.es",
+    orcid: "https://orcid.org/0000-0002-8387-578X",
+    avatar: null,
   },
 ];
 
 import { Image } from "astro:assets";
 import profileBanner from '../assets/profile-background.png';
 import jaimeAvatar from '../assets/team/jaime-iglesias.jpg';
+import orcidIcon from "../assets/logos/external/orcid.svg";
 ---
 
     <!-- Team Members Grid -->
@@ -76,7 +87,21 @@ import jaimeAvatar from '../assets/team/jaime-iglesias.jpg';
 
           <!-- Content -->
           <div class="mt-14 px-8 pb-8 flex flex-col">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white">{person.name}</h3>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              {person.orcid ? (
+                <a
+                  href={person.orcid}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2"
+                >
+                  <span>{person.name}</span>
+                  <img src={orcidIcon.src} alt="ORCID Icon" class="w-4.5 h-4.5" />
+                </a>
+              ) : (
+                <span>{person.name}</span>
+              )}
+            </h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{person.role}</p>
             <a
               href={`mailto:${person.email}`}
