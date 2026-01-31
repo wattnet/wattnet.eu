@@ -93,7 +93,7 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
                   href={person.orcid}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center gap-2"
+                  class="flex items-center gap-2 hover:underline underline-offset-3 decoration-1"
                 >
                   <span>{person.name}</span>
                   <img src={orcidIcon.src} alt="ORCID Icon" class="w-4.5 h-4.5" />
@@ -105,7 +105,7 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{person.role}</p>
             <a
               href={`mailto:${person.email}`}
-              class="mt-2 flex items-center text-primary-600 hover:underline"
+              class="mt-2 flex items-center text-primary-600 hover:underline decoration-1"
             >
               <svg
                 class="w-4 h-4 mr-1 flex-shrink-0"
