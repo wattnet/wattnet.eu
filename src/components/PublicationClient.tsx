@@ -87,12 +87,18 @@ export default function PublicationClient({ publications }: Props) {
 							<div className="flex flex-wrap gap-2 mb-2 text-sm text-gray-700 dark:text-gray-300">
 								{pub.authors.map((a, i) => (
 									<div key={a.orcid} className="flex items-center gap-1.5">
-										<span
-											className="font-semibold cursor-pointer"
-											onClick={() => window.open(a.orcid, "_blank")}>
-											{a.name}
-										</span>
-										<img src={orcidIcon.src} className="w-4.25 h-4.25" />
+										<a
+											href={a.orcid}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="flex items-center gap-1.5 font-semibold hover:underline cursor-pointer">
+											<span>{a.name}</span>
+											<img
+												src={orcidIcon.src}
+												alt="ORCID"
+												className="w-4.25 h-4.25"
+											/>
+										</a>
 										{i < pub.authors.length - 1 && <span>·</span>}
 									</div>
 								))}
