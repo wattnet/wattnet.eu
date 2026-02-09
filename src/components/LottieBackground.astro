@@ -11,7 +11,7 @@
     loop
     speed="0.5"
     mode="bounce"
-    preserveAspectRatio="xMidYMid slice"
+    preserveAspectRatio="xMaxYMax slice"
   ></dotlottie-wc>
 </div>
 
@@ -19,23 +19,21 @@
   .lottie-container {
     position: absolute;
     top: 0;
-    right: -5%;
-    width: 100%;
-    height: 100%;
+    right: -10%; 
+    width: 107%;
+    height: 107%;
     overflow: hidden;
     z-index: -1; /* Ensure it stays in the background */
   }
 
   .lottie {
-    position: relative;
+    position: inset;
     top: 50%;
     left: 50%;
     right: 0 !important;
     transform: translate(-50%, -50%);
-    min-width: 2560px;
-    width: auto;
-    height: 100dvh;
-    object-fit: cover;
+    width: 107%;
+    height: 107%;
   }
 
   @media (max-width: 768px) {
