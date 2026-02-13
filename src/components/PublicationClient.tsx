@@ -183,7 +183,7 @@ export default function PublicationClient({ publications }: Props) {
 									href={link.url}
 									target="_blank"
 									className={`flex items-center gap-3 px-4 py-1.5 text-sm rounded-md bg-gray-200 dark:bg-gray-700/50 ${link.color} hover:bg-gray-300 dark:hover:bg-gray-600 transition w-full`}>
-									<img src={link.icon} className="w-4 h-4" />
+									<img src={link.icon} alt="Link Icon" class="w-4 h-4" />
 									<span>View on {link.title}</span>
 								</a>
 							))}
