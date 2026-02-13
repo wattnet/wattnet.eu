@@ -3,6 +3,7 @@ import '../styles/global.css';
 import '../styles/transitions.css';
 import background from '../assets/wattnet-background.svg';
 import { ClientRouter } from 'astro:transitions';
+import { Image } from "astro:assets";
 
 export interface Props {
   title: string;
@@ -34,21 +35,20 @@ const {
     <ClientRouter />
   </head>
   <body class="antialiased bg-white dark:bg-secondary-950 text-secondary-900 dark:text-secondary-100 transition-colors duration-300">
-    <img 
+    <Image 
       id="background" 
-      src={background.src} 
-      alt="" 
-      fetchpriority="high" 
-      style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        filter: blur(100px);
-        opacity: 1;
-      "
+      src={background} 
+      alt="wattnet background pattern"
+      style={{ 
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        zIndex: "-1",
+        filter: "blur(100px)",
+        opacity: "1",
+      }}
     />
     <div id="page-wrapper" class="page-transition-wrapper">
     
@@ -87,11 +87,11 @@ const {
       <span class="desktop-text">
         <span>The dashboard is publicly accessible in <strong>beta</strong>.</span>
         <span class="ml-4">This service is still under <strong>active development</strong>.</span> 
-        <a target="_blank" href="https://dashboard.wattnet.eu" class="ml-4">Open dashboard → <strong>dashboard.wattnet.eu</strong></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://dashboard.wattnet.eu" class="ml-4">Open dashboard → <strong>dashboard.wattnet.eu</strong></a>
       </span>
       <span class="mobile-text">
         Dashboard available in <strong>beta</strong>. 
-        <a target="_blank" href="https://dashboard.wattnet.eu">Open →</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://dashboard.wattnet.eu">Open →</a>
       </span>
     </div>
 
