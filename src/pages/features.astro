@@ -9,78 +9,93 @@ const featuresComplete = [
     title: "Real-Time Insights",
     description: "Live updates on electricity generation, flows, and environmental footprint across all European zones.",
     icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-    color: "primary"
+    bgClass: "bg-primary-100 dark:bg-primary-900/30",
+    iconClass: "text-primary-600 dark:text-primary-400"
   },
   {
     title: "Historical Data",
     description: "Explore past electricity patterns and footprint evolution to analyze trends across regions.",
     icon: "M3 5h18M3 12h18M3 19h18",
-    color: "accent"
+    bgClass: "bg-accent-100 dark:bg-accent-900/30",
+    iconClass: "text-accent-600 dark:text-accent-400"
   },
   {
     title: "Forecast & Planning",
     description: "Short-term forecasts of carbon and water footprints to plan energy usage efficiently.",
     icon: "M3 17l6-6 4 4 8-8M21 21H3V3",
-    color: "primary"
+    bgClass: "bg-primary-100 dark:bg-primary-900/30",
+    iconClass: "text-primary-600 dark:text-primary-400"
   },
   {
     title: "Transparency & Reliability",
     description: "Data is validated and processed consistently, ensuring accuracy, comparability, and reliable insights.",
     icon: "M5 13l4 4L19 7",
-    color: "accent"
+    bgClass: "bg-accent-100 dark:bg-accent-900/30",
+    iconClass: "text-accent-600 dark:text-accent-400"
   },
   {
     title: "Cross-Zone Comparisons",
     description: "Compare energy mixes, flows, and footprints between multiple European zones quickly and easily.",
     icon: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z",
-    color: "primary"
+    bgClass: "bg-primary-100 dark:bg-primary-900/30",
+    iconClass: "text-primary-600 dark:text-primary-400"
   },
   {
     title: "Research & Policy Support",
     description: "Actionable insights for scientists, businesses, and policymakers to drive sustainable decisions.",
     icon: "M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z",
-    color: "accent"
+    bgClass: "bg-accent-100 dark:bg-accent-900/30",
+    iconClass: "text-accent-600 dark:text-accent-400"
   },
   {
     title: "High-Resolution Data",
     description: "60 European zones monitored every 15 minutes, delivering detailed, granular, and actionable insights.",
     icon: "M6 2h12M6 22h12M6 2v6a6 6 0 006 6 6 6 0 006-6V2M6 22v-6a6 6 0 006-6 6 6 0 006 6v6",
-    color: "primary"
+    bgClass: "bg-primary-100 dark:bg-primary-900/30",
+    iconClass: "text-primary-600 dark:text-primary-400"
   },
   {
     title: "Generation by Production Type",
     description: "Detailed breakdown of electricity generation by production type: solar, wind, biomass, nuclear, gas, and more.",
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
-    color: "accent"
+    bgClass: "bg-accent-100 dark:bg-accent-900/30",
+    iconClass: "text-accent-600 dark:text-accent-400"
   },
   {
     title: "Cross-Border Flows",
     description: "Track electricity imports and exports, including flow share distribution between all zones.",
     icon: "M5 7h14m0 0l-3-3m3 3l-3 3M19 17H5m0 0l3-3m-3 3l3 3",
-    color: "primary"
+    bgClass: "bg-primary-100 dark:bg-primary-900/30",
+    iconClass: "text-primary-600 dark:text-primary-400"
   },
   {
     title: "Footprint Metrics",
     description: "Carbon and water footprints for each zone, locally and globally, including operation and lifecycle scopes.",
     icon: "M12 21V12M12 12C7 12 4 8 4 5c0 0 4 1 8 4c4-3 8-4 8-4c0 4-4 8-8 8z",
-    color: "accent"
+    bgClass: "bg-accent-100 dark:bg-accent-900/30",
+    iconClass: "text-accent-600 dark:text-accent-400"
   },
   {
     title: "Emission Factors",
     description: "Current emission and impact factors per generation type for precise environmental analysis.",
     icon: "M3 3v18h20M9 14v4M15 10v8M21 6v12",
-    color: "primary"
+    bgClass: "bg-primary-100 dark:bg-primary-900/30",
+    iconClass: "text-primary-600 dark:text-primary-400"
   },
   {
     title: "Zone Mix & Flow Share",
     description: "Analyze each zone's energy mix and flow share to see contributions to other zones’ footprints.",
     icon: "M12 2C6 2 2 6 2 12s4 10 10 10 10-4 10-10-4-10-10z",
-    color: "accent"
+    bgClass: "bg-accent-100 dark:bg-accent-900/30",
+    iconClass: "text-accent-600 dark:text-accent-400"
   }
 ];
 ---
 
-<Layout title="Features - wattnet.eu" description="Discover the cutting-edge features of wattnet that provide deep insights into electricity consumption and its environmental impact. Explore interactive demos and see how our technology can benefit your energy research and sustainability efforts.">
+<Layout
+  title="Features | Wattnet"
+  description="Explore real-time electricity insights, high-resolution data, and footprint metrics to understand Europe's energy impact."
+>
   <Header />
   <main>
     <!-- Hero Section -->
@@ -108,11 +123,11 @@ const featuresComplete = [
               class="card p-6 border border-gray-200 dark:border-gray-700 slide-up" 
               style={`animation-delay: ${index * 100}ms`}
             >
-              <div class={`w-12 h-12 rounded-lg bg-${feature.color}-100 dark:bg-${feature.color}-900/30 flex items-center justify-center mb-6`}>
-                <svg 
-                  class={`w-6 h-6 text-${feature.color}-600 dark:text-${feature.color}-400`} 
-                  fill="none" 
-                  stroke="currentColor" 
+            <div class={`w-12 h-12 rounded-lg ${feature.bgClass} flex items-center justify-center mb-6`}>
+              <svg 
+                class={`w-6 h-6 ${feature.iconClass}`} 
+                fill="none" 
+                stroke="currentColor" 
                   viewBox="0 0 24 24" 
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -127,18 +142,21 @@ const featuresComplete = [
       </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="section bg-linear-to-br from-primary-600 to-primary-800 dark:from-primary-800 dark:to-primary-900 text-white py-12 md:py-16">
+    <!--CTA -->
+    <section class="section">
       <div class="container-custom slide-up">
-        <div class="text-center max-w-3xl mx-auto px-4">
-          <h2 class="text-2xl md:text-3xl mb-4 md:mb-6 text-white">Ready to Explore Europe's Electricity Footprint?</h2>
-          <p class="text-primary-100 mb-6 md:mb-8">
-            Access high-resolution electricity data, carbon and water footprints, and interactive dashboards – all ready to use for your research or projects.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://dashboard.wattnet.eu" target="_blank" rel="noopener noreferrer" class="btn-accent text-sm md:text-base px-4 py-2 md:px-6 md:py-3 w-full sm:w-auto">
+        <div class="bg-gradient-to-r from-primary-900 to-primary-700 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+          <div class="relative z-10 text-center md:text-left md:flex items-center justify-between">
+            <div class="mb-6 md:mb-0 md:mr-8">
+              <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+                Ready to Explore Europe's Electricity Footprint?              </h3>
+              <p class="text-white/80 max-w-2xl">
+                Access high-resolution electricity data, carbon and water footprints, and interactive dashboards – all ready to use for your research or projects. 
+              </p>
+            </div>
+            <a href="https://dashboard.wattnet.eu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-hidden focus:ring-2 focus:ring-offset-2 bg-white text-primary-600 hover:bg-gray-100 focus:ring-white">
               Get Started Now
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </a>
