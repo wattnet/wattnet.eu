@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wattnet.eu/sitemap-0.xml

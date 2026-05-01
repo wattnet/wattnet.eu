@@ -8,12 +8,19 @@ import { Image } from "astro:assets";
 export interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
 const { 
   title, 
-  description = "An open-source service for tracking the environmental footprint of electricity across Europe."
+  description = "An open-source service for tracking the environmental footprint of electricity across Europe.",
+  ogImage
 } = Astro.props;
+
+const canonicalUrl = Astro.url.href;
+const siteName = "wattnet.eu";
+const defaultOgImage = new URL('/og/wattnet-og.svg', Astro.url).href;
+const resolvedOgImage = ogImage ?? defaultOgImage;
 ---
 
 <!doctype html>
@@ -25,8 +32,23 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#3a78e0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedOgImage} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link 
