@@ -8,6 +8,8 @@ import {
 	Scale,
 	Calendar,
 	ExternalLink,
+	Tag,
+	Container,
 } from "lucide-preact";
 
 interface Repo {
@@ -24,6 +26,9 @@ interface Repo {
 	topics: string[];
 	owner: { avatar_url: string };
 	open_prs?: number;
+	archived: boolean;
+	latest_release: { tag: string; url: string } | null;
+	links: { pypi?: string; dockerhub?: string; ghcr?: string } | null;
 }
 
 function formatUpdatedDate(date: string): string {
@@ -33,6 +38,39 @@ function formatUpdatedDate(date: string): string {
 		year: "numeric",
 	})}`;
 }
+
+function GitHubIcon() {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+			<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.386-1.334-1.754-1.334-1.754-1.09-.745.082-.729.082-.729 1.205.084 1.84 1.24 1.84 1.24 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.304.76-1.604-2.665-.305-5.466-1.332-5.466-5.931 0-1.31.47-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.007-.322 3.3 1.23a11.52 11.52 0 013-.404c1.02.005 2.045.137 3 .404 2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.804 5.625-5.475 5.921.43.372.815 1.106.815 2.228v3.293c0 .32.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.63-5.373-12-12-12z" />
+		</svg>
+	);
+}
+
+function PyPIIcon() {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+			<path d="M11.984 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.882v.826H3.912S0 5.789 0 12.013c0 6.224 3.43 6.003 3.43 6.003h2.047v-2.887s-.11-3.43 3.375-3.43h5.821s3.265.053 3.265-3.153V3.292S18.463 0 11.984 0zM8.705 1.9a1.057 1.057 0 110 2.115 1.057 1.057 0 010-2.115z" />
+			<path d="M12.016 24c6.164 0 5.784-2.656 5.784-2.656l-.007-2.752h-5.882v-.826h8.177S24 18.211 24 11.987c0-6.224-3.43-6.003-3.43-6.003h-2.047v2.887s.11 3.43-3.375 3.43H9.327s-3.265-.053-3.265 3.153v5.254S5.537 24 12.016 24zm3.279-1.9a1.057 1.057 0 110-2.115 1.057 1.057 0 010 2.115z" />
+		</svg>
+	);
+}
+
+function DockerIcon() {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+			<path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.186.186 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.186v1.887c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z" />
+		</svg>
+	);
+}
+
+const LINK_CONFIG = {
+	pypi: { label: "View on PyPI", icon: <PyPIIcon />, color: "text-[#3775A9] dark:text-[#4B8BBE]" },
+	ghcr: { label: "View on GHCR", icon: <Container size={16} className="shrink-0" />, color: "text-[#8250DF]" },
+	dockerhub: { label: "View on Docker Hub", icon: <DockerIcon />, color: "text-[#2496ED]" },
+} as const;
+
+const BTN = "flex items-center gap-2 px-3 py-1.5 text-sm rounded-md w-full bg-gray-200 dark:bg-gray-700/50 text-gray-900 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition";
 
 export default function SoftwareClient() {
 	const [repos, setRepos] = useState<Repo[]>([]);
@@ -53,7 +91,6 @@ export default function SoftwareClient() {
 				setLoading(false);
 			}
 		}
-
 		fetchRepos();
 	}, []);
 
@@ -70,40 +107,26 @@ export default function SoftwareClient() {
 			{repos.map((repo) => (
 				<div
 					key={repo.id}
-					className="
-						flex flex-col md:flex-row
-						bg-white dark:bg-gray-900/60
-						backdrop-blur-md border border-gray-300 dark:border-gray-700/70
-						rounded-xl overflow-hidden transition-all duration-200
-						hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-600
-					">
-					{/* Right info */}
-					<div className="flex-1 flex flex-col justify-between px-5 pt-5 pb-5 md:pb-5">
-						{/* Header (mobile + desktop unified) */}
+					className="flex flex-col md:flex-row bg-white dark:bg-gray-900/60 backdrop-blur-md border border-gray-300 dark:border-gray-700/70 rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-600">
+
+					{/* Content */}
+					<div className="flex-1 flex flex-col justify-between px-5 pt-5 pb-5">
+						{/* Header */}
 						<div className="flex items-center gap-3 mb-3">
-							<div
-								className="
-									rounded-md
-									border
-									bg-gray-100 dark:bg-gray-800/30
-									border-gray-300 dark:border-gray-700/70
-									flex items-center justify-center
-								">
-								<img
-									src={repo.owner.avatar_url}
-									alt={repo.name}
-									className="w-8 h-8 rounded-sm object-cover"
-								/>
+							<div className="rounded-md border bg-gray-100 dark:bg-gray-800/30 border-gray-300 dark:border-gray-700/70 flex items-center justify-center">
+								<img src={repo.owner.avatar_url} alt={repo.name} className="w-8 h-8 rounded-sm object-cover" />
 							</div>
 							<h3 className="text-black dark:text-white font-semibold text-base">
-								<a
-									href={repo.html_url}
-									target="_blank"
-									className="hover:underline hover:underline-offset-2 flex items-center gap-1">
+								<a href={repo.html_url} target="_blank" className="hover:underline hover:underline-offset-2 flex items-center gap-1">
 									{repo.name}
 									<ExternalLink class="h-3.5 w-3.5 opacity-60 ml-1" />
 								</a>
 							</h3>
+							{repo.archived && (
+								<span className="px-2 py-0.5 text-xs rounded-full border border-yellow-400 dark:border-yellow-600 text-yellow-700 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20 shrink-0">
+									Archived
+								</span>
+							)}
 						</div>
 
 						{/* Description */}
@@ -113,15 +136,11 @@ export default function SoftwareClient() {
 							</p>
 						)}
 
-						{/* Tags */}
+						{/* Topics */}
 						{repo.topics?.length > 0 && (
 							<div className="flex flex-wrap gap-2 mb-3">
 								{repo.topics.map((t) => (
-									<span
-										key={t}
-										className="px-2 py-0.5 text-xs rounded
-											bg-blue-100 dark:bg-blue-500/15
-											text-blue-700 dark:text-blue-300">
+									<span key={t} className="px-2 py-0.5 text-xs rounded bg-blue-100 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300">
 										{t}
 									</span>
 								))}
@@ -131,61 +150,46 @@ export default function SoftwareClient() {
 						{/* Meta */}
 						<div className="flex flex-wrap items-center text-gray-700 dark:text-gray-400 text-sm gap-1">
 							{[
-								repo.language && (
-									<span key="lang" className="flex items-center gap-1">
-										<Code
-											size={16}
-											className="text-green-600 dark:text-green-400"
-										/>
-										{repo.language}
-									</span>
-								),
+								<span key="lang" className="flex items-center gap-1">
+									<Code size={16} className="text-green-600 dark:text-green-400" />
+									{repo.language ?? "Other"}
+								</span>,
 								repo.license && (
 									<span key="license" className="flex items-center gap-1">
-										<Scale
-											size={16}
-											className="text-purple-600 dark:text-purple-400"
-										/>
+										<Scale size={16} className="text-purple-600 dark:text-purple-400" />
 										{repo.license.name}
 									</span>
 								),
 								<span key="stars" className="flex items-center gap-1">
-									<Star
-										size={16}
-										className="text-yellow-600 dark:text-yellow-400"
-									/>
+									<Star size={16} className="text-yellow-600 dark:text-yellow-400" />
 									{repo.stargazers_count}
 								</span>,
 								<span key="forks" className="flex items-center gap-1">
-									<GitFork
-										size={16}
-										className="text-accent-600 dark:text-accent-400"
-									/>
+									<GitFork size={16} className="text-accent-600 dark:text-accent-400" />
 									{repo.forks_count}
 								</span>,
 								<span key="issues" className="flex items-center gap-1">
-									<AlertCircle
-										size={16}
-										className="text-red-600 dark:text-red-400"
-									/>
-									{repo.open_issues_count}
+									<AlertCircle size={16} className="text-red-600 dark:text-red-400" />
+									{Math.max(0, repo.open_issues_count - (repo.open_prs ?? 0))}
 								</span>,
 								repo.open_prs !== undefined && (
 									<span key="prs" className="flex items-center gap-1">
-										<GitPullRequestArrow
-											size={16}
-											className="text-blue-600 dark:text-blue-400"
-										/>
+										<GitPullRequestArrow size={16} className="text-blue-600 dark:text-blue-400" />
 										{repo.open_prs}
 									</span>
 								),
 								<span key="updated" className="flex items-center gap-1">
-									<Calendar
-										size={16}
-										className="text-primary-600 dark:text-primary-400"
-									/>
+									<Calendar size={16} className="text-primary-600 dark:text-primary-400" />
 									{formatUpdatedDate(repo.pushed_at)}
 								</span>,
+								repo.latest_release && (
+									<span key="release" className="flex items-center gap-1">
+										<Tag size={16} className="text-emerald-600 dark:text-emerald-400" />
+										<a href={repo.latest_release.url} target="_blank" className="hover:underline hover:underline-offset-2">
+											{repo.latest_release.tag}
+										</a>
+									</span>
+								),
 							]
 								.filter(Boolean)
 								.map((item, index, arr) => (
@@ -197,36 +201,23 @@ export default function SoftwareClient() {
 						</div>
 					</div>
 
-					{/* Right section */}
-					<div
-						className="
-						w-full md:w-48
-						flex flex-col justify-start gap-3
-						border-t md:border-t-0 md:border-l
-						border-gray-300 dark:border-gray-700/70
-						bg-gray-100 dark:bg-gray-800/30
-						p-4 md:p-3
-						">
-						<a
-							href={repo.html_url}
-							target="_blank"
-							className="
-							flex items-center justify-center gap-2
-							px-3 py-1.5 text-sm rounded-md
-							bg-gray-200 dark:bg-gray-700/50
-							text-gray-900 dark:text-gray-200
-							hover:bg-gray-300 dark:hover:bg-gray-600
-							transition
-						">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="w-4 h-4"
-								fill="currentColor"
-								viewBox="0 0 24 24">
-								<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.386-1.334-1.754-1.334-1.754-1.09-.745.082-.729.082-.729 1.205.084 1.84 1.24 1.84 1.24 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.304.76-1.604-2.665-.305-5.466-1.332-5.466-5.931 0-1.31.47-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.007-.322 3.3 1.23a11.52 11.52 0 013-.404c1.02.005 2.045.137 3 .404 2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.804 5.625-5.475 5.921.43.372.815 1.106.815 2.228v3.293c0 .32.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.63-5.373-12-12-12z" />
-							</svg>
+					{/* Sidebar links */}
+					<div className="w-full md:w-52 flex flex-col gap-2 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70 bg-gray-100 dark:bg-gray-800/30 p-4 md:p-3">
+						<a href={repo.html_url} target="_blank" className={BTN}>
+							<GitHubIcon />
 							View on GitHub
 						</a>
+						{repo.links && (Object.keys(repo.links) as Array<keyof typeof LINK_CONFIG>).map((key) => {
+							const url = repo.links![key];
+							if (!url) return null;
+							const cfg = LINK_CONFIG[key];
+							return (
+								<a key={key} href={url} target="_blank" className={BTN}>
+									<span className={cfg.color ?? ""}>{cfg.icon}</span>
+									<span className={cfg.color ?? ""}>{cfg.label}</span>
+								</a>
+							);
+						})}
 					</div>
 				</div>
 			))}
