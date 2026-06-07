@@ -174,7 +174,7 @@ export default function PublicationClient({ publications }: Props) {
 
 						{/* Right */}
 						<div
-							className="w-full md:w-auto flex flex-col items-stretch gap-3 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70 
+							className="w-full md:w-52 flex flex-col gap-3 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70
 							bg-gray-100 dark:bg-gray-800/30 p-4 md:p-3
 							md:rounded-tr-xl md:rounded-br-xl">
 							{pub.links.map((link) => (
