@@ -107,7 +107,7 @@ export default function SoftwareClient() {
 			{repos.map((repo) => (
 				<div
 					key={repo.id}
-					className="flex flex-col md:flex-row bg-white dark:bg-gray-900/60 backdrop-blur-md border border-gray-300 dark:border-gray-700/70 rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-600">
+					className="flex flex-col md:flex-row bg-white/60 dark:bg-gray-900/40 backdrop-blur-md border border-gray-300 dark:border-gray-700/70 rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-600">
 
 					{/* Content */}
 					<div className="flex-1 flex flex-col justify-between px-5 pt-5 pb-5">
@@ -202,7 +202,7 @@ export default function SoftwareClient() {
 					</div>
 
 					{/* Sidebar links */}
-					<div className="w-full md:w-52 flex flex-col gap-2 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70 bg-gray-100 dark:bg-gray-800/30 p-4 md:p-3">
+					<div className="w-full md:w-52 flex flex-col gap-2 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70 bg-gray-100/60 dark:bg-gray-800/20 backdrop-blur-sm p-4 md:p-3">
 						<a href={repo.html_url} target="_blank" className={BTN}>
 							<GitHubIcon />
 							View on GitHub

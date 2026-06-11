@@ -148,11 +148,11 @@
 }
 
 @utility section {
-	@apply py-16 md:py-24;
+	@apply py-20 md:py-32;
 }
 
 @utility card {
-	@apply bg-white dark:bg-secondary-900 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-secondary-200 dark:border-secondary-800;
+	@apply bg-white/60 dark:bg-gray-900/40 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-secondary-200/60 dark:border-secondary-800/60;
 }
 
 @layer base {
