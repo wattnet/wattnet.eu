@@ -46,7 +46,7 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
     <!-- Team Members Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {people.map((person) => (
-        <div class="w-full max-w-sm bg-white dark:bg-gray-900 rounded-2xl shadow-md overflow-hidden relative group hover:shadow-xl transition-shadow duration-500">
+        <div class="w-full max-w-sm bg-white/60 dark:bg-gray-900/40 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-all duration-500 border border-gray-200/60 dark:border-gray-800/60">
           <div class="h-24 relative overflow-hidden rounded-t-2xl group">
           <!-- Banner image with blur and hover zoom -->
           <div
@@ -59,7 +59,7 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
         </div>
 
           <!-- Avatar -->
-          <div class="absolute top-12 left-8 w-20 h-20 rounded-full border-4 border-white dark:border-gray-900 overflow-hidden bg-primary-100 dark:bg-gray-800 flex items-center justify-center">
+          <div class="absolute top-12 left-8 w-20 h-20 rounded-full border-4 border-white/90 dark:border-white/10 overflow-hidden bg-primary-100 dark:bg-gray-800 flex items-center justify-center">
             {person.avatar ? (
               <Image
                 src={person.avatar}

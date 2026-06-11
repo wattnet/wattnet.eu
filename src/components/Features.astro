@@ -4,83 +4,90 @@ const features = [
     title: "Real-Time Insights",
     description: "Access live information on the environmental footprint of electricity across Europe.",
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
-    bgClass: "bg-primary-100 dark:bg-primary-900/30",
-    iconClass: "text-primary-600 dark:text-primary-400"
+    accent: "primary",
   },
   {
     title: "Historical Trends",
     description: "Explore past electricity data to analyze patterns, compare regions, and understand long-term impacts.",
     icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-    bgClass: "bg-accent-100 dark:bg-accent-900/30",
-    iconClass: "text-accent-600 dark:text-accent-400"
+    accent: "accent",
   },
   {
     title: "Forecast Capabilities",
     description: "Plan ahead with short-term forecasts of carbon and water footprint in the power system.",
     icon: "M3 17l6-6 4 4 8-8M21 21H3V3",
-    bgClass: "bg-primary-100 dark:bg-primary-900/30",
-    iconClass: "text-primary-600 dark:text-primary-400"
+    accent: "primary",
   },
   {
     title: "Transparency & Reliability",
     description: "All data is processed consistently and presented in a transparent way for research and decision-making.",
     icon: "M5 13l4 4L19 7",
-    bgClass: "bg-accent-100 dark:bg-accent-900/30",
-    iconClass: "text-accent-600 dark:text-accent-400"
+    accent: "accent",
   },
   {
     title: "Cross-Region Comparisons",
     description: "Easily compare footprints across multiple European zones to identify patterns and differences.",
     icon: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z",
-    bgClass: "bg-primary-100 dark:bg-primary-900/30",
-    iconClass: "text-primary-600 dark:text-primary-400"
+    accent: "primary",
   },
   {
     title: "Support for Research & Policy",
     description: "Empowering scientists, businesses, and policymakers with actionable insights on electricity impact.",
     icon: "M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z",
-    bgClass: "bg-accent-100 dark:bg-accent-900/30",
-    iconClass: "text-accent-600 dark:text-accent-400"
+    accent: "accent",
   }
 ];
 ---
 
 <section id="features" class="section bg-gray-50/25 dark:bg-gray-800/50">
   <div class="container-custom slide-up">
-    <div class="text-center max-w-6xl mx-auto mb-16">
+    <div class="max-w-6xl mx-auto mb-16 text-center">
       <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-6">
         Key Features
       </span>
-      <h2 class="mb-6 text-gray-900 dark:text-white">Key Capabilities for Energy and Sustainability</h2>
+      <h2 class="mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+        Key Capabilities for Energy and Sustainability
+      </h2>
       <p class="text-gray-600 dark:text-gray-300">
-        Explore the main features that make <strong>wattnet</strong> a reliable source of insights on electricity and its environmental footprint.
+        Explore the main features that make <strong>Wattnet</strong> a reliable source of insights on electricity and its environmental footprint.
       </p>
     </div>
-    
+
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {features.map((feature, index) => (
-        <div 
-          class="card p-6 border border-gray-200 dark:border-gray-700 slide-up" 
-          style={`animation-delay: ${index * 100}ms`}
-        >
-          <div class={`w-12 h-12 rounded-lg ${feature.bgClass} flex items-center justify-center mb-6`}>
-            <svg 
-              class={`w-6 h-6 ${feature.iconClass}`} 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.icon}></path>
-            </svg>
+      {features.map((feature, index) => {
+        const isPrimary = feature.accent === 'primary';
+        const stripe = isPrimary
+          ? 'bg-gradient-to-r from-primary-400 to-primary-300 dark:from-primary-500 dark:to-primary-400'
+          : 'bg-gradient-to-r from-accent-400 to-accent-300 dark:from-accent-500 dark:to-accent-400';
+        const iconGradient = isPrimary
+          ? 'from-primary-100 to-primary-200 dark:from-primary-900/50 dark:to-primary-800/30'
+          : 'from-accent-100 to-accent-200 dark:from-accent-900/50 dark:to-accent-800/30';
+        const iconColor = isPrimary
+          ? 'text-primary-600 dark:text-primary-400'
+          : 'text-accent-600 dark:text-accent-400';
+
+        return (
+          <div
+            class="card relative overflow-hidden group p-6 slide-up"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class={`absolute top-0 left-0 right-0 h-[3px] ${stripe}`} />
+            <span class="absolute top-4 right-5 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${iconGradient} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+              <svg class={`w-6 h-6 ${iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.icon} />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{feature.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300">{feature.description}</p>
           </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{feature.title}</h3>
-          <p class="text-gray-600 dark:text-gray-300">{feature.description}</p>
-        </div>
-      ))}
+        );
+      })}
     </div>
-    
-    <div class="mt-16 text-center">
+
+    <div class="mt-16 flex justify-end">
       <a href="/features" class="btn-primary">
         Explore All Features
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
