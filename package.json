@@ -17,7 +17,8 @@
 	},
 	"overrides": {
 		"esbuild": "0.28.1",
-		"js-yaml": "^4.1.2"
+		"js-yaml": "^4.1.2",
+		"vite": "^7"
 	},
 	"dependencies": {
 		"@astrojs/alpinejs": "^0.5.0",
