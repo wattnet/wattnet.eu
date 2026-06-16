@@ -1,16 +1,17 @@
 ---
-const dashboardUrl = "https://dashboard.wattnet.eu/map";
+const dashboardBase = "https://dashboard.wattnet.eu/map";
+const dashboardUrl = dashboardBase;
 ---
 <section class="section bg-gray-50 dark:bg-gray-900/10">
   <div class="container-custom slide-up">
-    <div class="grid md:[grid-template-columns:45%_55%] gap-12 items-stretch">
+    <div class="grid lg:[grid-template-columns:48fr_52fr] gap-8 lg:gap-12 items-stretch">
 
       <!-- Left: text + CTA -->
       <div class="flex flex-col justify-center text-left">
         <span class="inline-block self-start px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-6">
           Live Demo
         </span>
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+        <h2 class="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
           Explore the Wattnet Dashboard
         </h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">
@@ -64,7 +65,7 @@ const dashboardUrl = "https://dashboard.wattnet.eu/map";
       </div>
 
       <!-- Right: browser mockup + iframe -->
-      <div class="rounded-xl shadow-2xl overflow-hidden border border-gray-200/60 dark:border-white/10 flex flex-col">
+      <div class="rounded-xl shadow-2xl overflow-hidden border border-gray-200/60 dark:border-white/10 flex flex-col h-[480px] md:h-[560px] lg:h-auto">
         <!-- Browser chrome -->
         <div class="flex items-center gap-3 px-4 py-3 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md border-b border-gray-200/60 dark:border-white/10 shrink-0">
           <div class="flex gap-1.5 shrink-0">
@@ -99,7 +100,7 @@ const dashboardUrl = "https://dashboard.wattnet.eu/map";
           </div>
           <iframe
             id="dashboard-iframe"
-            src="https://dashboard.wattnet.eu/map"
+            src=""
             title="Wattnet Live Web Dashboard"
             loading="eager"
             class="w-full h-full border-0 opacity-0 transition-opacity duration-500"
@@ -114,10 +115,37 @@ const dashboardUrl = "https://dashboard.wattnet.eu/map";
 <script>
   const iframe = document.getElementById('dashboard-iframe') as HTMLIFrameElement;
   const skeleton = document.getElementById('iframe-skeleton') as HTMLElement;
+
+  function getTheme(): string {
+    return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+  }
+
+  function buildIframeSrc(theme: string): string {
+    return `https://dashboard.wattnet.eu/map?theme=${theme}&lat=50&lon=10&zoom=4`;
+  }
+
   if (iframe && skeleton) {
+    // Set initial src with correct theme and map position
+    iframe.src = buildIframeSrc(getTheme());
+
     iframe.addEventListener('load', () => {
       skeleton.style.display = 'none';
       iframe.style.opacity = '1';
+    });
+
+    // Sync theme when website switches dark/light mode
+    const observer = new MutationObserver(() => {
+      const newSrc = buildIframeSrc(getTheme());
+      if (iframe.src !== newSrc) {
+        skeleton.style.display = 'flex';
+        iframe.style.opacity = '0';
+        iframe.src = newSrc;
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
     });
   }
 </script>

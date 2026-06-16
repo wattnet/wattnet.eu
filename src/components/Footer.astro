@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-transparent.png";
 import EUFundingLogo from "/src/assets/logos/external/EN_FundedbytheEU_RGB_POS.png"
 import GreenDIGITLogo from "/src/assets/logos/external/GreenDIGIT logo color horizontal2.png"
@@ -7,42 +8,41 @@ import GreenDIGITLogo from "/src/assets/logos/external/GreenDIGIT logo color hor
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-900 text-white pt-16 pb-8">
+<footer class="bg-gray-900 text-white pt-10 md:pt-16 pb-8">
   <div class="container-custom slide-up">
-    <div class="grid md:grid-cols-7 gap-8 mb-4">
-      <div class="md:col-span-4">
+    <div class="grid lg:grid-cols-7 gap-6 lg:gap-8 mb-4">
+      <div class="lg:col-span-4">
         <a href="/" class="flex items-center mb-4" aria-label="Go to homepage">
-          <!-- Logo optimizado -->
-          <Image 
+          <Image
             src={wattnetLogo}
             alt="Wattnet Logo"
-            class="h-12 w-auto"
+            class="h-10 md:h-12 w-auto"
             width={500}
             height={500}
             loading="lazy"
           />
-          <span class="ml-2 text-3xl font-display font-semibold text-white">wattnet</span>
+          <span class="ml-2 text-2xl md:text-3xl font-display font-semibold text-white">wattnet</span>
         </a>
 
-        <h6 class="text-gray-400 text-base mb-3">
-          An open-source service for tracking the environmental footprint of electricity across Europe. 
+        <h6 class="text-gray-400 text-sm md:text-base mb-3">
+          An open-source service for tracking the environmental footprint of electricity across Europe.
         </h6>
 
         <ul class="text-gray-400 text-sm list-disc list-inside space-y-1">
           <li>
-            A service provided by 
+            A service provided by
             <a href="https://www.csic.es" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
               Spanish National Research Council (CSIC)
             </a>
           </li>
           <li>
-            Deployed on the Scientific Cloud at 
+            Deployed on the Scientific Cloud at
             <a href="https://ifca.unican.es/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
               Institute of Physics of Cantabria (IFCA)
             </a>
           </li>
           <li>
-            Developed by the 
+            Developed by the
             <a href="https://advancedcomputing.ifca.es" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
               IFCA Advanced Computing and e-Science Group
             </a>
@@ -50,16 +50,16 @@ const currentYear = new Date().getFullYear();
         </ul>
       </div>
 
-      <div class="md:col-span-3">
-        <h3 class="text-lg font-semibold mb-4">Funding and acknowledgments</h3>
+      <div class="lg:col-span-3">
+        <h3 class="text-base md:text-lg font-semibold mb-3 md:mb-4">Funding and acknowledgments</h3>
         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
           This work is funded from the European Union’s Horizon Europe research and innovation
           programme through the
           <a href="https://greendigit-project.eu/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
             GreenDIGIT project</a>, under the grant agreement No.<a href="https://cordis.europa.eu/project/id/101131207" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">101131207</a>.
         </p>
-        <div class="flex flex-wrap justify-between items-center w-full gap-4">
-          <div class="flex-1 min-w-[120px] max-w-[48%]">
+        <div class="flex flex-wrap justify-start lg:justify-between items-center w-full gap-6 lg:gap-4">
+          <div class="w-auto max-w-[180px] lg:max-w-[48%] lg:flex-1">
             <Image
               src={EUFundingLogo}
               alt="European Union Funding"
@@ -67,10 +67,10 @@ const currentYear = new Date().getFullYear();
               height={500}
             />
           </div>
-          <div class="flex-1 min-w-[120px] max-w-[45%]">
+          <div class="w-auto max-w-[160px] lg:max-w-[45%] lg:flex-1">
             <Image
               src={GreenDIGITLogo}
-              alt="Wattnet Logo"
+              alt="GreenDIGIT Logo"
               class="w-full h-auto"
               height={500}
             />
@@ -79,34 +79,54 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="border-t border-gray-800 pt-6 mt-8 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="border-t border-gray-800 pt-6 mt-8 flex flex-col items-center gap-4 lg:grid lg:grid-cols-[1fr_3fr_1fr] lg:items-center lg:gap-0 text-sm text-gray-400">
 
-      <!-- Left: GitHub & Docker Hub (stacked) -->
-      <div class="flex flex-col gap-1">
+      <!-- Left: GitHub + Docker icons -->
+      <div class="flex items-center gap-5">
         <a href="https://github.com/wattnet" target="_blank" rel="noopener noreferrer"
-          class="flex items-center gap-2 text-gray-400 hover:text-accent-500 transition-colors">
-          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 .5C5.65.5.5 5.65.5 12.02c0 5.1 3.3 9.43 7.88 10.96.58.1.79-.25.79-.56v-2.02c-3.2.7-3.88-1.55-3.88-1.55-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.17 1.76 1.17 1.02 1.76 2.68 1.25 3.33.96.1-.74.4-1.25.73-1.54-2.56-.29-5.25-1.29-5.25-5.74 0-1.27.45-2.32 1.18-3.14-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.14 1.2a10.9 10.9 0 0 1 5.72 0c2.18-1.51 3.14-1.2 3.14-1.2.62 1.59.23 2.76.11 3.05.73.82 1.18 1.87 1.18 3.14 0 4.46-2.69 5.44-5.26 5.73.42.36.8 1.07.8 2.17v3.23c0 .31.2.67.8.56A10.98 10.98 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
-          </svg>
-          <span class="text-sm">github.com/wattnet</span>
+          aria-label="GitHub"
+          class="flex items-center gap-1.5 hover:text-accent-500 transition-colors">
+          <Icon name="simple-icons:github" class="w-5 h-5 shrink-0" />
+          <span>/wattnet</span>
         </a>
         <a href="https://hub.docker.com/u/wattnet" target="_blank" rel="noopener noreferrer"
-          class="flex items-center gap-2 text-gray-400 hover:text-accent-500 transition-colors">
-          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.983 11.078h2.119a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.119a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 0 0 .186-.186V3.574a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 0 0 .186-.186V6.29a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 0 0 .184-.186V6.29a.185.185 0 0 0-.185-.185H8.1a.185.185 0 0 0-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 0 0 .185-.186V6.29a.185.185 0 0 0-.185-.185H5.136a.186.186 0 0 0-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 0 0 .184-.185V9.006a.185.185 0 0 0-.184-.186h-2.12a.185.185 0 0 0-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 0 0 .185-.185V9.006a.185.185 0 0 0-.184-.186h-2.12a.186.186 0 0 0-.186.185v1.888c0 .102.084.185.186.185m-2.92 0h2.12a.186.186 0 0 0 .184-.185V9.006a.185.185 0 0 0-.184-.186h-2.12a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 0 0-.75.748 11.376 11.376 0 0 0 .692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 0 0 3.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/>
-          </svg>
-          <span class="text-sm">hub.docker.com/u/wattnet</span>
+          aria-label="Docker Hub"
+          class="flex items-center gap-1.5 hover:text-accent-500 transition-colors">
+          <Icon name="simple-icons:docker" class="w-5 h-5 shrink-0" />
+          <span>/wattnet</span>
         </a>
       </div>
 
-      <!-- Right: copyright + licenses -->
-      <div class="text-right text-sm text-gray-400 space-y-1">
-        <div class="font-semibold">&copy; {currentYear} Spanish National Research Council (CSIC). All rights reserved.</div>
-        <div>
-          <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors">Apache License 2.0</a>
-          <span class="mx-1.5">·</span>
-          <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors">Creative Commons Attribution 4.0 International</a>
-        </div>
+      <!-- Center: copyright (always centered, one line) -->
+      <p class="text-center text-sm lg:whitespace-nowrap">
+        &copy; {currentYear} Spanish National Research Council (CSIC).<br class="md:hidden" /> All rights reserved.
+      </p>
+
+      <!-- Right: Apache + CC with labels -->
+      <div class="flex items-center justify-center lg:justify-end gap-5">
+        <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer"
+          aria-label="Apache License 2.0"
+          class="flex items-center gap-1.5 whitespace-nowrap hover:text-accent-500 transition-colors">
+          <svg class="h-5 w-auto shrink-0 translate-y-0.5" viewBox="0 0 800 1231" fill="currentColor" aria-hidden="true">
+            <path d="M340.565 490.125C371.984 412.419 407.04 334.865 444.655 266.127C388.506 224.415 334.59 134.468 312.439 94.616C304.483 103.656 299.318 114.069 296.976 122.539C276.107 197.903 350.394 288.909 290.56 255.659C240.706 227.952 128.448 167.276 85.6282 227.583C133.585 289.214 259.016 444.273 340.565 490.125Z"/>
+            <path d="M444.655 266.127C481.103 199.523 519.944 141.19 560.214 99.1643C560.214 99.1643 520.049 157.313 462.68 273.555C497.424 283.125 596.373 302.762 734.199 267.154C737.588 242.103 720.749 214.548 636.838 205.323C582.057 199.307 702.592 74.4897 615.272 15.4582C612.453 13.549 609.682 11.8645 606.967 10.3564C604.04 9.30555 600.948 8.34295 597.648 7.48463C495.667 -19.1313 481.532 153.824 440.837 116.644C375.076 56.5612 333.568 70.5992 312.439 94.616C334.59 134.468 388.506 224.415 444.655 266.127Z"/>
+            <path d="M258.543 714.009C281.565 645.031 309.259 567.534 340.565 490.125C259.016 444.273 133.585 289.214 85.6282 227.583C77.0666 239.632 71.2159 256.437 69.267 279.419C58.8087 402.865 186.137 494.256 160.753 510.949C127.177 533.032 60.3486 457.902 34.0103 505.638C72.1864 554.691 149.95 643.322 258.543 714.009Z"/>
+            <path d="M611.342 447.778C546.872 424.78 678.712 363.101 721.523 297.669C727.001 289.302 732.663 278.489 734.199 267.154C596.373 302.762 497.424 283.125 462.68 273.555C432.982 333.742 398.687 409.587 362.922 501.034C400.171 516.965 552.266 575.812 767.094 576.117C803.213 482.023 672.528 469.597 611.342 447.778Z"/>
+            <path d="M283.454 726.427C321.337 738.235 446.861 773.506 580.172 768.196C598.081 719.697 531.124 714.964 525.671 676.067C521.448 645.97 701.878 701.359 759.932 591.92C762.867 586.385 765.157 581.163 767.094 576.117C552.266 575.812 400.171 516.965 362.921 501.034C336.784 567.863 309.896 642.865 283.454 726.427Z"/>
+            <path d="M283.454 726.427C266.431 780.212 249.637 837.672 233.336 898.396C227.553 919.926 221.839 941.857 216.205 964.27C342.735 1006.05 459.248 964.366 463.198 912.706C463.23 912.297 463.154 911.992 463.178 911.599C466.189 856.883 384.195 887.213 386.136 854.317C388.085 821.179 529.284 854.124 572.95 783.076C576.298 777.629 578.48 772.792 580.172 768.196C446.861 773.506 321.337 738.235 283.454 726.427Z"/>
+            <path d="M34.0104 505.638C32.1657 508.983 30.5015 512.85 29.082 517.47C4.56029 597.182 177.956 704.263 154.365 727.606C133.1 748.639 105.386 700.573 71.2119 720.427C67.4665 722.609 63.6649 725.36 59.7631 729.363C21.1139 768.966 59.1576 883.058 168.813 943.959C143.225 1029.89 117.749 1125.91 92.8102 1226.31C101.857 1223.14 112.684 1219.97 115.379 1211.43C119.425 1194.8 144.432 1093.56 185.034 956.224C185.034 956.224 192.445 928.092 206.011 881.743C218.554 838.883 236.379 780.429 258.543 714.009C149.95 643.322 72.1864 554.691 34.0104 505.638Z"/>
+          </svg>
+          <span>Apache 2.0</span>
+        </a>
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer"
+          aria-label="Creative Commons Attribution 4.0 International"
+          class="flex items-center gap-1 whitespace-nowrap hover:text-accent-500 transition-colors">
+          <Icon name="simple-icons:creativecommons" class="w-5 h-5 shrink-0" />
+          <svg class="w-5 h-5 shrink-0" viewBox="5.5 -3.5 64 64" fill="currentColor" aria-hidden="true">
+            <path d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z"/>
+          </svg>
+          <span class="ml-0.5">CC BY 4.0</span>
+        </a>
       </div>
 
     </div>
