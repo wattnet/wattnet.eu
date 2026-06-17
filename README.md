@@ -82,7 +82,7 @@ Based on the [astro-sassify-template](https://github.com/larry-xue/astro-sassify
 
 ## Funding and Acknowledgments
 
-This work is funded by the European Union's Horizon Europe research and innovation programme through the **[GreenDIGIT](https://greendigit-project.eu/)** project, under grant agreement **[101131207](https://cordis.europa.eu/project/id/101131207)**, as well as the Swiss State Secretariat for Education, Research and Innovation (SERI).
+This work is funded by the European Union's Horizon Europe research and innovation programme through the **[GreenDIGIT](https://greendigit-project.eu/)** project, under grant agreement No. **[101131207](https://cordis.europa.eu/project/id/101131207)**, as well as the Swiss State Secretariat for Education, Research and Innovation (SERI).
 
 <img src="https://github.com/wattnet/.github/raw/main/images/GreenDIGIT logo color horizontal2.png" alt="GreenDIGIT Logo" width="230" align="right"/>
 <img src="https://github.com/wattnet/.github/raw/main/images/EN_FundedbytheEU_RGB_POS.png" alt="EU Funded Logo" width="260" align="left"/>
