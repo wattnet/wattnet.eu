@@ -10,6 +10,10 @@ import {
 	ExternalLink,
 	Tag,
 	Container,
+	ShieldCheck,
+	ShieldX,
+	Shield,
+	Download,
 } from "lucide-preact";
 
 interface Repo {
@@ -28,7 +32,16 @@ interface Repo {
 	open_prs?: number;
 	archived: boolean;
 	latest_release: { tag: string; url: string } | null;
+	coverage: number | null;
+	downloads: number | null;
+	workflows: { name: string; status: string | null; url: string }[] | null;
 	links: { pypi?: string; dockerhub?: string; ghcr?: string } | null;
+}
+
+function formatDownloads(n: number): string {
+	if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+	if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+	return String(n);
 }
 
 function formatUpdatedDate(date: string): string {
@@ -37,6 +50,29 @@ function formatUpdatedDate(date: string): string {
 		day: "2-digit",
 		year: "numeric",
 	})}`;
+}
+
+function WorkflowBadge({ name, status, url }: { name: string; status: string | null; url: string }) {
+	const cfg =
+		status === "success"
+			? { icon: <ShieldCheck size={15} />, cls: "text-emerald-600 dark:text-emerald-400", label: "passing" }
+			: status === "failure" || status === "timed_out" || status === "action_required"
+			? { icon: <ShieldX size={15} />, cls: "text-red-600 dark:text-red-400", label: "failing" }
+			: { icon: <Shield size={15} />, cls: "text-gray-400 dark:text-gray-500", label: status ?? "unknown" };
+
+	const shortName = name.replace(/CI Publish/i, "CI").replace(/Release Please/i, "Release");
+
+	return (
+		<a
+			href={url}
+			target="_blank"
+			title={`${name}: ${cfg.label}`}
+			className="flex items-center gap-1 hover:underline hover:underline-offset-2"
+		>
+			<span className={cfg.cls}>{cfg.icon}</span>
+			<span>{shortName}</span>
+		</a>
+	);
 }
 
 function GitHubIcon() {
@@ -52,6 +88,14 @@ function PyPIIcon() {
 		<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
 			<path d="M11.984 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.882v.826H3.912S0 5.789 0 12.013c0 6.224 3.43 6.003 3.43 6.003h2.047v-2.887s-.11-3.43 3.375-3.43h5.821s3.265.053 3.265-3.153V3.292S18.463 0 11.984 0zM8.705 1.9a1.057 1.057 0 110 2.115 1.057 1.057 0 010-2.115z" />
 			<path d="M12.016 24c6.164 0 5.784-2.656 5.784-2.656l-.007-2.752h-5.882v-.826h8.177S24 18.211 24 11.987c0-6.224-3.43-6.003-3.43-6.003h-2.047v2.887s.11 3.43-3.375 3.43H9.327s-3.265-.053-3.265 3.153v5.254S5.537 24 12.016 24zm3.279-1.9a1.057 1.057 0 110-2.115 1.057 1.057 0 010 2.115z" />
+		</svg>
+	);
+}
+
+function CodecovIcon() {
+	return (
+		<svg className="w-4 h-4 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+			<path d="M256.57 12C115.171 12 0 125.753 0 264.531v1.138l43.332 25.025h1.14c27.367-18.199 60.437-25.025 93.506-19.338 22.806 4.55 44.471 14.788 61.576 30.713l7.982 6.826 4.563-9.101c4.561-9.1 9.121-17.062 13.682-25.024 2.281-3.414 4.563-5.689 6.843-9.101l4.561-5.688-5.702-4.55c-23.947-19.338-52.454-32.989-83.243-38.676-29.647-5.688-59.296-4.55-86.663 4.551C82.103 131.441 161.924 67.739 256.57 67.739c53.595 0 103.769 20.475 141.399 58.014 27.368 26.163 45.613 59.151 53.595 95.553-17.105-5.689-35.35-7.964-53.595-7.964h-3.421c-6.841 0-13.684 1.138-21.666 1.138h-1.14c-2.28 0-5.702 1.137-7.982 1.137-4.562 1.138-7.984 1.138-12.544 2.275l-3.42 1.139c-3.422 1.136-6.843 2.275-10.264 3.411h-1.14c-7.982 2.275-14.825 5.689-22.805 9.101-3.422 1.138-6.843 3.413-10.264 5.688h-1.14c-17.105 10.238-33.07 22.75-45.613 38.675l-1.141 2.276c-3.419 4.55-5.701 7.962-7.982 10.237-2.28 2.275-3.421 5.688-5.701 9.1l-1.14 2.275c-2.28 3.414-3.421 6.826-4.561 9.101v1.138c-3.421 6.824-6.842 14.787-9.123 22.749v1.139c-5.702 18.201-9.123 37.538-9.123 58.012v21.615c0 2.275 1.141 5.687 1.141 7.962 5.702 27.301 18.245 53.462 37.63 77.353l1.14 1.137 1.141-1.137c7.982-9.099 26.227-37.54 28.507-54.602-9.121-17.063-13.684-36.402-13.684-54.601 0-63.703 50.175-117.165 115.172-120.579h4.561c26.228-1.137 52.455 6.825 74.121 21.613h1.14L512 265.669v-1.138c0-67.113-26.225-130.816-75.261-178.591C388.846 38.163 324.989 12 256.57 12z" fill="#F01F7A"/>
 		</svg>
 	);
 }
@@ -178,6 +222,23 @@ export default function SoftwareClient() {
 										{repo.open_prs}
 									</span>
 								),
+								repo.coverage !== null && repo.coverage !== undefined && (
+									<span key="coverage" className="flex items-center gap-1">
+										<CodecovIcon />
+										<a
+											href={`https://codecov.io/github/wattnet/${repo.name}`}
+											target="_blank"
+											className="hover:underline hover:underline-offset-2"
+										>
+											{repo.coverage}%
+										</a>
+									</span>
+								),
+								...(repo.workflows ?? []).map((wf) => (
+									<span key={`wf-${wf.name}`} className="flex items-center gap-1">
+										<WorkflowBadge name={wf.name} status={wf.status} url={wf.url} />
+									</span>
+								)),
 								<span key="updated" className="flex items-center gap-1">
 									<Calendar size={16} className="text-primary-600 dark:text-primary-400" />
 									{formatUpdatedDate(repo.pushed_at)}
@@ -188,6 +249,12 @@ export default function SoftwareClient() {
 										<a href={repo.latest_release.url} target="_blank" className="hover:underline hover:underline-offset-2">
 											{repo.latest_release.tag}
 										</a>
+									</span>
+								),
+								repo.downloads !== null && repo.downloads !== undefined && (
+									<span key="downloads" className="flex items-center gap-1">
+										<Download size={16} className="text-sky-600 dark:text-sky-400" />
+										{formatDownloads(repo.downloads)}
 									</span>
 								),
 							]
