@@ -10,137 +10,83 @@
   </picture>
 </div>
 
-# Product Website
+# wattnet.eu — Product Website
 
-Official product website for wattnet, providing an overview of its features, services, use cases and contact information.
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwattnet.eu&label=wattnet.eu)](https://wattnet.eu)
+[![Astro](https://img.shields.io/badge/Astro-6.x-FF5D01?logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## From Astro Sassify Template
+Official product website for **[Wattnet](https://wattnet.eu)**, a service for tracking the environmental footprint of electricity across Europe. The site provides an overview of features, interactive demos, open resources (datasets, publications, software), and contact information.
 
-A modern, responsive Astro template with Tailwind CSS and Alpine.js integration. This template provides a solid foundation for building fast, SEO-friendly websites with a clean design system.
+## Tech Stack
 
-## 🚀 Features
+- [Astro](https://astro.build/) — web framework
+- [Tailwind CSS v4](https://tailwindcss.com/) — utility-first styling
+- [Alpine.js](https://alpinejs.dev/) — lightweight interactivity
+- [Preact](https://preactjs.com/) — interactive island components (publications, software)
+- [Lottie](https://lottiefiles.com/) — animated hero background
 
--   [Astro](https://astro.build/) - The web framework for content-driven websites
--   [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
--   [Alpine.js](https://alpinejs.dev/) - Lightweight JavaScript framework for interactivity
--   Responsive design system with custom color palette
--   Dark mode support
--   Smooth page transitions
--   Performance optimized
--   SEO-friendly
-
-## 📦 Project Structure
+## Project Structure
 
 ```text
 /
-├── public/             # Static assets
-│   └── favicon.svg
+├── public/                 # Static assets (favicon, etc.)
 ├── src/
-│   ├── assets/         # Images and other assets
-│   ├── components/     # Reusable UI components
-│   ├── layouts/        # Page layouts
-│   ├── pages/          # Page routes
-│   ├── scripts/        # JavaScript utilities
-│   └── styles/         # Global styles
-│       ├── global.css
-│       └── transitions.css
-├── astro.config.mjs    # Astro configuration
-└── package.json        # Project dependencies
+│   ├── assets/             # Images, logos, team photos
+│   │   └── logos/
+│   │       ├── external/   # Partner and funder logos
+│   │       └── wattnet/    # Wattnet brand assets
+│   ├── components/         # UI components
+│   │   ├── Hero.astro
+│   │   ├── Features.astro
+│   │   ├── Demo.astro
+│   │   ├── Publications.astro
+│   │   ├── Datasets.astro
+│   │   ├── Software.astro
+│   │   ├── Team.astro
+│   │   ├── Contact.astro
+│   │   ├── Header.astro
+│   │   └── Footer.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── features.astro
+│   │   ├── resources.astro
+│   │   ├── services.astro
+│   │   ├── contact.astro
+│   │   └── api/repos.ts    # GitHub repos endpoint
+│   └── styles/
+│       └── global.css
+├── astro.config.mjs
+└── package.json
 ```
 
-## 🧞 Commands
+## Commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the root of the project:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Command           | Action                                     |
+| :---------------- | :----------------------------------------- |
+| `npm install`     | Install dependencies                       |
+| `npm run dev`     | Start local dev server at `localhost:4321` |
+| `npm run build`   | Build production site to `./dist/`         |
+| `npm run preview` | Build and preview locally before deploying |
 
-## 🎨 Customization
+## License
 
-### Colors
+The website source code is licensed under the [MIT License](LICENSE).
 
-The template includes a custom color palette defined in `src/styles/global.css`:
-
--   Primary: Purple-based color scheme
--   Secondary: Slate-based color scheme
--   Accent: Lime-based color scheme
--   Warning: Yellow-based color scheme
-
-You can customize these colors by editing the `src/styles/global.css` file.
-
-### Typography
-
-The template uses the following font families:
-
--   Sans: Inter (with system fallbacks)
--   Display: Lexend (with system fallbacks)
-
-### Animations
-
-Custom animations are included:
-
--   Fade In
--   Slide Up
--   Slide Down
-
-## 🚀 Getting Started
-
-There are two ways to use this template:
-
-### Option 1: Using Astro CLI (Recommended)
-
-Create a project directly with Astro's official CLI tool:
-
-```bash
-npm create astro@latest -- --template larry-xue/astro-sassify-template
-```
-
-### Option 2: Manual Clone
-
-1. Clone this repository
-
-    ```bash
-    git clone https://github.com/larry-xue/astro-sassify-template.git my-project
-    cd my-project
-    ```
-
-2. Install dependencies
-
-    ```bash
-    npm install
-    ```
-
-3. Start the development server
-
-    ```bash
-    npm run dev
-    ```
-
-4. Visit `http://localhost:4321` in your browser to see your site
-
-## 📝 License
-
-MIT
-
-## 👀 Learn More
-
--   [Astro Documentation](https://docs.astro.build)
--   [Tailwind CSS Documentation](https://tailwindcss.com/docs)
--   [Alpine.js Documentation](https://alpinejs.dev/start-here)
+Based on the [astro-sassify-template](https://github.com/larry-xue/astro-sassify-template) by [larry-xue](https://github.com/larry-xue), also MIT-licensed.
 
 ## Funding and acknowledgments
 
-This work is funded by the European Union’s Horizon Europe research and innovation programme through the **[GreenDIGIT](https://greendigit-project.eu/)** project, under grant agreement **[101131207](https://cordis.europa.eu/project/id/101131207)**.
+This work is funded by the European Union's Horizon Europe research and innovation programme through the **[GreenDIGIT](https://greendigit-project.eu/)** project, under grant agreement **[101131207](https://cordis.europa.eu/project/id/101131207)**, as well as the Swiss State Secretariat for Education, Research and Innovation (SERI).
 
-<div align="left">
-  <img src="https://github.com/wattnet/.github/raw/main/images/EN_FundedbytheEU_RGB_POS.png" alt="EU Funded Logo" width="260"/>
-  <img src="https://github.com/wattnet/.github/raw/main/images/GreenDIGIT%20logo%20color%20horizontal2.png" alt="GreenDIGIT Logo" width="230"/>
-</div>
+<img src="src/assets/logos/external/GreenDIGIT logo color horizontal2.png" alt="GreenDIGIT Logo" width="230" align="right"/>
+<img src="src/assets/logos/external/EN_FundedbytheEU_RGB_POS.png" alt="EU Funded Logo" width="260" align="left"/>
+<img src="src/assets/logos/external/Flag_of_Switzerland.svg" alt="Swiss State Secretariat for Education, Research and Innovation (SERI)" height="50" align="left"/>
+<br clear="all"/>
 
-##### © 2025 Spanish National Research Council (CSIC). All rights reserved.
+##### © 2026 Spanish National Research Council (CSIC). All rights reserved.

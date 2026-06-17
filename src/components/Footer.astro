@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-transparent.png";
 import EUFundingLogo from "/src/assets/logos/external/EN_FundedbytheEU_RGB_POS.png"
 import GreenDIGITLogo from "/src/assets/logos/external/GreenDIGIT logo color horizontal2.png"
+import SwitzerlandFlag from "/src/assets/logos/external/Flag_of_Switzerland.svg"
 
 const currentYear = new Date().getFullYear();
 ---
@@ -16,19 +17,19 @@ const currentYear = new Date().getFullYear();
           <Image
             src={wattnetLogo}
             alt="Wattnet Logo"
-            class="h-10 md:h-12 w-auto"
+            class="h-12 md:h-14 w-auto"
             width={500}
             height={500}
             loading="lazy"
           />
-          <span class="ml-2 text-2xl md:text-3xl font-display font-semibold text-white">wattnet</span>
+          <span class="ml-2 text-3xl md:text-4xl font-display font-semibold text-white">wattnet</span>
         </a>
 
         <h6 class="text-gray-400 text-sm md:text-base mb-3">
           An open-source service for tracking the environmental footprint of electricity across Europe.
         </h6>
 
-        <ul class="text-gray-400 text-sm list-disc list-inside space-y-1">
+        <ul class="text-gray-400 text-sm list-disc list-inside space-y-1.5">
           <li>
             A service provided by
             <a href="https://www.csic.es" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
@@ -51,23 +52,35 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="lg:col-span-3">
-        <h3 class="text-base md:text-lg font-semibold mb-3 md:mb-4">Funding and acknowledgments</h3>
-        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+        <h3 class="text-base md:text-lg font-semibold mb-2 md:mb-2">Funding and acknowledgments</h3>
+        <p class="text-gray-400 mb-4 text-sm leading-relaxed text-justify">
           This work is funded from the European Union’s Horizon Europe research and innovation
           programme through the
           <a href="https://greendigit-project.eu/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
-            GreenDIGIT project</a>, under the grant agreement No.<a href="https://cordis.europa.eu/project/id/101131207" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">101131207</a>.
+            GreenDIGIT project</a>, under the grant agreement No.<a href="https://cordis.europa.eu/project/id/101131207" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">101131207</a>, as well as the Swiss State Secretariat for Education, Research and Innovation (SERI).
         </p>
-        <div class="flex flex-wrap justify-start lg:justify-between items-center w-full gap-6 lg:gap-4">
-          <div class="w-auto max-w-[180px] lg:max-w-[48%] lg:flex-1">
-            <Image
-              src={EUFundingLogo}
-              alt="European Union Funding"
-              class="w-full h-auto"
-              height={500}
-            />
+        <div class="flex flex-wrap justify-between items-center w-full gap-4">
+          <!-- EU Funding + Swiss coat of arms grouped left -->
+          <div class="flex items-center gap-3">
+            <div class="max-w-[195px]">
+              <Image
+                src={EUFundingLogo}
+                alt="European Union Funding"
+                class="w-full h-auto"
+                height={550}
+              />
+            </div>
+            <div class="flex-none">
+              <Image
+                src={SwitzerlandFlag}
+                alt="Swiss State Secretariat for Education, Research and Innovation (SERI)"
+                class="h-8.5 w-auto"
+                height={70}
+              />
+            </div>
           </div>
-          <div class="w-auto max-w-[160px] lg:max-w-[45%] lg:flex-1">
+          <!-- GreenDIGIT aligned right -->
+          <div class="max-w-[165px]">
             <Image
               src={GreenDIGITLogo}
               alt="GreenDIGIT Logo"
