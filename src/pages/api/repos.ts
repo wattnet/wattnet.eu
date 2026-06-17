@@ -27,24 +27,39 @@ async function fetchLatestRelease(
 	}
 }
 
-async function checkPyPI(name: string): Promise<string | null> {
+async function checkPyPI(name: string): Promise<{ url: string; downloads: number | null } | null> {
+	const PEPY_API_KEY = import.meta.env.PEPY_API_KEY;
 	try {
-		const res = await fetch(`https://pypi.org/pypi/${name}/json`, {
-			signal: AbortSignal.timeout(TIMEOUT_MS),
-		});
-		return res.ok ? `https://pypi.org/project/${name}` : null;
+		const pepyHeaders: Record<string, string> = {};
+		if (PEPY_API_KEY) pepyHeaders["X-Api-Key"] = PEPY_API_KEY;
+
+		const [pkgRes, pepyRes] = await Promise.all([
+			fetch(`https://pypi.org/pypi/${name}/json`, { signal: AbortSignal.timeout(TIMEOUT_MS) }),
+			fetch(`https://api.pepy.tech/api/v2/projects/${name}`, {
+				headers: pepyHeaders,
+				signal: AbortSignal.timeout(TIMEOUT_MS),
+			}),
+		]);
+		if (!pkgRes.ok) return null;
+		const downloads = pepyRes.ok ? ((await pepyRes.json()).total_downloads ?? null) : null;
+		return { url: `https://pypi.org/project/${name}`, downloads };
 	} catch {
 		return null;
 	}
 }
 
-async function checkDockerHub(name: string): Promise<string | null> {
+async function checkDockerHub(name: string): Promise<{ url: string; pulls: number | null } | null> {
 	try {
 		const res = await fetch(
 			`https://hub.docker.com/v2/repositories/${GITHUB_USERNAME}/${name}/`,
 			{ signal: AbortSignal.timeout(TIMEOUT_MS) }
 		);
-		return res.ok ? `https://hub.docker.com/r/${GITHUB_USERNAME}/${name}` : null;
+		if (!res.ok) return null;
+		const data = await res.json();
+		return {
+			url: `https://hub.docker.com/r/${GITHUB_USERNAME}/${name}`,
+			pulls: typeof data.pull_count === "number" ? data.pull_count : null,
+		};
 	} catch {
 		return null;
 	}
@@ -84,6 +99,64 @@ async function checkGHCR(
 	}
 }
 
+const WATCHED_WORKFLOWS = ["CI Publish", "Release Please"];
+
+type WorkflowStatus = "success" | "failure" | "in_progress" | "queued" | "cancelled" | "skipped" | null;
+
+async function fetchWorkflowStatuses(
+	repo: string,
+	headers: Record<string, string>
+): Promise<{ name: string; status: WorkflowStatus; url: string }[]> {
+	try {
+		const res = await fetch(
+			`https://api.github.com/repos/${GITHUB_USERNAME}/${repo}/actions/workflows`,
+			{ headers, signal: AbortSignal.timeout(TIMEOUT_MS) }
+		);
+		if (!res.ok) return [];
+		const data = await res.json();
+		const workflows: any[] = data.workflows ?? [];
+
+		const matched = workflows.filter((w) =>
+			WATCHED_WORKFLOWS.some((name) =>
+				w.name.toLowerCase().includes(name.toLowerCase())
+			)
+		);
+
+		return Promise.all(
+			matched.map(async (w) => {
+				const runRes = await fetch(
+					`https://api.github.com/repos/${GITHUB_USERNAME}/${repo}/actions/workflows/${w.id}/runs?per_page=1`,
+					{ headers, signal: AbortSignal.timeout(TIMEOUT_MS) }
+				);
+				if (!runRes.ok) return { name: w.name, status: null as WorkflowStatus, url: w.html_url };
+				const runData = await runRes.json();
+				const run = runData.workflow_runs?.[0];
+				if (!run) return { name: w.name, status: null as WorkflowStatus, url: w.html_url };
+				const status: WorkflowStatus =
+					run.status === "completed" ? run.conclusion : run.status;
+				return { name: w.name, status, url: run.html_url ?? w.html_url };
+			})
+		);
+	} catch {
+		return [];
+	}
+}
+
+async function fetchCodecovCoverage(repo: string): Promise<number | null> {
+	try {
+		const res = await fetch(
+			`https://codecov.io/api/v2/github/${GITHUB_USERNAME}/repos/${repo}/`,
+			{ signal: AbortSignal.timeout(TIMEOUT_MS) }
+		);
+		if (!res.ok) return null;
+		const data = await res.json();
+		const cov = data?.totals?.coverage;
+		return typeof cov === "number" ? Math.round(cov * 10) / 10 : null;
+	} catch {
+		return null;
+	}
+}
+
 export const GET: APIRoute = async () => {
 	const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN;
 
@@ -110,18 +183,23 @@ export const GET: APIRoute = async () => {
 
 		const repos = await Promise.all(
 			filtered.map(async (r: any) => {
-				const [latest_release, open_prs, pypi, dockerhub, ghcr] = await Promise.all([
+				const [latest_release, open_prs, pypi, dockerhub, ghcr, coverage, workflows] = await Promise.all([
 					fetchLatestRelease(r.name, ghHeaders),
 					fetchOpenPRs(r.name, ghHeaders),
 					checkPyPI(r.name),
 					checkDockerHub(r.name),
 					GITHUB_TOKEN ? checkGHCR(r.name, ghHeaders) : Promise.resolve(null),
+					fetchCodecovCoverage(r.name),
+					fetchWorkflowStatuses(r.name, ghHeaders),
 				]);
 
 				const links: Record<string, string> = {};
-				if (pypi) links.pypi = pypi;
+				if (pypi) links.pypi = pypi.url;
 				if (ghcr) links.ghcr = ghcr;
-				if (dockerhub) links.dockerhub = dockerhub;
+				if (dockerhub) links.dockerhub = dockerhub.url;
+
+				const downloads =
+					(pypi?.downloads ?? 0) + (dockerhub?.pulls ?? 0) || null;
 
 				return {
 					id: r.id,
@@ -139,6 +217,9 @@ export const GET: APIRoute = async () => {
 					archived: r.archived ?? false,
 					open_prs,
 					latest_release: latest_release ?? null,
+					coverage: coverage ?? null,
+					downloads,
+					workflows: workflows.length > 0 ? workflows : null,
 					links: Object.keys(links).length > 0 ? links : null,
 				};
 			})
