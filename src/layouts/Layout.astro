@@ -57,11 +57,33 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
     <ClientRouter />
   </head>
   <body class="antialiased bg-white dark:bg-secondary-950 text-secondary-900 dark:text-secondary-100 transition-colors duration-300">
-    <Image 
-      id="background" 
-      src={background} 
+    <div id="page-loader" aria-hidden="true" transition:persist>
+      <img src="/wattnet-loader.svg" alt="" width="120" height="120" />
+    </div>
+    <style>
+      #page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+      .dark #page-loader {
+        background: #020617;
+      }
+      #page-loader.loaded {
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
+    <Image
+      id="background"
+      src={background}
       alt="Wattnet background pattern"
-      style={{ 
+      style={{
         position: "fixed",
         top: "0",
         left: "0",
@@ -132,16 +154,24 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
       }
 
       // Handle page transitions
+      const loaderStart = Date.now();
+      const loaderMinMs = 1000;
+
       document.addEventListener('astro:page-load', () => {
-        // This runs on initial page load and after each navigation
         const pageWrapper = document.getElementById('page-wrapper');
         if (pageWrapper) {
           pageWrapper.classList.add('page-loaded');
         }
+
+        const elapsed = Date.now() - loaderStart;
+        const remaining = Math.max(0, loaderMinMs - elapsed);
+        setTimeout(() => {
+          const loader = document.getElementById('page-loader');
+          if (loader) loader.classList.add('loaded');
+        }, remaining);
       });
 
       document.addEventListener('astro:before-swap', () => {
-        // This runs before the new page content is swapped in
         const pageWrapper = document.getElementById('page-wrapper');
         if (pageWrapper) {
           pageWrapper.classList.remove('page-loaded');
