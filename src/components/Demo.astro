@@ -121,11 +121,10 @@ const dashboardUrl = dashboardBase;
   }
 
   function buildIframeSrc(theme: string): string {
-    return `https://dashboard.wattnet.eu/map?theme=${theme}&lat=50&lon=10&zoom=4`;
+    return `https://dashboard.wattnet.eu/map?theme=${theme}&lat=51&lng=12&zoom=1`;
   }
 
   if (iframe && skeleton) {
-    // Set initial src with correct theme and map position
     iframe.src = buildIframeSrc(getTheme());
 
     iframe.addEventListener('load', () => {
@@ -133,7 +132,6 @@ const dashboardUrl = dashboardBase;
       iframe.style.opacity = '1';
     });
 
-    // Sync theme when website switches dark/light mode
     const observer = new MutationObserver(() => {
       const newSrc = buildIframeSrc(getTheme());
       if (iframe.src !== newSrc) {
