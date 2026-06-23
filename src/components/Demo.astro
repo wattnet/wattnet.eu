@@ -116,12 +116,14 @@ const dashboardUrl = dashboardBase;
   const iframe = document.getElementById('dashboard-iframe') as HTMLIFrameElement;
   const skeleton = document.getElementById('iframe-skeleton') as HTMLElement;
 
+  const dimension = Math.random() < 0.5 ? 'carbon' : 'water';
+
   function getTheme(): string {
     return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
   }
 
   function buildIframeSrc(theme: string): string {
-    return `https://dashboard.wattnet.eu/map?theme=${theme}&lat=51&lng=12&zoom=1`;
+    return `https://dashboard.wattnet.eu/map?theme=${theme}&lat=51&lng=12&zoom=1&dimension=${dimension}`;
   }
 
   if (iframe && skeleton) {
