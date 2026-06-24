@@ -179,5 +179,17 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
       });
     </script>
     <script src="../scripts/transitions.js"></script>
+    <script>
+      import { init, trackPageview } from '@plausible-analytics/tracker';
+
+      init({
+        domain: 'wattnet.eu',
+        apiHost: 'https://analytics.wattnet.eu',
+      });
+
+      document.addEventListener('astro:page-load', () => {
+        trackPageview();
+      });
+    </script>
   </body>
 </html>
