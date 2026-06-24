@@ -180,15 +180,16 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
     </script>
     <script src="../scripts/transitions.js"></script>
     <script>
-      import { init, trackPageview } from '@plausible-analytics/tracker';
+      import { init, track } from '@plausible-analytics/tracker';
 
       init({
         domain: 'wattnet.eu',
-        apiHost: 'https://analytics.wattnet.eu',
+        endpoint: 'https://analytics.wattnet.eu/api/event',
+        autoCapturePageviews: false,
       });
 
       document.addEventListener('astro:page-load', () => {
-        trackPageview();
+        track('pageview');
       });
     </script>
   </body>
