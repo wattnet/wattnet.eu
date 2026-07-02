@@ -3,6 +3,8 @@ import LottieBackground from '../components/LottieBackground.astro';
 import { Image } from "astro:assets";
 import GreenDIGITLogo from "/src/assets/logos/external/greendigit-trusted.png";
 import AI4EOSCLogo from "/src/assets/logos/external/ai4eosc-trusted.png";
+import iMagineLogo from "/src/assets/logos/external/iMagine.png";
+import SoBigDataLogo from "/src/assets/logos/external/SoBigData_RI_3.png";
 ---
 <section class="relative -mt-18 pt-32 pb-12 md:pt-0 md:pb-0 overflow-hidden min-h-screen md:flex md:flex-col md:justify-center">
 
@@ -50,7 +52,7 @@ import AI4EOSCLogo from "/src/assets/logos/external/ai4eosc-trusted.png";
 <!-- Teal section at the bottom with Trusted By -->
 <div class="relative bg-[#94CE24] py-12 md:py-16">
   <div class="container-custom slide-up">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
         <h4 class="text-3xl md:text-4xl text-[#0B1C38] dark:text-[#0B1C38]">
           Transforming energy data <span class="hidden xl:inline"><br></span> into actionable insights for building a greener Europe.
@@ -58,14 +60,35 @@ import AI4EOSCLogo from "/src/assets/logos/external/ai4eosc-trusted.png";
       </div>
 
       <div class="flex flex-col items-start md:items-end justify-center">
-        <p class="text-sm uppercase tracking-wider text-[#0B1C38] dark:text-[#0B1C38] font-medium mb-4">TRUSTED BY</p>
-        <div class="flex flex-wrap justify-start md:justify-end gap-x-12 gap-y-6 items-center">
-          <a href="https://ai4eosc.eu/" target="_blank" aria-label="AI4EOSC Project">
-            <Image src={AI4EOSCLogo} alt="AI4EOSC Logo" class="h-14 w-auto filter invert brightness-0 grayscale" height={500} />
-          </a>
-          <a href="https://greendigit-project.eu/" target="_blank" aria-label="GreenDIGIT Project">
-            <Image src={GreenDIGITLogo} alt="GreenDigit Logo" class="h-11 w-auto filter invert brightness-0 grayscale" height={500} />
-          </a>
+        <p class="text-sm uppercase tracking-wider text-[#0B1C38] dark:text-[#0B1C38] font-medium mb-6">TRUSTED BY</p>
+        <div class="marquee-container overflow-hidden w-full">
+          <div class="marquee-track flex items-center gap-x-12">
+            <a href="https://ai4eosc.eu/" target="_blank" aria-label="AI4EOSC Project" class="shrink-0">
+              <Image src={AI4EOSCLogo} alt="AI4EOSC Logo" class="h-14 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+            <a href="https://imagine-ai.eu/" target="_blank" aria-label="iMagine Project" class="shrink-0">
+              <Image src={iMagineLogo} alt="iMagine Logo" class="h-13 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+            <a href="https://sobigdata.eu/" target="_blank" aria-label="SoBigData Project" class="shrink-0">
+              <Image src={SoBigDataLogo} alt="SoBigData Logo" class="h-10 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+            <a href="https://greendigit-project.eu/" target="_blank" aria-label="GreenDIGIT Project" class="shrink-0">
+              <Image src={GreenDIGITLogo} alt="GreenDigit Logo" class="h-11 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+            <!-- duplicado para loop continuo -->
+            <a href="https://ai4eosc.eu/" target="_blank" aria-label="AI4EOSC Project" class="shrink-0" aria-hidden="true">
+              <Image src={AI4EOSCLogo} alt="" class="h-14 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+            <a href="https://imagine-ai.eu/" target="_blank" aria-label="iMagine Project" class="shrink-0" aria-hidden="true">
+              <Image src={iMagineLogo} alt="" class="h-13 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+            <a href="https://sobigdata.eu/" target="_blank" aria-label="SoBigData Project" class="shrink-0" aria-hidden="true">
+              <Image src={SoBigDataLogo} alt="" class="h-10 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+            <a href="https://greendigit-project.eu/" target="_blank" aria-label="GreenDIGIT Project" class="shrink-0" aria-hidden="true">
+              <Image src={GreenDIGITLogo} alt="" class="h-11 w-auto filter invert brightness-0 grayscale" height={500} />
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -73,6 +96,20 @@ import AI4EOSCLogo from "/src/assets/logos/external/ai4eosc-trusted.png";
 </div>
 
 <style>
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
   @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
