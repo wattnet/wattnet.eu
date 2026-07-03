@@ -1,0 +1,268 @@
+---
+// Web3Forms access key — public by design, safe to expose client-side.
+// Get yours at https://web3forms.com after registering with the destination email.
+const WEB3FORMS_ACCESS_KEY = '7ecb29f9-8ec0-4ef2-b5fb-a75ffb62f9a0';
+---
+
+<section id="contact-form" class="section bg-white/70 dark:bg-gray-800/50 relative overflow-hidden">
+  <div class="container-custom max-w-6xl mx-auto slide-up">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
+
+      <!-- Intro -->
+      <div class="lg:col-span-2">
+        <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
+          Send Us a Message
+        </span>
+        <h2 class="mb-4 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+          Get in touch
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          Have a question about our data, an idea for a partnership, or feedback on the platform?<br />
+          Drop us a message and we'll get back to you.
+        </p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">
+          We usually respond within 2 business days.
+        </p>
+
+        <!-- Quick links -->
+        <div class="mt-10 flex flex-col divide-y divide-gray-200 dark:divide-gray-700/60 border-t border-b border-gray-200 dark:border-gray-700/60">
+          <a href="#team" class="flex items-center gap-4 py-4 group">
+            <span class="w-10 h-10 shrink-0 rounded-lg bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>
+            </span>
+            <span>
+              <span class="block font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Meet the team</span>
+              <span class="block text-sm text-gray-500 dark:text-gray-400">Reach individual members directly</span>
+            </span>
+          </a>
+          <a href="https://dashboard.wattnet.eu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 py-4 group">
+            <span class="w-10 h-10 shrink-0 rounded-lg bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 3v18h18M7 15l4-6 4 3 4-8" /></svg>
+            </span>
+            <span>
+              <span class="block font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Explore the dashboard</span>
+              <span class="block text-sm text-gray-500 dark:text-gray-400">dashboard.wattnet.eu</span>
+            </span>
+          </a>
+          <a href="https://github.com/wattnet" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 py-4 group">
+            <span class="w-10 h-10 shrink-0 rounded-lg bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" /></svg>
+            </span>
+            <span>
+              <span class="block font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Open-source code</span>
+              <span class="block text-sm text-gray-500 dark:text-gray-400">github.com/wattnet</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div
+        x-data="contactForm"
+        class="lg:col-span-3 card p-6 sm:p-8 relative"
+      >
+        <!-- Sending state (overlay, one-cycle logo spin) -->
+        <template x-if="sending && !sent">
+          <div
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center gap-3 p-6 sm:p-8 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md"
+          >
+            <svg width="144" height="144" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-36 h-36">
+              <defs>
+                <linearGradient id="cf-loader-g0" x1="198.08" y1="499.65" x2="800.25" y2="499.65" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#036A38"/>
+                  <stop offset="0.4" stop-color="#3B9030"/>
+                  <stop offset="1" stop-color="#94CE24"/>
+                </linearGradient>
+                <linearGradient id="cf-loader-g1" x1="198.08" y1="499.65" x2="800.25" y2="499.65" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#036A38"/>
+                  <stop offset="0.4" stop-color="#3B9030"/>
+                  <stop offset="1" stop-color="#94CE24"/>
+                </linearGradient>
+                <linearGradient id="cf-loader-g2" x1="198.08" y1="499.65" x2="800.25" y2="499.65" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#036A38"/>
+                  <stop offset="0.4" stop-color="#3B9030"/>
+                  <stop offset="1" stop-color="#94CE24"/>
+                </linearGradient>
+                <clipPath id="cf-loader-clip">
+                  <rect x="0" y="0" width="1000" height="430" />
+                </clipPath>
+              </defs>
+              <path d="M553.36 776.68C553.36 675.83 539.38 591.93 466.69 519.6C414.58 467.74 334.94 440.62 221.32 440.62H202.8L200.49 460.84C188.8 553.48 220.04 645.32 286.2 711.13C343 767.66 418.57 799.29 499 799.29C511.6 799.29 523.39 798.73 535.89 797.17L553.35 795.1V776.67L553.36 776.68ZM330.11 668.43C286.23 624.78 261.83 568.22 260.24 507.47C335.11 512.32 390.05 531.71 423.72 565.22C468.34 609.63 487.73 657.69 492.13 737.94C430.92 736.27 373.61 711.74 330.11 668.44V668.43Z" fill="url(#cf-loader-g0)"/>
+              <path d="M797.85 460.84L795.53 440.62H777.01C663.39 440.62 582.42 467.74 530.29 519.6C528.4 521.48 526.73 524.04 524.91 525.93C543.25 549.42 556.97 574 567.21 599.32C599.58 549.43 654.05 503.01 740.46 477.37C649.76 536.09 606.84 622.69 590.11 690.42C593.61 717.81 594.89 746.5 594.89 776.67C594.89 779.27 594.66 781.85 594.33 784.37C638.21 769.79 678.43 744.59 712.02 711.15C778.2 645.32 809.55 553.49 797.87 460.85L797.85 460.84Z" fill="url(#cf-loader-g1)"/>
+              <g clip-path="url(#cf-loader-clip)">
+                <path d="M779.55 367.5L732.7 258.84C727.2 246.14 715.18 245.44 706.01 257.31L692.98 274.16C640.47 229.82 572.64 200 498.54 200C367 200 254.94 284.84 214.04 398.68H221.33C243.69 398.68 264.88 402.57 285.02 404.45C321.69 323.33 403.49 268.05 498.54 268.05C557.29 268.05 611.03 290.46 652.17 326.18L651.95 326.83L638.6 344.28C629.41 356.16 633.17 367.61 646.93 369.62L764.48 386.94C778.28 388.97 785.05 380.24 779.55 367.52V367.5Z" fill="url(#cf-loader-g2)">
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 500 500"
+                    to="360 500 500"
+                    dur="1.4s"
+                    repeatCount="1"
+                    fill="freeze"
+                  />
+                </path>
+              </g>
+            </svg>
+            <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">Sending your message…</p>
+          </div>
+        </template>
+
+        <!-- Success state (overlay, keeps card size fixed to the form's) -->
+        <div
+          x-show="sent"
+          x-cloak
+          x-transition:enter="transition ease-out duration-500"
+          x-transition:enter-start="opacity-0 scale-95"
+          x-transition:enter-end="opacity-100 scale-100"
+          class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center gap-2 p-6 sm:p-8 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md"
+        >
+          <div class="relative mb-3 flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-accent-100 dark:bg-accent-900/50 flex items-center justify-center">
+              <svg class="w-12 h-12 text-accent-600 dark:text-accent-400 drop-shadow-[0_0_6px_rgba(148,206,36,0.85)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white">Message sent</h3>
+          <p class="text-gray-600 dark:text-gray-300 max-w-sm">We'll get back to you as soon as possible.</p>
+          <p class="text-gray-600 dark:text-gray-300 max-w-sm mt-2">Thanks for reaching out. It's always great to hear from people who care about their electricity's environmental impact.</p>
+          <button
+            type="button"
+            x-on:click="sent = false"
+            class="mt-4 text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline underline-offset-2"
+          >
+            Send another message
+          </button>
+        </div>
+
+        <!-- Form -->
+        <form
+          x-bind:inert="sending || sent"
+          x-bind:class="{ 'opacity-0': sending || sent }"
+          class="flex flex-col gap-5 transition-opacity duration-200"
+          x-on:submit.prevent="submit($event)"
+        >
+          <!-- Web3Forms config -->
+          <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+          <input type="hidden" name="subject" value="New message from Wattnet contact form" />
+          <input type="hidden" name="from_name" value="Wattnet Contact Form" />
+
+          <!-- Honeypot — invisible to humans, catches bots -->
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="flex flex-col gap-2">
+              <label for="name" class="text-sm font-semibold text-gray-700 dark:text-gray-300">Name</label>
+              <input
+                type="text" id="name" name="name" placeholder="Your full name" required
+                class="w-full px-4 py-2.5 rounded-lg border border-secondary-300 dark:border-secondary-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition"
+              />
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="email" class="text-sm font-semibold text-gray-700 dark:text-gray-300">Email</label>
+              <input
+                type="email" id="email" name="email" placeholder="you@example.com" required
+                class="w-full px-4 py-2.5 rounded-lg border border-secondary-300 dark:border-secondary-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label for="topic" class="text-sm font-semibold text-gray-700 dark:text-gray-300">Topic</label>
+            <div class="relative">
+              <select
+                id="topic" name="topic" required
+                class="w-full appearance-none px-4 py-2.5 pr-10 rounded-lg border border-secondary-300 dark:border-secondary-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition cursor-pointer"
+              >
+                <option value="" disabled selected>Select a topic…</option>
+                <option value="Data &amp; API access">Data &amp; API access</option>
+                <option value="Dashboard &amp; technical support">Dashboard &amp; technical support</option>
+                <option value="Research collaboration &amp; partnerships">Research collaboration &amp; partnerships</option>
+                <option value="Feedback &amp; feature requests">Feedback &amp; feature requests</option>
+                <option value="Press &amp; communications">Press &amp; communications</option>
+                <option value="Other">Other</option>
+              </select>
+              <svg class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label for="message" class="text-sm font-semibold text-gray-700 dark:text-gray-300">Message</label>
+            <textarea
+              id="message" name="message" rows="5" placeholder="Describe your question or request…" required
+              class="w-full px-4 py-2.5 rounded-lg border border-secondary-300 dark:border-secondary-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition resize-y"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col gap-3 pt-2">
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              Your data is used only to respond to your enquiry and will not be shared with third parties.
+            </p>
+            <p x-show="error" x-cloak x-text="errorMsg" class="text-sm text-amber-600 dark:text-amber-400"></p>
+            <button
+              type="submit"
+              x-bind:disabled="sending"
+              x-text="sending ? 'Sending…' : 'Send message'"
+              class="btn-primary self-start disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-accent-400"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    // @ts-expect-error - Alpine is registered globally by @astrojs/alpinejs
+    Alpine.data('contactForm', () => ({
+      sending: false,
+      sent: false,
+      error: false,
+      errorMsg: '',
+      submit(event: SubmitEvent) {
+        this.sending = true;
+        this.error = false;
+
+        // TEMP: mock submit for local testing, no email is sent. Remove before shipping.
+        const DEV_MOCK_SUBMIT = false; 
+        if (DEV_MOCK_SUBMIT) {
+          setTimeout(() => {
+            this.sent = true;
+            this.sending = false;
+          }, 1600);
+          return;
+        }
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(event.target as HTMLFormElement),
+        })
+          .then((r) => r.json())
+          .then((r) => {
+            if (r.success) {
+              this.sent = true;
+            } else {
+              this.error = true;
+              this.errorMsg = 'Something went wrong. Please try again or email us directly.';
+            }
+          })
+          .catch(() => {
+            this.error = true;
+            this.errorMsg = 'Something went wrong. Please try again or email us directly.';
+          })
+          .finally(() => {
+            this.sending = false;
+          });
+      },
+    }));
+  });
+</script>

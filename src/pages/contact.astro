@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import ContactSection from '../components/Contact.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Team from '../components/Team.astro';
 import Footer from '../components/Footer.astro';
 import HeroSection from '../components/HeroSection.astro';
 ---
@@ -12,12 +13,13 @@ import HeroSection from '../components/HeroSection.astro';
 >
   <Header />
   <main>
-    <HeroSection 
+    <HeroSection
       title="Contact Us"
       highlightText='Contact'
       description="We're here to help with any questions you might have about our services."
     />
-    <ContactSection />
+    <ContactForm />
+    <Team />
   </main>
   <Footer />
-</Layout> 
+</Layout>
