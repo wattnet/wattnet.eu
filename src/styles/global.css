@@ -128,15 +128,15 @@
 }
 
 @utility btn-primary {
-	@apply btn bg-accent-400 hover:bg-accent-500 text-black shadow-md hover:shadow-lg;
+	@apply btn bg-accent-400 hover:bg-accent-500 text-black shadow-md hover:shadow-[0_0_10px_rgba(148,206,36,0.3)] active:shadow-[0_0_6px_rgba(148,206,36,0.5)] active:scale-[0.98];
 }
 
 @utility btn-secondary {
-	@apply btn bg-primary-600 hover:bg-primary-700 text-white shadow-md hover:shadow-lg;
+	@apply btn bg-primary-600 hover:bg-primary-700 text-white shadow-md hover:shadow-[0_0_10px_rgba(58,120,224,0.3)] active:shadow-[0_0_6px_rgba(58,120,224,0.5)] active:scale-[0.98];
 }
 
 @utility btn-accent {
-	@apply btn bg-accent-500 hover:bg-accent-600 text-black shadow-md hover:shadow-lg;
+	@apply btn bg-accent-500 hover:bg-accent-600 text-black shadow-md hover:shadow-[0_0_10px_rgba(148,206,36,0.3)] active:shadow-[0_0_6px_rgba(148,206,36,0.5)] active:scale-[0.98];
 }
 
 @utility btn-outline {
