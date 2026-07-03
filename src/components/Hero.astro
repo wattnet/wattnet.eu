@@ -97,12 +97,14 @@ import SoBigDataLogo from "/src/assets/logos/external/SoBigData_RI_3.png";
 
 <style>
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
   }
   .marquee-track {
     animation: marquee 20s linear infinite;
     width: max-content;
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   .marquee-container {

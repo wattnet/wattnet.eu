@@ -6,6 +6,7 @@ import HeroSection from '../components/HeroSection.astro';
 import Software from '../components/Software.astro';
 import Publications from '../components/Publications.astro';
 import Datasets from '../components/Datasets.astro';
+import CallToAction from '../components/CallToAction.astro';
 ---
 
 <Layout
@@ -19,37 +20,14 @@ import Datasets from '../components/Datasets.astro';
       highlightText='Resources'
       description="Discover a wealth of open energy datasets, research papers, and tools designed to help you understand and reduce your electricity footprint across Europe."
     />
-
     <!-- Resources Sections -->
     <Publications />
     <Datasets />
     <Software />
-
-    <!--CTA -->
-    <section class="section">
-      <div class="container-custom slide-up">
-        <div class="bg-gradient-to-br from-primary-950 via-primary-800 to-primary-700 rounded-2xl p-8 md:p-12 relative overflow-hidden">
-          <div class="absolute -top-10 -right-10 w-56 h-56 rounded-full bg-accent-500/20 blur-3xl pointer-events-none"></div>
-          <div class="absolute -bottom-10 -left-10 w-72 h-72 rounded-full bg-primary-400/10 blur-3xl pointer-events-none"></div>
-          <div class="relative z-10 md:flex items-center justify-between gap-8">
-            <div class="mb-6 md:mb-0">
-              <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
-                Ready to explore all energy insights?
-              </h3>
-              <p class="text-white/80 max-w-2xl">
-                Everything you need to track electricity generation, cross-zone flows, and environmental footprints.
-              </p>
-            </div>
-            <a href="https://dashboard.wattnet.eu" target="_blank" rel="noopener noreferrer" class="shrink-0 btn bg-white text-primary-800 hover:bg-gray-100">
-              Get Started Now
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CallToAction
+      title="Ready to explore all energy insights?"
+      description="Everything you need to track electricity generation, cross-zone flows, and environmental footprints."
+    />
   </main>
   <Footer />
 </Layout> 
