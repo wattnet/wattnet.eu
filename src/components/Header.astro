@@ -3,6 +3,7 @@ const pages = [
   { name: "Features", href: "/features" },
   { name: "Services", href: "/services" },
   { name: "Resources", href: "/resources" },
+  { name: "Docs", href: "https://docs.wattnet.eu", external: true },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -41,6 +42,8 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
       {pages.map((page) => (
         <a
           href={page.href}
+          target={page.external ? "_blank" : undefined}
+          rel={page.external ? "noopener noreferrer" : undefined}
           class="relative font-medium transition-colors
                 text-secondary-600 hover:text-primary-600
                 dark:text-secondary-300 dark:hover:text-primary-400
@@ -153,6 +156,8 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
       {pages.map((page) => (
         <a
           href={page.href}
+          target={page.external ? "_blank" : undefined}
+          rel={page.external ? "noopener noreferrer" : undefined}
           @click="open = false"
           class="px-6 py-2.5
                 text-base font-medium
