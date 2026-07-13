@@ -93,7 +93,7 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="border-t border-gray-800 pt-6 mt-8 flex flex-col items-center gap-4 lg:grid lg:grid-cols-[1fr_3fr_1fr] lg:items-center lg:gap-0 text-sm text-gray-400">
+    <div class="border-t border-gray-800 pt-6 mt-8 flex flex-col items-center gap-4 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-6 text-sm text-gray-400">
 
       <!-- Left: GitHub + Docker icons -->
       <div class="flex items-center gap-5">
@@ -108,6 +108,15 @@ const currentYear = new Date().getFullYear();
           class="flex items-center gap-1.5 hover:text-accent-500 transition-colors">
           <Icon name="simple-icons:docker" class="w-4 h-4 shrink-0" />
           <span>/wattnet</span>
+        </a>
+        <a href="https://docs.wattnet.eu" target="_blank" rel="noopener noreferrer"
+          aria-label="Documentation"
+          class="flex items-center gap-1.5 hover:text-accent-500 transition-colors">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+          </svg>
+          <span>Docs</span>
         </a>
       </div>
 
