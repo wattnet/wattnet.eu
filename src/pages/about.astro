@@ -1,0 +1,356 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Team from '../components/Team.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { Icon } from "astro-icon/components";
+
+const process = [
+  {
+    step: "01",
+    title: "It starts at the source",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    badgeClass: "from-yellow-100 to-yellow-200 dark:from-yellow-900/50 dark:to-yellow-800/30",
+    iconClass: "text-yellow-600 dark:text-yellow-400",
+    description: "A wind farm, a hydro dam, a gas plant, somewhere in Europe. Every source leaves a different mark on the grid, and on the planet.",
+  },
+  {
+    step: "02",
+    title: "It rarely stays put",
+    icon: "M5 7h14m0 0l-3-3m3 3l-3 3M19 17H5m0 0l3-3m-3 3l3 3",
+    badgeClass: "from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/30",
+    iconClass: "text-blue-600 dark:text-blue-400",
+    description: "Electricity crosses borders within milliseconds. Wattnet's flow-tracing follows it, tying every import and export back to where it came from.",
+  },
+  {
+    step: "03",
+    title: "It arrives with a footprint",
+    icon: "M12 21V12M12 12C7 12 4 8 4 5c0 0 4 1 8 5zM12 12c5 0 7-4 7-6 0 0-3 1-7 6z",
+    badgeClass: "from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/30",
+    iconClass: "text-green-600 dark:text-green-400",
+    description: "By the time it reaches a socket, hundreds of kilometers away, its carbon and water footprint has traveled with it. That's the number Wattnet shows you.",
+  },
+];
+
+const pipeline = [
+  {
+    step: "01",
+    title: "Collect",
+    description: "Generation, demand, and cross-border flow data is pulled continuously from European grid operators, including ENTSO-E, Elexon, and EPIAS.",
+    icon: "M22 12h-4l-3 9L9 3l-3 9H2",
+  },
+  {
+    step: "02",
+    title: "Clean",
+    description: "Raw grid data isn't perfect: readings can be missing, delayed, or clearly wrong. Outliers are detected and gaps estimated before any number is published.",
+    icon: "M5 13l4 4L19 7",
+  },
+  {
+    step: "03",
+    title: "Compute",
+    description: "Flow-tracing attributes each zone's electricity, and its footprint, back to where it was actually generated, accounting for imports and exports.",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+  },
+  {
+    step: "04",
+    title: "Forecast",
+    description: "The same pipeline feeds a 72-hour forecasting model, so a zone's footprint can be anticipated, not just tracked after the fact.",
+    icon: "M3 17l6-6 4 4 8-8M21 21H3V3",
+  },
+];
+
+const stats = [
+  { value: "60", label: "Zones Covered" },
+  { value: "15 min", label: "Temporal Resolution" },
+  { value: "72h", label: "Forecast Horizon" },
+  { value: "4", label: "Environmental Indicators" },
+];
+
+const whatWeMeasure = [
+  {
+    icon: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",
+    text: "Four core indicators per zone: carbon footprint, water footprint, water impact, and an overall environmental score.",
+  },
+  {
+    icon: "M5 7h14m0 0l-3-3m3 3l-3 3M19 17H5m0 0l3-3m-3 3l3 3",
+    text: "Local (generation-based) and global (consumption-based, trade-adjusted) footprints, calculated side by side.",
+  },
+  {
+    icon: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z",
+    text: "Reported at the most granular level available, usually a bidding zone or control area, since country-wide averages can hide real differences between regions.",
+  },
+];
+
+const howWeCalculate = [
+  {
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+    text: "Emission and water-use factors sourced from recognized bodies like the IPCC and UNECE, not estimated in-house.",
+  },
+  {
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    text: "Both operational and life-cycle impact are counted, from daily running to manufacturing and decommissioning.",
+  },
+  {
+    icon: "M22 12h-4l-3 9L9 3l-3 9H2",
+    text: "Built on the same flow-tracing pipeline described above, refreshed continuously as new grid data arrives.",
+  },
+];
+---
+
+<Layout
+  title="About | Wattnet"
+  description="Who's behind Wattnet, how it measures the environmental footprint of European electricity, and the team building it."
+>
+  <Header />
+  <main>
+    <HeroSection
+      title="About Wattnet"
+      highlightText="About"
+      description="Who's behind Wattnet, how it measures the environmental footprint of European electricity, and the team building it."
+    />
+
+    <!-- Mission -->
+    <section class="section bg-white/70 dark:bg-gray-800/50 relative overflow-hidden">
+      <div class="container-custom slide-up">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+          <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
+            What It Achieves
+          </span>
+          <h2 class="mb-6 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+            Making Electricity's Footprint Visible
+          </h2>
+          <p class="text-gray-600 dark:text-gray-300">
+            Wattnet turns raw grid data into a clear, comparable footprint figure for every zone in Europe, real-time, historical, and forecasted, so researchers, policymakers, and anyone curious can see exactly what's behind the electricity they use.
+          </p>
+        </div>
+
+        <p class="text-center text-lg font-medium text-gray-500 dark:text-gray-400 mb-6">
+          Follow a single unit of electricity, from where it's made to where it's used:
+        </p>
+
+        <div
+          class="max-w-5xl mx-auto"
+          x-data="{ active: 0 }"
+          x-init={`let intervalId = setInterval(() => active = (active + 1) % ${process.length}, 1800); $cleanup(() => clearInterval(intervalId))`}
+        >
+          <div class="grid sm:grid-cols-3 divide-x divide-y sm:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60">
+            {process.map((stage, index) => (
+              <div class="relative p-6 sm:p-8 text-center">
+                <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">
+                  {stage.step}
+                </span>
+                <div
+                  class={`w-14 h-14 mx-auto rounded-xl bg-gradient-to-br ${stage.badgeClass} flex items-center justify-center mb-5 transition-all duration-500`}
+                  x-bind:class={`{ 'scale-110 shadow-lg': active === ${index} }`}
+                >
+                  <svg class={`w-7 h-7 ${stage.iconClass}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={stage.icon} />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{stage.title}</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300">{stage.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+          Developed by IFCA (CSIC &middot; University of Cantabria) within the GreenDIGIT project, funded by the EU's Horizon Europe programme and the Swiss SERI.
+        </p>
+      </div>
+    </section>
+
+    <!-- Data pipeline -->
+    <section class="section bg-gray-100/10 dark:bg-gray-900/10 relative overflow-hidden">
+      <div class="container-custom slide-up">
+        <div class="max-w-3xl mx-auto text-center mb-14">
+          <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
+            The Pipeline
+          </span>
+          <h2 class="mb-6 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+            From Raw Grid Data to a Footprint Number
+          </h2>
+          <p class="text-gray-600 dark:text-gray-300">
+            Turning raw electricity data into a trustworthy footprint figure takes more than one step. Here's what happens behind the scenes, several times an hour, for every zone Wattnet covers.
+          </p>
+        </div>
+
+        <div
+          class="grid sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60"
+          x-data="{ active: 0 }"
+          x-init={`let intervalId = setInterval(() => active = (active + 1) % ${pipeline.length}, 1600); $cleanup(() => clearInterval(intervalId))`}
+        >
+          {pipeline.map((item, index) => (
+            <div
+              class="relative p-6 sm:p-8 transition-colors duration-500"
+              x-bind:class={`{ 'bg-primary-50/60 dark:bg-primary-950/30': active === ${index} }`}
+            >
+              <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">
+                {item.step}
+              </span>
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/50 dark:to-primary-800/30 flex items-center justify-center mb-5 transition-colors duration-500"
+                x-bind:class={`{ '!from-accent-400 !to-accent-500 dark:!from-accent-500 dark:!to-accent-600': active === ${index} }`}
+              >
+                <svg
+                  class="w-6 h-6 text-primary-600 dark:text-primary-400 transition-colors duration-500"
+                  x-bind:class={`{ '!text-white': active === ${index} }`}
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{item.title}</h3>
+              <p class="text-base text-gray-600 dark:text-gray-300 text-justify">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="section bg-white/70 dark:bg-gray-800/50 relative overflow-hidden">
+      <div class="container-custom slide-up max-w-5xl mx-auto">
+        <div class="max-w-3xl mx-auto text-center mb-10">
+          <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
+            Under the Hood
+          </span>
+          <h2 class="mb-6 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+            What the Figures Actually Represent
+          </h2>
+          <p class="text-gray-600 dark:text-gray-300">
+            Not every footprint number is calculated the same way. Two zones with identical generation mixes can end up with different figures once trade, sourcing, and life-cycle scope are taken into account.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 mb-16">
+          {stats.map((stat) => (
+            <div class="py-6 sm:py-8 text-center">
+              <p class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 dark:from-primary-400 dark:to-accent-400 bg-clip-text text-transparent mb-1">
+                {stat.value}
+              </p>
+              <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                {stat.label.split(" ").map((word, i) => (
+                  <>
+                    {i > 0 && <br />}
+                    {word}
+                  </>
+                ))}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div class="grid md:grid-cols-2 md:divide-x divide-secondary-200/60 dark:divide-secondary-800/60 gap-y-10 mb-14">
+          <div class="md:pr-12">
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400 mb-6">
+              What We Measure
+            </h3>
+            <ul class="space-y-6">
+              {whatWeMeasure.map((item) => (
+                <li class="flex items-start gap-4">
+                  <svg class="w-6 h-6 shrink-0 mt-0.5 text-primary-500 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={item.icon} />
+                  </svg>
+                  <span class="text-base text-gray-700 dark:text-gray-200">{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="md:pl-12">
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-accent-600 dark:text-accent-400 mb-6">
+              How We Calculate It
+            </h3>
+            <ul class="space-y-6">
+              {howWeCalculate.map((item) => (
+                <li class="flex items-start gap-4">
+                  <svg class="w-6 h-6 shrink-0 mt-0.5 text-accent-600 dark:text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={item.icon} />
+                  </svg>
+                  <span class="text-base text-gray-700 dark:text-gray-200">{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="/resources" class="inline-flex items-center font-semibold text-primary-600 dark:text-primary-400 hover:underline underline-offset-2">
+            Read the full methodology paper
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1.5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <Team
+      badge="Who We Are"
+      heading="The Team Behind Wattnet"
+      intro="Wattnet is built and maintained by a small team at IFCA, spanning software engineering, environmental data modeling, and predictive analytics."
+      showCopyAll={false}
+    />
+
+    <!-- Open & reproducible -->
+    <section class="section bg-white/70 dark:bg-gray-800/50 relative overflow-hidden">
+      <div class="container-custom slide-up max-w-4xl mx-auto text-center">
+        <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
+          Open By Design
+        </span>
+        <h2 class="mb-6 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+          Built in the Open
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
+          The parts of the platform that are open source live on GitHub under the Apache 2.0 license, free to inspect, reuse, and build on. Access to the data itself isn't released under a separate open license; it's governed by our terms of service.
+        </p>
+        <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-medium text-gray-600 dark:text-gray-300">
+          <a href="https://github.com/wattnet" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-1.5 whitespace-nowrap hover:text-accent-500 transition-colors">
+            <Icon name="simple-icons:github" class="w-4 h-4 shrink-0" />
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer"
+            aria-label="Apache License 2.0"
+            class="flex items-center gap-1 whitespace-nowrap hover:text-accent-500 transition-colors">
+            <svg class="h-4 w-auto shrink-0 translate-y-0.5" viewBox="0 0 800 1231" fill="currentColor" aria-hidden="true">
+              <path d="M340.565 490.125C371.984 412.419 407.04 334.865 444.655 266.127C388.506 224.415 334.59 134.468 312.439 94.616C304.483 103.656 299.318 114.069 296.976 122.539C276.107 197.903 350.394 288.909 290.56 255.659C240.706 227.952 128.448 167.276 85.6282 227.583C133.585 289.214 259.016 444.273 340.565 490.125Z"/>
+              <path d="M444.655 266.127C481.103 199.523 519.944 141.19 560.214 99.1643C560.214 99.1643 520.049 157.313 462.68 273.555C497.424 283.125 596.373 302.762 734.199 267.154C737.588 242.103 720.749 214.548 636.838 205.323C582.057 199.307 702.592 74.4897 615.272 15.4582C612.453 13.549 609.682 11.8645 606.967 10.3564C604.04 9.30555 600.948 8.34295 597.648 7.48463C495.667 -19.1313 481.532 153.824 440.837 116.644C375.076 56.5612 333.568 70.5992 312.439 94.616C334.59 134.468 388.506 224.415 444.655 266.127Z"/>
+              <path d="M258.543 714.009C281.565 645.031 309.259 567.534 340.565 490.125C259.016 444.273 133.585 289.214 85.6282 227.583C77.0666 239.632 71.2159 256.437 69.267 279.419C58.8087 402.865 186.137 494.256 160.753 510.949C127.177 533.032 60.3486 457.902 34.0103 505.638C72.1864 554.691 149.95 643.322 258.543 714.009Z"/>
+              <path d="M611.342 447.778C546.872 424.78 678.712 363.101 721.523 297.669C727.001 289.302 732.663 278.489 734.199 267.154C596.373 302.762 497.424 283.125 462.68 273.555C432.982 333.742 398.687 409.587 362.922 501.034C400.171 516.965 552.266 575.812 767.094 576.117C803.213 482.023 672.528 469.597 611.342 447.778Z"/>
+              <path d="M283.454 726.427C321.337 738.235 446.861 773.506 580.172 768.196C598.081 719.697 531.124 714.964 525.671 676.067C521.448 645.97 701.878 701.359 759.932 591.92C762.867 586.385 765.157 581.163 767.094 576.117C552.266 575.812 400.171 516.965 362.921 501.034C336.784 567.863 309.896 642.865 283.454 726.427Z"/>
+              <path d="M283.454 726.427C266.431 780.212 249.637 837.672 233.336 898.396C227.553 919.926 221.839 941.857 216.205 964.27C342.735 1006.05 459.248 964.366 463.198 912.706C463.23 912.297 463.154 911.992 463.178 911.599C466.189 856.883 384.195 887.213 386.136 854.317C388.085 821.179 529.284 854.124 572.95 783.076C576.298 777.629 578.48 772.792 580.172 768.196C446.861 773.506 321.337 738.235 283.454 726.427Z"/>
+              <path d="M34.0104 505.638C32.1657 508.983 30.5015 512.85 29.082 517.47C4.56029 597.182 177.956 704.263 154.365 727.606C133.1 748.639 105.386 700.573 71.2119 720.427C67.4665 722.609 63.6649 725.36 59.7631 729.363C21.1139 768.966 59.1576 883.058 168.813 943.959C143.225 1029.89 117.749 1125.91 92.8102 1226.31C101.857 1223.14 112.684 1219.97 115.379 1211.43C119.425 1194.8 144.432 1093.56 185.034 956.224C185.034 956.224 192.445 928.092 206.011 881.743C218.554 838.883 236.379 780.429 258.543 714.009C149.95 643.322 72.1864 554.691 34.0104 505.638Z"/>
+            </svg>
+            <span>Apache 2.0</span>
+          </a>
+          <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer"
+            aria-label="Creative Commons Attribution 4.0 International"
+            class="flex items-center gap-1 whitespace-nowrap hover:text-accent-500 transition-colors">
+            <Icon name="simple-icons:creativecommons" class="w-4 h-4 shrink-0" />
+            <svg class="w-4 h-4 shrink-0" viewBox="5.5 -3.5 64 64" fill="currentColor" aria-hidden="true">
+              <path d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z"/>
+            </svg>
+            <span class="ml-0.5">CC BY 4.0</span>
+          </a>
+          <a href="/terms" class="flex items-center gap-1.5 whitespace-nowrap hover:text-accent-500 transition-colors">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Terms of Service</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CallToAction
+      title="See Wattnet in action"
+      description="Explore the live dashboard and start tracking the carbon and water footprint of electricity across Europe."
+    />
+  </main>
+  <Footer />
+</Layout>

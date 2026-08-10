@@ -31,19 +31,19 @@ const currentYear = new Date().getFullYear();
 
         <ul class="text-gray-400 text-sm list-disc list-inside space-y-1.5">
           <li>
-            A service provided by
+            A service provided by{" "}
             <a href="https://www.csic.es" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
               Spanish National Research Council (CSIC)
             </a>
           </li>
           <li>
-            Deployed on the Scientific Cloud at
+            Deployed on the Scientific Cloud at{" "}
             <a href="https://ifca.unican.es/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
               Institute of Physics of Cantabria (IFCA)
             </a>
           </li>
           <li>
-            Developed by the
+            Developed by the{" "}
             <a href="https://advancedcomputing.ifca.es" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
               IFCA Advanced Computing and e-Science Group
             </a>
@@ -53,10 +53,10 @@ const currentYear = new Date().getFullYear();
 
       <div class="lg:col-span-3">
         <h3 class="text-base md:text-lg font-semibold mb-4 md:mb-4">Funding and acknowledgments</h3>
-        <p class="text-gray-400 mb-4 text-sm leading-[1.5] text-justify"> 
-          This work was developed within the
-          <a href="https://greendigit-project.eu/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">GreenDIGIT</a>
-          project, funded by the European Union's Horizon Europe research and innovation programme under grant agreement No.
+        <p class="text-gray-400 mb-4 text-sm leading-[1.5] text-justify">
+          This work was developed within the{" "}
+          <a href="https://greendigit-project.eu/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">GreenDIGIT</a>{" "}
+          project, funded by the European Union's Horizon Europe research and innovation programme under grant agreement No.{" "}
           <a href="https://cordis.europa.eu/project/id/101131207" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">101131207</a>,
           and by the Swiss State Secretariat for Education, Research and Innovation (SERI).
         </p>
@@ -131,6 +131,8 @@ const currentYear = new Date().getFullYear();
       <!-- Center: copyright (always centered, one line) -->
       <p class="text-center text-sm lg:whitespace-nowrap">
         &copy; {currentYear} Spanish National Research Council (CSIC).<br class="md:hidden" /> All rights reserved.
+        {" · "}
+        <a href="/terms" class="hover:text-accent-500 transition-colors">Terms</a>
       </p>
 
       <!-- Right: Apache + CC with labels -->

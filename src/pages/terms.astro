@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('legal', 'terms');
+if (!entry) throw new Error('Missing legal/terms.md content entry');
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h) => h.depth === 2);
+
+const formattedDate = entry.data.lastUpdated.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Layout
+  title="Terms of Service | Wattnet"
+  description="The terms and conditions governing your access to and use of the Wattnet website, dashboard, and API, including data licensing, acceptable use, and what you can expect from the service."
+>
+  <Header />
+  <main>
+    <HeroSection
+      title="Terms of Service"
+      highlightText="Terms"
+      description="The terms and conditions governing your access to and use of the Wattnet website, dashboard, and API — covering data licensing, acceptable use, and what you can expect from the service."
+    />
+
+    <section class="py-16 md:py-24 bg-white/70 dark:bg-gray-800/50 relative overflow-hidden">
+      <div class="container-custom slide-up">
+        <div class="grid lg:grid-cols-[280px_1fr] gap-x-16">
+          <!-- Index: label + divider + nav, spans the full height alongside the content -->
+          <aside class="hidden lg:block lg:pr-8 lg:border-r-2 lg:border-secondary-300 dark:lg:border-secondary-700">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
+              On this page
+            </p>
+            <nav class="sticky">
+              <ul class="space-y-0.5 border-l border-secondary-200 dark:border-secondary-800">
+                {toc.map((heading) => (
+                  <li>
+                    <a
+                      href={`#${heading.slug}`}
+                      class="block -ml-px pl-4 py-2 border-l-2 border-transparent text-base text-gray-500 dark:text-gray-400 hover:border-accent-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+
+          <!-- Content -->
+          <div>
+            <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-3">
+              Last updated: {formattedDate}
+            </span>
+
+            <div class="prose prose-lg dark:prose-invert max-w-none mt-6
+            prose-headings:font-display prose-headings:scroll-mt-24
+            prose-h2:mt-14 first:prose-h2:mt-0 prose-h2:mb-4 prose-h2:text-xl md:prose-h2:text-2xl
+            prose-h2:font-bold prose-h2:text-gray-900 dark:prose-h2:text-white
+            prose-h2:border-l-4 prose-h2:border-accent-500 dark:prose-h2:border-accent-400 prose-h2:pl-4
+            prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-p:text-justify
+            prose-li:text-gray-600 dark:prose-li:text-gray-300 marker:text-accent-500 dark:marker:text-accent-400
+            prose-strong:text-gray-900 dark:prose-strong:text-white
+            prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+            prose-blockquote:not-italic prose-blockquote:font-normal
+            prose-blockquote:border-l-accent-500 dark:prose-blockquote:border-l-accent-400
+            prose-blockquote:bg-accent-50/60 dark:prose-blockquote:bg-accent-900/10
+            prose-blockquote:py-2 prose-blockquote:px-5 prose-blockquote:rounded-r-lg
+            prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
+            prose-hr:border-secondary-200 dark:prose-hr:border-secondary-800"
+            >
+              <Content />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
