@@ -101,10 +101,11 @@ import CallToAction from '../components/CallToAction.astro';
     <section class="py-10 bg-gray-50 dark:bg-gray-900/40 border-y border-gray-200/60 dark:border-white/10 relative overflow-hidden">
       <div class="container-custom slide-up">
         <div class="flex flex-wrap items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <span class="relative flex h-3 w-3 shrink-0">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-accent-500"></span>
+          <div class="flex items-center gap-5">
+            <span class="relative flex h-2.5 w-2.5 shrink-0">
+              <span class="animate-status-pulse absolute inline-flex h-full w-full rounded-full bg-accent-400"></span>
+              <span class="animate-status-glow absolute inline-flex h-full w-full rounded-full bg-accent-500 blur-[3px]"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-500"></span>
             </span>
             <p class="text-base text-gray-600 dark:text-gray-300">
               <span class="font-semibold text-gray-900 dark:text-white">Uptime & incidents:</span> track the real-time status of the dashboard and API.
@@ -232,12 +233,11 @@ import CallToAction from '../components/CallToAction.astro';
         </div>
 
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 divide-y divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 bg-gray-100 dark:bg-gray-900/40">
             <!-- Electricity Generation -->
-            <div class="card relative overflow-hidden group p-6 slide-up" style="animation-delay: 0ms">
-              <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-yellow-400 to-yellow-300 dark:from-yellow-500 dark:to-yellow-400" />
-              <span class="absolute top-4 right-5 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">01</span>
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-yellow-900/50 dark:to-yellow-800/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <div class="relative p-6 sm:p-8">
+              <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">01</span>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-yellow-900/50 dark:to-yellow-800/30 flex items-center justify-center mb-5">
                 <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -249,10 +249,9 @@ import CallToAction from '../components/CallToAction.astro';
             </div>
 
             <!-- Cross-Border Exchanges -->
-            <div class="card relative overflow-hidden group p-6 slide-up" style="animation-delay: 100ms">
-              <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-400 to-blue-300 dark:from-blue-500 dark:to-blue-400" />
-              <span class="absolute top-4 right-5 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">02</span>
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <div class="relative p-6 sm:p-8">
+              <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">02</span>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/30 flex items-center justify-center mb-5">
                 <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m0 0l-3-3m3 3l-3 3" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 17H5m0 0l3-3m-3 3l3 3" />
@@ -265,10 +264,9 @@ import CallToAction from '../components/CallToAction.astro';
             </div>
 
             <!-- Carbon & Water Footprints -->
-            <div class="card relative overflow-hidden group p-6 slide-up" style="animation-delay: 200ms">
-              <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-green-400 to-green-300 dark:from-green-500 dark:to-green-400" />
-              <span class="absolute top-4 right-5 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">03</span>
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <div class="relative p-6 sm:p-8">
+              <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">03</span>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/30 flex items-center justify-center mb-5">
                 <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21V12" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12C7 12 4 8 4 5c0 0 4 1 8 5z" />

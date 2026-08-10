@@ -135,7 +135,7 @@ const howWeCalculate = [
           x-data="{ active: 0 }"
           x-init={`let intervalId = setInterval(() => active = (active + 1) % ${process.length}, 1800); $cleanup(() => clearInterval(intervalId))`}
         >
-          <div class="grid sm:grid-cols-3 divide-x divide-y sm:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60">
+          <div class="grid sm:grid-cols-3 divide-x divide-y sm:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 bg-gray-100 dark:bg-gray-900/40">
             {process.map((stage, index) => (
               <div class="relative p-6 sm:p-8 text-center">
                 <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">
@@ -178,7 +178,7 @@ const howWeCalculate = [
         </div>
 
         <div
-          class="grid sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60"
+          class="grid sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 bg-gray-100 dark:bg-gray-900/40"
           x-data="{ active: 0 }"
           x-init={`let intervalId = setInterval(() => active = (active + 1) % ${pipeline.length}, 1600); $cleanup(() => clearInterval(intervalId))`}
         >
@@ -225,7 +225,7 @@ const howWeCalculate = [
           </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 mb-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 bg-gray-100 dark:bg-gray-900/40 mb-16">
           {stats.map((stat) => (
             <div class="py-6 sm:py-8 text-center">
               <p class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 dark:from-primary-400 dark:to-accent-400 bg-clip-text text-transparent mb-1">
@@ -292,7 +292,7 @@ const howWeCalculate = [
     <Team
       badge="Who We Are"
       heading="The Team Behind Wattnet"
-      intro="Wattnet is built and maintained by a small team at IFCA, spanning software engineering, environmental data modeling, and predictive analytics."
+      intro="Wattnet is built and maintained by a small team at IFCA in Santander, spanning software engineering, environmental data modeling, and predictive analytics, all part of the Advanced Computing and e-Science Group."
       showCopyAll={false}
     />
 
