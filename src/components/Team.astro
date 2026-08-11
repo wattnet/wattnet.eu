@@ -1,8 +1,22 @@
 ---
+interface Props {
+  badge?: string;
+  heading?: string;
+  intro?: string;
+  showCopyAll?: boolean;
+}
+
+const {
+  badge = "Get In Touch",
+  heading = "Contact Our Team",
+  intro = "For inquiries, feedback, or support, please contact our team by addressing your message to all of the email addresses listed below. This ensures that your request is received and directed to the appropriate support.",
+  showCopyAll = true,
+} = Astro.props;
+
 const people = [
   {
     name: "Jaime Iglesias Blanco",
-    role: "Lead Backend Software Engineer",
+    role: "Lead Backend Developer & Service Maintainer",
     email: "iglesias@ifca.es",
     orcid: "https://orcid.org/0009-0007-7761-5600",
     avatar: null,
@@ -23,14 +37,14 @@ const people = [
   },
   {
     name: "Marta Obregón Ruiz",
-    role: "Frontend Developer & UX Designer",
+    role: "Frontend Developer & UX/UI Designer",
     email: "obregonm@ifca.es",
     orcid: "https://orcid.org/0009-0004-9750-7066",
     avatar: null,
   },
   {
     name: "Judith Sáinz-Pardo Díaz",
-    role: "Predictive Modeling Data Scientist",
+    role: "Predictive Modeling & Estimation Data Scientist",
     email: "sainzpardo@ifca.es",
     orcid: "https://orcid.org/0000-0002-8387-578X",
     avatar: null,
@@ -38,9 +52,9 @@ const people = [
 ];
 
 import { Image } from "astro:assets";
-import profileBanner from '../assets/profile-background.png';
 import jaimeAvatar from '../assets/team/jaime-iglesias.jpg';
 import orcidIcon from "../assets/logos/external/orcid.svg";
+import ifcaBanner from '../assets/profile-background.png';
 ---
 
 <section id="team" class="section bg-gray-100/10 dark:bg-gray-900/10 relative overflow-hidden">
@@ -49,48 +63,54 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
       <!-- Texto -->
       <div class="flex-1">
         <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
-          Get In Touch
+          {badge}
         </span>
-        <h2 class="mb-6 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">Contact Our Team</h2>
+        <h2 class="mb-6 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">{heading}</h2>
         <p class="text-gray-600 dark:text-gray-300">
-          For inquiries, feedback, or support, please contact our team by addressing your message to all of the email addresses listed below. This ensures that your request is received and directed to the appropriate support.
+          {intro}
         </p>
       </div>
 
       <!-- Botón -->
-      <div>
-        <button
-          id="copy-all"
-          class="flex items-center gap-2 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-900 hover:bg-gray-300 dark:hover:bg-gray-800 transition opacity-85"
-        >
-          <span id="copy-all-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <rect x="3" y="3" width="14" height="14" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="none"/>
-              <rect x="7" y="7" width="14" height="14" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="none"/>
-            </svg>
-          </span>
-          <span id="copy-all-text">Copy all emails</span>
-        </button>
-      </div>
+      {showCopyAll && (
+        <div>
+          <button
+            id="copy-all"
+            class="flex items-center gap-2 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-900 hover:bg-gray-300 dark:hover:bg-gray-800 transition opacity-85"
+          >
+            <span id="copy-all-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <rect x="3" y="3" width="14" height="14" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="none"/>
+                <rect x="7" y="7" width="14" height="14" rx="2" ry="2" stroke-width="2" stroke="currentColor" fill="none"/>
+              </svg>
+            </span>
+            <span id="copy-all-text">Copy all emails</span>
+          </button>
+        </div>
+      )}
+    </div>
+
+    <!-- IFCA banner -->
+    <div class="relative h-40 sm:h-52 rounded-xl overflow-hidden mb-8">
+      <Image
+        src={ifcaBanner}
+        alt="The Institute of Physics of Cantabria (IFCA), where Wattnet is developed"
+        class="w-full h-full object-cover scale-[1.02]"
+        width={1659}
+        height={935}
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-secondary-950/90 via-secondary-950/30 to-transparent"></div>
+      <p class="absolute bottom-3 left-4 text-sm font-medium text-white/90">
+        The team works out of IFCA, in Santander
+      </p>
     </div>
 
     <!-- Team Members Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 bg-gray-100 dark:bg-gray-900/40">
       {people.map((person) => (
-        <div class="w-full max-w-sm bg-white/60 dark:bg-gray-900/40 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-all duration-500 border border-gray-200/60 dark:border-gray-800/60">
-          <div class="h-24 relative overflow-hidden rounded-t-2xl group">
-          <!-- Banner image with blur and hover zoom -->
-          <div
-            class="absolute inset-0 bg-cover bg-center filter opacity-25 blur-[2px] transform transition-transform duration-500 ease-in-out group-hover:scale-110"
-            style={`background-image: url(${profileBanner.src})`}
-          ></div>
-
-          <!-- Overlay -->
-          <div class="absolute inset-0 bg-primary-900/20 dark:bg-primary-900/40 transition-all duration-500 ease-in-out group-hover:bg-primary-900/30"></div>
-        </div>
-
+        <div class="relative group flex flex-col items-center text-center p-6">
           <!-- Avatar -->
-          <div class="absolute top-12 left-8 w-20 h-20 rounded-full border-4 border-white/90 dark:border-white/10 overflow-hidden bg-primary-100 dark:bg-gray-800 flex items-center justify-center">
+          <div class="w-16 h-16 rounded-full overflow-hidden bg-primary-100 dark:bg-gray-800 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-105">
             {person.avatar ? (
               <Image
                 src={person.avatar}
@@ -101,7 +121,7 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
               />
             ) : (
               <svg
-                class="w-10 h-10 pt-1 text-primary-600 dark:text-primary-400"
+                class="w-8 h-8 text-primary-600 dark:text-primary-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -117,43 +137,41 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
           </div>
 
           <!-- Content -->
-          <div class="mt-14 px-8 pb-8 flex flex-col">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              {person.orcid ? (
-                <a
-                  href={person.orcid}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-2 hover:underline underline-offset-3 decoration-1"
-                >
-                  <span>{person.name}</span>
-                  <Image src={orcidIcon} alt="ORCID icon" class="w-4 h-4" width={16} height={16} />
-                </a>
-              ) : (
-                <span>{person.name}</span>
-              )}
-            </h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{person.role}</p>
-            <a
-              href={`mailto:${person.email}`}
-              class="mt-2 flex items-center text-primary-600 hover:underline decoration-1"
-            >
-              <svg
-                class="w-4 h-4 mr-1 flex-shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <h3 class="text-[0.8rem] font-semibold text-gray-900 dark:text-white flex items-center justify-center gap-1.5">
+            {person.orcid ? (
+              <a
+                href={person.orcid}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 hover:underline underline-offset-3 decoration-1"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              {person.email}
-            </a>
-          </div>
+                <span>{person.name}</span>
+                <Image src={orcidIcon} alt="ORCID icon" class="w-3.5 h-3.5 shrink-0" width={16} height={16} />
+              </a>
+            ) : (
+              <span>{person.name}</span>
+            )}
+          </h3>
+          <p class="text-sm leading-tight text-gray-500 dark:text-gray-400 mt-1">{person.role}</p>
+          <a
+            href={`mailto:${person.email}`}
+            class="mt-3 flex items-center justify-center text-sm text-primary-600 dark:text-primary-400 hover:underline decoration-1"
+          >
+            <svg
+              class="w-4 h-4 mr-1.5 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            {person.email}
+          </a>
         </div>
       ))}
     </div>
@@ -165,7 +183,7 @@ import orcidIcon from "../assets/logos/external/orcid.svg";
   const copyAllIcon = document.getElementById('copy-all-icon');
   const copyAllText = document.getElementById('copy-all-text');
 
-  copyAllBtn.addEventListener('click', () => {
+  copyAllBtn?.addEventListener('click', () => {
     const emails = [
       'iglesias@ifca.es',
       'castrillo@ifca.es',

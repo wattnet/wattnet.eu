@@ -43,11 +43,9 @@ document.addEventListener('astro:page-load', () => {
       const targetElement = document.querySelector(targetId);
       
       if (targetElement) {
-        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
       }
     });

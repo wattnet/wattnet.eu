@@ -1,0 +1,87 @@
+---
+title: Wattnet — Terms of Service
+lastUpdated: 2026-08-10
+---
+
+import { Image } from 'astro:assets';
+import EUFundingLogo from '../../assets/logos/external/EN_FundedbytheEU_RGB_POS.png';
+import GreenDIGITLogo from '../../assets/logos/external/GreenDIGIT logo color horizontal2.png';
+import SwitzerlandFlag from '../../assets/logos/external/Flag_of_Switzerland.svg';
+
+Wattnet is a free, publicly funded research service. These terms describe how you can use the dashboard ([dashboard.wattnet.eu](https://dashboard.wattnet.eu)) and API ([api.wattnet.eu](https://api.wattnet.eu)), together with any official client libraries or SDKs that access them, referred to below as "the Service", and what you can reasonably expect from it. By using the Service, you agree to the terms below.
+
+## What Wattnet is
+
+Wattnet is developed by the Advanced Computing and e-Science Group at the Institute of Physics of Cantabria (IFCA), a joint center of the Spanish National Research Council (CSIC) and the University of Cantabria, as part of the [GreenDIGIT](https://greendigit-project.eu/) project, funded by the EU's Horizon Europe programme (grant agreement No. 101131207) and the Swiss State Secretariat for Education, Research and Innovation (SERI).
+
+It provides real-time, historical, and forecasted data on the carbon and water footprint of electricity across Europe, built from sources such as ENTSO-E, Elexon, and EPIAS, and combined through Wattnet's own flow-tracing methodology. As with any research project, Wattnet is under active development, so endpoints, data formats, and access conditions may change as it evolves and as new grid zones or data sources are added.
+
+<div class="not-prose flex flex-wrap justify-between items-center gap-4 my-8">
+  <div class="flex items-center gap-4">
+    <div class="max-w-[280px]">
+      <Image src={EUFundingLogo} alt="Funded by the European Union" class="w-full h-auto" height={550} />
+    </div>
+    <div class="flex-none">
+      <Image src={SwitzerlandFlag} alt="Swiss State Secretariat for Education, Research and Innovation (SERI)" class="h-12 w-auto" height={70} />
+    </div>
+  </div>
+  <div class="max-w-[240px]">
+    <Image src={GreenDIGITLogo} alt="GreenDIGIT" class="w-full h-auto" height={500} />
+  </div>
+</div>
+
+## Using the dashboard and API
+
+The [dashboard](https://dashboard.wattnet.eu) is open to everyone, free of charge, and requires no registration. Access to the [API](https://api.wattnet.eu/docs) works a little differently: it's granted on request, so if you'd like to integrate Wattnet data into your own tools or research, get in touch through our [contact page](/contact) to request access. Once approved, your API token is issued through the [developer portal](https://api.wattnet.eu/token-request), and from then on the API is yours to use.
+
+There are currently no enforced rate limits on API access, though this may change as usage of the Service grows. If we do introduce limits, they will be documented in the API reference rather than applied without notice. Please don't attempt to circumvent any conditions attached to your access, for example by requesting multiple tokens or rotating IP addresses, since doing so affects the quality of the Service for everyone else relying on it. For the same reason, we may suspend or revoke access that is clearly being misused or that is negatively affecting the Service for other users.
+
+## Requesting and using API access
+
+When you request access, we'd appreciate it if you could give us an accurate idea of how you intend to use the data, since this helps us understand who relies on the Service and plan its future accordingly. Once you have a token, please treat it as you would any other credential:
+
+- Keep it confidential, and avoid sharing or publishing it anywhere it could be picked up by others.
+- Let us know promptly if it's ever exposed or compromised, so we can issue you a new one.
+- Reach out if your use case changes significantly, so we can make sure your access still fits.
+
+Any information you share with us when requesting access is used only to manage that access and to respond to your enquiry.
+
+## Attribution
+
+If you use Wattnet data in your own application or dashboard, we'd appreciate a visible credit. A credit along these lines works well:
+
+> Data from Wattnet (wattnet.eu), a service of CSIC developed within the GreenDIGIT project (Horizon Europe, grant agreement No. 101131207).
+
+If you're citing Wattnet in academic work, please reference the paper describing its methodology instead:
+
+> Castrillo Melguizo, M., Iglesias Blanco, J., Sáinz-Pardo Díaz, J., & López García, Á. (2025). *Wattnet: matching electricity consumption with low-carbon, low-water footprint energy supply*. https://doi.org/10.5281/zenodo.17404776
+
+"Wattnet" and its logo identify CSIC's service, so please don't use them in a way that implies your product is affiliated with, endorsed by, or built by us, unless we've specifically agreed to that.
+
+## About the data
+
+Carbon and water footprint figures published through Wattnet are estimates, built from models and third-party sources such as ENTSO-E, Elexon, and EPIAS, and they can therefore contain errors, gaps, or delays that are outside our control. We do our best to keep the underlying pipelines accurate and up to date, but we don't guarantee that the data is complete, error-free, or continuously available.
+
+Wattnet is provided as a research tool rather than a certified measurement service, and we are not responsible for decisions or actions taken on the basis of the data it provides. If you're relying on it for something important, such as a business, regulatory, or otherwise consequential decision, please validate the figures independently rather than relying on Wattnet as your sole source.
+
+## Data and code licensing
+
+- **Data** served through the dashboard and API isn't released under a separate open license. Your access to it is governed by these Terms, including the attribution and acceptable-use sections above.
+- **Code**: the parts of the platform that are open source are published at [github.com/wattnet](https://github.com/wattnet) under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), a permissive open-source license, unless a specific repository states otherwise. Not every component of the platform is publicly released.
+
+## Acceptable use
+
+To keep the Service usable and trustworthy for everyone, when using it we'd ask that you don't:
+
+- Use it for anything illegal or that infringes on the rights of others.
+- Present the data in a way that misrepresents its accuracy, source, or freshness.
+- Try to access parts of the system that fall outside the documented API.
+- Scrape or bulk-download data outside the API in ways that place unusual load on the Service.
+
+## Changes
+
+We may update these terms, or the Service itself, as the project develops. New features, changed access conditions, discontinued endpoints, and similar adjustments are all part of running an active research platform. We'll try to flag anything significant when it happens, and the current version of these terms will always be available at [wattnet.eu/terms](/terms).
+
+## Questions?
+
+If anything here is unclear, or you'd like to talk about a specific use case, reach out through our [contact page](/contact), or open an issue or a discussion on [GitHub](https://github.com/wattnet).
