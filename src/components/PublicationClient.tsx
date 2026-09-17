@@ -27,6 +27,7 @@ interface Publication {
 	year: number;
 	type: string;
 	publisher: string;
+	journal?: string;
 	doi: string;
 	authors: Author[];
 	links: Link[];
@@ -144,6 +145,14 @@ export default function PublicationClient({ publications }: Props) {
 									<strong>Publisher:</strong> {pub.publisher}
 								</span>{" "}
 								·
+								{pub.journal && (
+									<>
+										<span>
+											<strong>Journal:</strong> {pub.journal}
+										</span>{" "}
+										·
+									</>
+								)}
 								<span>
 									<strong>DOI:</strong>{" "}
 									<a
@@ -173,15 +182,15 @@ export default function PublicationClient({ publications }: Props) {
 
 						{/* Right */}
 						<div
-							className="w-full md:w-52 flex flex-col gap-3 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70 bg-gray-100/60 dark:bg-gray-800/20 backdrop-blur-sm p-4 md:p-3 md:rounded-tr-xl md:rounded-br-xl">
+							className="w-full md:w-[232px] flex flex-col gap-3 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700/70 bg-gray-100/60 dark:bg-gray-800/20 backdrop-blur-sm p-4 md:p-3 md:rounded-tr-xl md:rounded-br-xl">
 							{pub.links.map((link) => (
 								<a
 									key={link.url}
 									href={link.url}
 									target="_blank"
-									className={`flex items-center gap-3 px-4 py-1.5 text-sm rounded-md bg-gray-200 dark:bg-gray-700/50 ${link.color} hover:bg-gray-300 dark:hover:bg-gray-600 transition w-full`}>
-									<img src={link.icon} alt="Link Icon" class="w-4 h-4" />
-									<span>View on {link.title}</span>
+									className={`flex items-center gap-3 pl-4 pr-6 py-1.5 text-sm rounded-md bg-gray-200 dark:bg-gray-700/50 ${link.color} hover:bg-gray-300 dark:hover:bg-gray-600 transition w-full`}>
+									<img src={link.icon} alt="Link Icon" class="w-4 h-4 shrink-0" />
+									<span className="whitespace-nowrap">View on {link.title}</span>
 								</a>
 							))}
 						</div>

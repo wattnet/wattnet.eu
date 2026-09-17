@@ -2,16 +2,18 @@
 import PublicationClient from "../components/PublicationClient";
 import zenodoLogo from '../assets/logos/external/zenodo.svg';
 import arxivLogo from '../assets/logos/external/arxiv.svg';
+import sciencedirectLogo from '../assets/logos/external/sciencedirect.svg';
 
 
 const publications = [
   {
     title: "Wattnet: matching electricity consumption with low-carbon, low-water footprint energy supply",
     description: "The environmental impact of electricity consumption is commonly assessed through its carbon footprint (CF), while water-related impacts are often overlooked despite the strong interdependence between energy and water systems. This is particularly relevant for electricity-intensive activities such as data center (DC) operations, where both carbon emissions and water use occur largely off-site through electricity consumption. In this work, we present Wattnet, an open-source tool that jointly assesses the CF and water footprint (WF) of electricity consumption across Europe with high temporal resolution. Wattnet implements an electricity flow-tracing methodology that accounts for local generation mixes, as well as for cross-border electricity imports and exports at a 15-minute resolution. Operational and life-cycle impact factors are used to quantify and compare local (generation-based) and global (consumption-based) footprints for multiple European regions during 2024. Wattnet includes a 72-h forecasting module to facilitate informed energy-aware decision-making. The results demonstrate that neglecting electricity flows and temporal variability can lead to significant misestimations of both CF and WF, particularly in countries with high levels of electricity trade or hydropower dependence. Furthermore, the joint analysis reveals trade-offs between decarbonisation and water use, highlighting the prominent role of reservoir-based hydropower in increasing WF even in low-carbon systems. Wattnet facilitates informed energy-aware decision-making, while also enhancing transparency regarding the environmental impacts of electricity consumption for end users and policymakers.",
-    year: 2025,
-    type: "Preprint Article",
-    publisher: "Zenodo",
-    doi: "10.5281/zenodo.17404776",
+    year: 2026,
+    type: "Research Article",
+    publisher: "Elsevier",
+    journal: "Sustainable Computing: Informatics and Systems",
+    doi: "10.1016/j.suscom.2026.101473",
     authors: [
       { name: "Castrillo Melguizo, Maria", orcid: "https://orcid.org/0000-0001-7033-6907" },
       { name: "Iglesias Blanco, Jaime", orcid: "https://orcid.org/0009-0007-7761-5600" },
@@ -19,6 +21,7 @@ const publications = [
       { name: "López García, Álvaro", orcid: "https://orcid.org/0000-0002-0013-4602" },
     ],
     links: [
+      { title: "ScienceDirect", url: "https://doi.org/10.1016/j.suscom.2026.101473", color: "text-orange-600 dark:text-orange-400", icon: sciencedirectLogo.src },
       { title: "Zenodo", url: "https://zenodo.org/records/20795932", color: "text-blue-600 dark:text-blue-400", icon: zenodoLogo.src },
       { title: "arXiv", url: "https://arxiv.org/abs/2601.11623", color: "text-red-600 dark:text-red-400", icon: arxivLogo.src },
     ],
