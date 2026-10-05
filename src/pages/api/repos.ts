@@ -82,7 +82,7 @@ async function fetchOpenPRs(
 	}
 }
 
-// Requires GITHUB_TOKEN with read:packages scope.
+// Requires PACKAGES_TOKEN with read:packages scope.
 // Returns null (no button shown) if token is absent or package doesn't exist.
 async function checkGHCR(
 	name: string,
@@ -158,7 +158,7 @@ async function fetchCodecovCoverage(repo: string): Promise<number | null> {
 }
 
 export const GET: APIRoute = async () => {
-	const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN;
+	const PACKAGES_TOKEN = import.meta.env.PACKAGES_TOKEN;
 
 	if (cache && Date.now() - cache.timestamp < CACHE_DURATION_MS) {
 		return new Response(JSON.stringify(cache.data), {
@@ -170,7 +170,7 @@ export const GET: APIRoute = async () => {
 		const ghHeaders: Record<string, string> = {
 			Accept: "application/vnd.github+json",
 		};
-		if (GITHUB_TOKEN) ghHeaders.Authorization = `token ${GITHUB_TOKEN}`;
+		if (PACKAGES_TOKEN) ghHeaders.Authorization = `token ${PACKAGES_TOKEN}`;
 
 		const res = await fetch(`${GITHUB_API_URL}?per_page=100&sort=updated`, {
 			headers: ghHeaders,
@@ -188,7 +188,7 @@ export const GET: APIRoute = async () => {
 					fetchOpenPRs(r.name, ghHeaders),
 					checkPyPI(r.name),
 					checkDockerHub(r.name),
-					GITHUB_TOKEN ? checkGHCR(r.name, ghHeaders) : Promise.resolve(null),
+					PACKAGES_TOKEN ? checkGHCR(r.name, ghHeaders) : Promise.resolve(null),
 					fetchCodecovCoverage(r.name),
 					fetchWorkflowStatuses(r.name, ghHeaders),
 				]);
