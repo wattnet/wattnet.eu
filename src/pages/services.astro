@@ -6,6 +6,8 @@ import HeroSection from '../components/HeroSection.astro';
 import { Image } from "astro:assets";
 import DashboardPreview from '../assets/dashboard-preview.png';
 import CallToAction from '../components/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+import wattnetLogo from '/src/assets/logos/wattnet/wattnet-logo-icon-color-transparent.png';
 ---
 
 <Layout
@@ -17,7 +19,7 @@ import CallToAction from '../components/CallToAction.astro';
     <HeroSection
       title="Next-Level Services"
       highlightText="Services"
-      description="Track, visualize, and analyze electricity generation, cross-border exchanges, and carbon & water footprints with our dashboard, API, and curated datasets."
+      description="Track electricity generation, cross-border flows, and the carbon and water footprints of European electricity, with tools built for every workflow, from interactive exploration to automation."
     />
 
     <!-- Dashboard Preview Section -->
@@ -213,6 +215,361 @@ import CallToAction from '../components/CallToAction.astro';
     <span class="text-blue-600 dark:text-blue-300">"end"</span><span class="text-gray-500">:</span>            <span class="text-green-600 dark:text-green-300">"2025-09-01T04:05:06Z"</span>
   <span class="text-gray-500 dark:text-gray-500">{`}`}</span>
 <span class="text-gray-500 dark:text-gray-500">]</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Python Client Section -->
+    <section id="python-client" class="section bg-white/70 dark:bg-gray-800/50 relative overflow-hidden">
+      <div class="container-custom slide-up">
+        <div class="grid md:[grid-template-columns:60fr_40fr] gap-12 lg:gap-16 items-center">
+
+          <!-- IDE mockup -->
+          <div x-data="{ tab: 'quickstart', file: 'quickstart.py', auto: !window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused: false, order: [['quickstart', 'quickstart.py'], ['score', 'by_location.py'], ['async', 'async_example.py']], next() { const i = this.order.findIndex(t => t[0] === this.tab); [this.tab, this.file] = this.order[(i + 1) % this.order.length] } }" x-init="setInterval(() => { if (auto && !paused && !document.hidden) next() }, 6000)" @mouseenter="paused = true" @mouseleave="paused = false" @focusin="paused = true" @focusout="paused = false" class="rounded-xl overflow-hidden shadow-2xl border border-gray-200/60 dark:border-white/10 flex flex-col order-2 md:order-1 bg-gray-100/80 dark:bg-gray-800/40 backdrop-blur-md font-mono text-[13px]">
+            <!-- Title bar -->
+            <div class="flex items-center gap-3 px-4 py-2.5 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md border-b border-gray-200/60 dark:border-white/10 shrink-0">
+              <div class="flex gap-1.5 shrink-0">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+              </div>
+              <span class="flex-1 text-center text-xs text-gray-600 dark:text-gray-400 truncate"><span x-text="file">quickstart.py</span> - wattnet-client-demo</span>
+              <span class="w-12 shrink-0"></span>
+            </div>
+            <div class="flex">
+              <!-- Activity bar -->
+              <div class="hidden sm:flex flex-col items-center gap-4 py-3 px-2.5 bg-white/40 dark:bg-gray-900/40 text-gray-500 dark:text-gray-400 shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path stroke-linecap="round" d="M20 20l-4.5-4.5"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 8v8M18 10c0 4-8 2-12 6"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/><path d="M4 4v3M4 17v3"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="8" height="8" rx="1"/><rect x="13" y="12" width="8" height="8" rx="1"/><rect x="3" y="4" width="8" height="6" rx="1"/><path d="M17 3v6M14 6h6"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>
+                <div class="mt-auto flex flex-col items-center gap-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+              </div>
+              <div class="flex-1 min-w-0 flex flex-col">
+                <!-- Tabs -->
+                <div class="flex bg-white/40 dark:bg-gray-900/40 text-xs shrink-0 overflow-x-auto" role="tablist" aria-label="Python client examples">
+                  <button type="button" role="tab" @click="tab = 'quickstart'; file = 'quickstart.py'; auto = false" :aria-selected="tab === 'quickstart'" class="flex items-center gap-2 px-4 py-2 whitespace-nowrap border-t-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500" :class="tab === 'quickstart' ? 'bg-gray-100/60 dark:bg-white/5 text-gray-800 dark:text-gray-200 border-primary-500' : 'text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 border-transparent'">
+                    <span class="text-yellow-600 dark:text-yellow-400">py</span> quickstart.py
+                  </button>
+                  <button type="button" role="tab" @click="tab = 'score'; file = 'by_location.py'; auto = false" :aria-selected="tab === 'score'" class="flex items-center gap-2 px-4 py-2 whitespace-nowrap border-t-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500" :class="tab === 'score' ? 'bg-gray-100/60 dark:bg-white/5 text-gray-800 dark:text-gray-200 border-primary-500' : 'text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 border-transparent'">
+                    <span class="text-yellow-600 dark:text-yellow-400">py</span> by_location.py
+                  </button>
+                  <button type="button" role="tab" @click="tab = 'async'; file = 'async_example.py'; auto = false" :aria-selected="tab === 'async'" class="flex items-center gap-2 px-4 py-2 whitespace-nowrap border-t-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500" :class="tab === 'async' ? 'bg-gray-100/60 dark:bg-white/5 text-gray-800 dark:text-gray-200 border-primary-500' : 'text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 border-transparent'">
+                    <span class="text-yellow-600 dark:text-yellow-400">py</span> async_example.py
+                  </button>
+                </div>
+                <div class="grid">
+                <div class="col-start-1 row-start-1" :class="{ 'invisible': tab !== 'quickstart' }" :aria-hidden="tab !== 'quickstart'" role="tabpanel">
+                  <!-- Editor -->
+                  <div class="flex overflow-x-auto py-4 leading-6 h-[344px]">
+                    <div class="select-none text-right text-gray-400 dark:text-gray-600 pl-4 pr-4 shrink-0" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
+                    <pre class="text-gray-800 dark:text-[#d4d4d4] pr-4"><span class="text-purple-600 dark:text-[#c586c0]">from</span> wattnet.client <span class="text-purple-600 dark:text-[#c586c0]">import</span> <span class="text-teal-700 dark:text-[#4ec9b0]">WattnetClient</span>
+
+client = <span class="text-teal-700 dark:text-[#4ec9b0]">WattnetClient</span>(
+    email=<span class="text-orange-700 dark:text-[#ce9178]">&quot;you@example.com&quot;</span>,
+    password=<span class="text-orange-700 dark:text-[#ce9178]">&quot;&lt;your-password&gt;&quot;</span>,
+)
+
+<span class="text-green-700 dark:text-[#6a9955]"># Every call returns a pandas DataFrame</span>
+df = client.<span class="text-yellow-700 dark:text-[#dcdcaa]">get_footprints</span>(zone=<span class="text-orange-700 dark:text-[#ce9178]">&quot;ES&quot;</span>, footprint_type=<span class="text-orange-700 dark:text-[#ce9178]">&quot;carbon&quot;</span>)
+<span class="text-green-700 dark:text-[#6a9955]"># Solar generation, same zone</span>
+solar = client.<span class="text-yellow-700 dark:text-[#dcdcaa]">get_generation</span>(zone=<span class="text-orange-700 dark:text-[#ce9178]">&quot;ES&quot;</span>, production_type=<span class="text-orange-700 dark:text-[#ce9178]">&quot;solar&quot;</span>)
+
+<span class="text-yellow-700 dark:text-[#dcdcaa]">print</span>(df.<span class="text-yellow-700 dark:text-[#dcdcaa]">tail</span>(<span class="text-green-800 dark:text-[#b5cea8]">3</span>))</pre>
+                  </div>
+                  <!-- Terminal panel -->
+                  <div class="border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-gray-900/40">
+                    <div class="flex gap-5 px-4 pt-2 text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                      <span>Problems</span><span>Output</span><span class="text-gray-800 dark:text-gray-200 border-b border-primary-500 pb-1">Terminal</span>
+                    </div>
+                    <div class="px-4 py-3.5 overflow-x-auto">
+                      <pre class="text-gray-700 dark:text-[#cccccc] leading-[22px] min-h-[110px]"><span class="text-accent-600 dark:text-accent-400">$</span> python quickstart.py
+  zone footprint_type       scope     unit   value           timestamp
+  ES   carbon         life-cycle  gCO2/kWh  91.96  2025-09-01 01:00:00+00:00
+  ES   carbon         life-cycle  gCO2/kWh  90.41  2025-09-01 01:15:00+00:00
+  ES   carbon         life-cycle  gCO2/kWh  88.73  2025-09-01 01:30:00+00:00</pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-start-1 row-start-1 invisible" :class="{ 'invisible': tab !== 'score' }" :aria-hidden="tab !== 'score'" role="tabpanel">
+                  <!-- Editor -->
+                  <div class="flex overflow-x-auto py-4 leading-6 h-[344px]">
+                    <div class="select-none text-right text-gray-400 dark:text-gray-600 pl-4 pr-4 shrink-0" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
+                    <pre class="text-gray-800 dark:text-[#d4d4d4] pr-4"><span class="text-purple-600 dark:text-[#c586c0]">from</span> wattnet.client <span class="text-purple-600 dark:text-[#c586c0]">import</span> <span class="text-teal-700 dark:text-[#4ec9b0]">WattnetClient</span>
+
+client = <span class="text-teal-700 dark:text-[#4ec9b0]">WattnetClient</span>(token=<span class="text-orange-700 dark:text-[#ce9178]">&quot;&lt;your-token&gt;&quot;</span>)
+
+<span class="text-green-700 dark:text-[#6a9955]"># Query by coordinates instead of a zone code</span>
+df = client.<span class="text-yellow-700 dark:text-[#dcdcaa]">get_footprints</span>(
+    lat=<span class="text-green-800 dark:text-[#b5cea8]">43.4717</span>, lon=<span class="text-green-800 dark:text-[#b5cea8]">-3.8024</span>,
+    footprint_type=<span class="text-orange-700 dark:text-[#ce9178]">&quot;carbon&quot;</span>,
+    start=<span class="text-orange-700 dark:text-[#ce9178]">&quot;2025-09-01T01:02:03Z&quot;</span>,
+    end=<span class="text-orange-700 dark:text-[#ce9178]">&quot;2025-09-01T04:05:06Z&quot;</span>,
+    aggregate=<span class="text-purple-600 dark:text-[#c586c0]">True</span>,
+)
+<span class="text-yellow-700 dark:text-[#dcdcaa]">print</span>(df)</pre>
+                  </div>
+                  <!-- Terminal panel -->
+                  <div class="border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-gray-900/40">
+                    <div class="flex gap-5 px-4 pt-2 text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                      <span>Problems</span><span>Output</span><span class="text-gray-800 dark:text-gray-200 border-b border-primary-500 pb-1">Terminal</span>
+                    </div>
+                    <div class="px-4 py-3.5 overflow-x-auto">
+                      <pre class="text-gray-700 dark:text-[#cccccc] leading-[22px] min-h-[110px]"><span class="text-accent-600 dark:text-accent-400">$</span> python by_location.py
+footprint_type       scope zone      unit   value  valid
+carbon        life-cycle   ES  gCO2/kWh  91.963   True</pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-start-1 row-start-1 invisible" :class="{ 'invisible': tab !== 'async' }" :aria-hidden="tab !== 'async'" role="tabpanel">
+                  <!-- Editor -->
+                  <div class="flex overflow-x-auto py-4 leading-6 h-[344px]">
+                    <div class="select-none text-right text-gray-400 dark:text-gray-600 pl-4 pr-4 shrink-0" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
+                    <pre class="text-gray-800 dark:text-[#d4d4d4] pr-4"><span class="text-purple-600 dark:text-[#c586c0]">import</span> asyncio
+
+<span class="text-purple-600 dark:text-[#c586c0]">from</span> wattnet.client <span class="text-purple-600 dark:text-[#c586c0]">import</span> <span class="text-teal-700 dark:text-[#4ec9b0]">AsyncWattnetRawClient</span>
+
+<span class="text-purple-600 dark:text-[#c586c0]">async def</span> <span class="text-yellow-700 dark:text-[#dcdcaa]">main</span>() -> <span class="text-teal-700 dark:text-[#4ec9b0]">None</span>:
+    <span class="text-purple-600 dark:text-[#c586c0]">async with</span> <span class="text-teal-700 dark:text-[#4ec9b0]">AsyncWattnetRawClient</span>(token=<span class="text-orange-700 dark:text-[#ce9178]">&quot;&lt;your-token&gt;&quot;</span>) <span class="text-purple-600 dark:text-[#c586c0]">as</span> client:
+        carbon, water = <span class="text-purple-600 dark:text-[#c586c0]">await</span> asyncio.<span class="text-yellow-700 dark:text-[#dcdcaa]">gather</span>(
+            client.<span class="text-yellow-700 dark:text-[#dcdcaa]">get_footprints</span>(zone=<span class="text-orange-700 dark:text-[#ce9178]">&quot;ES&quot;</span>, footprint_type=<span class="text-orange-700 dark:text-[#ce9178]">&quot;carbon&quot;</span>),
+            client.<span class="text-yellow-700 dark:text-[#dcdcaa]">get_footprints</span>(zone=<span class="text-orange-700 dark:text-[#ce9178]">&quot;ES&quot;</span>, footprint_type=<span class="text-orange-700 dark:text-[#ce9178]">&quot;water&quot;</span>),
+        )
+        <span class="text-yellow-700 dark:text-[#dcdcaa]">print</span>(carbon[<span class="text-green-800 dark:text-[#b5cea8]">0</span>][<span class="text-orange-700 dark:text-[#ce9178]">&quot;value&quot;</span>], water[<span class="text-green-800 dark:text-[#b5cea8]">0</span>][<span class="text-orange-700 dark:text-[#ce9178]">&quot;value&quot;</span>])
+
+asyncio.<span class="text-yellow-700 dark:text-[#dcdcaa]">run</span>(<span class="text-yellow-700 dark:text-[#dcdcaa]">main</span>())</pre>
+                  </div>
+                  <!-- Terminal panel -->
+                  <div class="border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-gray-900/40">
+                    <div class="flex gap-5 px-4 pt-2 text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                      <span>Problems</span><span>Output</span><span class="text-gray-800 dark:text-gray-200 border-b border-primary-500 pb-1">Terminal</span>
+                    </div>
+                    <div class="px-4 py-3.5 overflow-x-auto">
+                      <pre class="text-gray-700 dark:text-[#cccccc] leading-[22px] min-h-[110px]"><span class="text-accent-600 dark:text-accent-400">$</span> python async_example.py
+91.963 2.9</pre>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <!-- Status bar -->
+            <div class="flex items-center justify-between px-3 py-1 bg-primary-600 text-white text-[11px]">
+              <span>main</span>
+              <span>Python 3.12 &nbsp;·&nbsp; UTF-8</span>
+            </div>
+          </div>
+
+          <div class="px-4 sm:px-0 order-1 md:order-2">
+            <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
+              Python Client
+            </span>
+            <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">Official Python Client</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-justify">
+              <code>wattnet-client</code> maps every endpoint of the <strong>Wattnet</strong> API to a method and returns tidy <strong>pandas</strong> DataFrames, so you can go from question to analysis in a notebook without writing HTTP calls or flattening JSON.
+            </p>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">One method per endpoint, DataFrames by default or raw JSON when you need it</p>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">Synchronous and asyncio clients</p>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">Automatic token fetching and renewal from your email and password</p>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="https://pypi.org/project/wattnet-client/" target="_blank" rel="noopener noreferrer" class="btn-primary">Install from PyPI</a>
+              <a href="https://github.com/wattnet/wattnet-client-python" target="_blank" rel="noopener noreferrer" class="btn-secondary">View on GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Home Assistant Section -->
+    <section id="home-assistant" class="section bg-gray-100/10 dark:bg-gray-900/10 relative overflow-hidden">
+      <div class="container-custom slide-up">
+        <div class="grid md:[grid-template-columns:36fr_64fr] gap-12 lg:gap-16 items-center">
+          <div class="px-4 sm:px-0">
+            <span class="inline-block px-4 py-1 rounded-full bg-[#18bcf2]/15 dark:bg-[#18bcf2]/20 text-[#18bcf2] font-medium text-sm mb-4">
+              Home Assistant
+            </span>
+            <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">Bring Wattnet Home</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-justify">
+              Add the carbon footprint, water footprint, water impact, and environmental score of the electricity in your zone to <strong>Home Assistant</strong>, and cross them with your own consumption in the Energy dashboard.
+            </p>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">Live sensors and long-term statistics for any Wattnet zone</p>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">Ready-made Wattnet dashboard, generated for your zones</p>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-gray-600 dark:text-gray-300">Water and carbon of your grid consumption, from the Energy dashboard</p>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="https://github.com/wattnet/wattnet-home-assistant#installation" target="_blank" rel="noopener noreferrer" class="btn-primary">Install with HACS</a>
+              <a href="https://github.com/wattnet/wattnet-home-assistant" target="_blank" rel="noopener noreferrer" class="btn-secondary">View on GitHub</a>
+            </div>
+          </div>
+
+          <!-- Home Assistant dashboard mockup -->
+          <div class="rounded-xl overflow-hidden shadow-2xl border border-gray-200/60 dark:border-white/10 flex flex-col bg-gray-100/80 dark:bg-gray-800/40 backdrop-blur-md">
+            <!-- Browser chrome -->
+            <div class="flex items-center gap-3 px-4 py-3 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md border-b border-gray-200/60 dark:border-white/10 shrink-0">
+              <div class="flex gap-1.5 shrink-0">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+              </div>
+              <div class="flex-1 bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm rounded-full h-6 flex items-center px-3 text-xs text-gray-500 dark:text-gray-300 border border-gray-200/50 dark:border-white/10 font-mono truncate">
+                http://homeassistant.local:8123/dashboard-wattnet
+              </div>
+            </div>
+            <div class="flex">
+              <!-- Home Assistant sidebar -->
+            <div class="flex flex-col items-center gap-1 w-14 sm:w-16 py-3 bg-white/50 dark:bg-gray-900/40 border-r border-gray-200/60 dark:border-white/10 shrink-0" aria-hidden="true">
+              <div class="w-10 h-10 flex items-center justify-center mb-2">
+                <Icon name="simple-icons:homeassistant" class="w-5 h-5 text-[#18bcf2]" />
+              </div>
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div>
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-500/15">
+                <Image src={wattnetLogo} alt="" width={26} height={26} class="w-[26px] h-[26px] brightness-0 opacity-50 dark:invert dark:opacity-60" />
+              </div>
+              <div class="mt-auto w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            </div>
+              <div class="flex-1 min-w-0 flex flex-col">
+              <!-- Home Assistant toolbar -->
+              <div class="flex items-center gap-3 px-4 h-16 bg-white/50 dark:bg-gray-900/40 border-b border-gray-200/60 dark:border-white/10 text-gray-800 dark:text-white shrink-0">
+                <Image src={wattnetLogo} alt="" width={72} height={72} class="w-9 h-9 shrink-0" />
+                <span class="text-2xl font-bold lowercase tracking-tight -ml-1">wattnet</span>
+                <!-- Zone selector -->
+                <div class="ml-auto flex items-center gap-2 pl-3 pr-2.5 py-1.5 rounded-lg bg-white/70 dark:bg-white/5 border border-gray-300/70 dark:border-white/15 shadow-sm text-sm" aria-hidden="true">
+                  <svg class="w-4 h-4 text-primary-600 dark:text-primary-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  <span class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400 hidden sm:inline">Zone</span>
+                  <span class="font-medium whitespace-nowrap">Spain (ES)</span>
+                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <!-- Dashboard content -->
+              <div class="p-4 sm:p-5 flex flex-col gap-3.5 text-gray-900 dark:text-white">
+                <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-5 py-4">
+                  <p class="text-xl font-semibold">Every kWh in Spain</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">92 g of CO₂ · 2.9 L of water · 0.5 stress-L of water stress · environmental score 63 out of 100</p>
+                  <p class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-2">
+                    <span class="w-2 h-2 rounded-full bg-accent-500"></span> Consolidated data
+                  </p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                    <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                      <path d="M10.0 50.0 A40 40 0 0 1 28.7 16.1" fill="none" stroke="#94ce24" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"/><path d="M31.3 14.6 A40 40 0 0 1 68.7 14.6" fill="none" stroke="#f5c518" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"/><path d="M71.3 16.1 A40 40 0 0 1 90.0 50.0" fill="none" stroke="#ef4444" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"/>
+                      <line x1="50" y1="50" x2="17" y2="50" style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(20.7deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)" stroke="currentColor" class="text-gray-800 dark:text-white" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="50" cy="50" r="3.5" fill="currentColor" class="text-gray-800 dark:text-white"/>
+                    </svg>
+                    <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">92</span>
+                    <span class="text-[11px] text-gray-500 dark:text-gray-400">gCO2/kWh</span>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">Carbon footprint</span>
+                  </div>
+                  <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                    <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                      <path d="M10.0 50.0 A40 40 0 0 1 28.7 16.1" fill="none" stroke="#94ce24" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"/><path d="M31.3 14.6 A40 40 0 0 1 68.7 14.6" fill="none" stroke="#f5c518" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"/><path d="M71.3 16.1 A40 40 0 0 1 90.0 50.0" fill="none" stroke="#ef4444" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"/>
+                      <line x1="50" y1="50" x2="17" y2="50" style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(52.2deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)" stroke="currentColor" class="text-gray-800 dark:text-white" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="50" cy="50" r="3.5" fill="currentColor" class="text-gray-800 dark:text-white"/>
+                    </svg>
+                    <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">2.9</span>
+                    <span class="text-[11px] text-gray-500 dark:text-gray-400">L/kWh</span>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">Water footprint</span>
+                  </div>
+                  <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                    <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                      <path d="M10.0 50.0 A40 40 0 0 1 28.7 16.1" fill="none" stroke="#94ce24" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"/><path d="M31.3 14.6 A40 40 0 0 1 68.7 14.6" fill="none" stroke="#f5c518" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"/><path d="M71.3 16.1 A40 40 0 0 1 90.0 50.0" fill="none" stroke="#ef4444" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"/>
+                      <line x1="50" y1="50" x2="17" y2="50" style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(45.0deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)" stroke="currentColor" class="text-gray-800 dark:text-white" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="50" cy="50" r="3.5" fill="currentColor" class="text-gray-800 dark:text-white"/>
+                    </svg>
+                    <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">0.5</span>
+                    <span class="text-[11px] text-gray-500 dark:text-gray-400">stress-L/kWh</span>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">Water impact</span>
+                  </div>
+                  <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                    <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                      <path d="M10.0 50.0 A40 40 0 0 1 28.7 16.1" fill="none" stroke="#ef4444" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"/><path d="M31.3 14.6 A40 40 0 0 1 68.7 14.6" fill="none" stroke="#f5c518" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"/><path d="M71.3 16.1 A40 40 0 0 1 90.0 50.0" fill="none" stroke="#94ce24" stroke-width="8" class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"/>
+                      <line x1="50" y1="50" x2="17" y2="50" style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(113.4deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)" stroke="currentColor" class="text-gray-800 dark:text-white" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="50" cy="50" r="3.5" fill="currentColor" class="text-gray-800 dark:text-white"/>
+                    </svg>
+                    <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">63</span>
+                    <span class="text-[11px] text-gray-500 dark:text-gray-400">/ 100</span>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">Environmental score</span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">Carbon · 7 days</p>
+                    <svg viewBox="0 0 100 36" class="w-full h-11" preserveAspectRatio="none" aria-hidden="true">
+                      <polygon fill="#03a9f4" fill-opacity="0.15" points="0,36 0,26 12,20 25,27 38,14 50,18 62,8 75,16 88,22 100,12 100,36"/>
+                      <polyline fill="none" stroke="#03a9f4" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round" points="0,26 12,20 25,27 38,14 50,18 62,8 75,16 88,22 100,12"/>
+                    </svg>
+                  </div>
+                  <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">Water · 7 days</p>
+                    <svg viewBox="0 0 100 36" class="w-full h-11" preserveAspectRatio="none" aria-hidden="true">
+                      <polygon fill="#03a9f4" fill-opacity="0.15" points="0,36 0,20 12,24 25,16 38,22 50,12 62,18 75,10 88,14 100,18 100,36"/>
+                      <polyline fill="none" stroke="#03a9f4" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round" points="0,20 12,24 25,16 38,22 50,12 62,18 75,10 88,14 100,18"/>
+                    </svg>
+                  </div>
+                  <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">Impact · 7 days</p>
+                    <svg viewBox="0 0 100 36" class="w-full h-11" preserveAspectRatio="none" aria-hidden="true">
+                      <polygon fill="#03a9f4" fill-opacity="0.15" points="0,36 0,22 12,16 25,20 38,10 50,16 62,22 75,14 88,18 100,10 100,36"/>
+                      <polyline fill="none" stroke="#03a9f4" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round" points="0,22 12,16 25,20 38,10 50,16 62,22 75,14 88,18 100,10"/>
+                    </svg>
+                  </div>
+                  <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">Score · 7 days</p>
+                    <svg viewBox="0 0 100 36" class="w-full h-11" preserveAspectRatio="none" aria-hidden="true">
+                      <polygon fill="#03a9f4" fill-opacity="0.15" points="0,36 0,18 12,14 25,20 38,12 50,16 62,10 75,14 88,8 100,12 100,36"/>
+                      <polyline fill="none" stroke="#03a9f4" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round" points="0,18 12,14 25,20 38,12 50,16 62,10 75,14 88,8 100,12"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between gap-4 pt-1 text-[11px] text-gray-500 dark:text-gray-400">
+                  <span>Data provided by Wattnet · illustrative values</span>
+                  <span class="hidden sm:inline">wattnet.eu</span>
+                </div>
+              </div>
+              </div>
             </div>
           </div>
         </div>
