@@ -220,7 +220,7 @@ const WEB3FORMS_ACCESS_KEY = '7ecb29f9-8ec0-4ef2-b5fb-a75ffb62f9a0';
 </section>
 
 <script>
-  document.addEventListener('alpine:init', () => {
+  const registerContactForm = () => {
     // @ts-expect-error - Alpine is registered globally by @astrojs/alpinejs
     Alpine.data('contactForm', () => ({
       sending: false,
@@ -264,5 +264,18 @@ const WEB3FORMS_ACCESS_KEY = '7ecb29f9-8ec0-4ef2-b5fb-a75ffb62f9a0';
           });
       },
     }));
-  });
+  };
+
+  // Alpine may already have started (alpine:init fired) before this deferred module runs, so register directly in that case.
+  // @ts-expect-error - Alpine is registered globally by @astrojs/alpinejs
+  if (window.Alpine) {
+    registerContactForm();
+    // The form was already walked without its data; re-init it.
+    document.querySelectorAll('[x-data="contactForm"]').forEach((el) => {
+      // @ts-expect-error - Alpine is registered globally by @astrojs/alpinejs
+      Alpine.destroyTree(el);
+      // @ts-expect-error
+      Alpine.initTree(el);
+    });
+  } else document.addEventListener('alpine:init', registerContactForm);
 </script>
