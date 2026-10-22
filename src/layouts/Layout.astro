@@ -154,7 +154,7 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
 
       // Handle page transitions
       const loaderStart = Date.now();
-      const loaderMinMs = 1000;
+      const loaderMinMs = 700;
 
       document.addEventListener('astro:page-load', () => {
         const pageWrapper = document.getElementById('page-wrapper');

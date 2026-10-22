@@ -30,8 +30,8 @@
         <animateTransform
             attributeName="transform"
             type="rotate"
-            from="0 500 500"
-            to="360 500 500"
+            from="-180 500 500"
+            to="180 500 500"
             dur="2s"
             repeatCount="indefinite" />
     </path>
