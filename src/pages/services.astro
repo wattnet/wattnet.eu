@@ -162,7 +162,7 @@ import wattnetLogo from '/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
             </div>
             <div class="flex flex-col sm:flex-row gap-4">
               <a href="https://api.wattnet.eu/docs" target="_blank" class="btn-primary">API Documentation</a>
-              <a href="https://api.wattnet.eu/token-request" target="_blank" class="btn-secondary">Developer Portal</a>
+              <a href="https://developers.wattnet.eu" target="_blank" class="btn-secondary">Developer Portal</a>
             </div>
           </div>
 
@@ -196,7 +196,7 @@ import wattnetLogo from '/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
               <div class="flex items-start gap-2 mb-3">
                 <span class="text-accent-600 dark:text-accent-400 shrink-0">$</span>
                 <pre class="text-gray-700 dark:text-gray-300 whitespace-pre-wrap break-all">curl -X GET "https://api.wattnet.eu/v1/footprints?lat=43.4717&lon=-3.8024&footprint_type=carbon&start=2025-09-01T01%3A02%3A03Z&end=2025-09-01T04%3A05%3A06Z&aggregate=true" \
-  -H <span class="text-yellow-600 dark:text-yellow-300">"Authorization: Bearer YOUR_API_KEY"</span> \
+  -H <span class="text-yellow-600 dark:text-yellow-300">"Authorization: Bearer &lt;your-token&gt;"</span> \
   -H <span class="text-yellow-600 dark:text-yellow-300">"Content-Type: application/json"</span></pre>
               </div>
               <!-- Divider -->
@@ -273,8 +273,8 @@ import wattnetLogo from '/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
                     <pre class="text-gray-800 dark:text-[#d4d4d4] pr-4"><span class="text-purple-600 dark:text-[#c586c0]">from</span> wattnet.client <span class="text-purple-600 dark:text-[#c586c0]">import</span> <span class="text-teal-700 dark:text-[#4ec9b0]">WattnetClient</span>
 
 client = <span class="text-teal-700 dark:text-[#4ec9b0]">WattnetClient</span>(
-    email=<span class="text-orange-700 dark:text-[#ce9178]">&quot;you@example.com&quot;</span>,
-    password=<span class="text-orange-700 dark:text-[#ce9178]">&quot;&lt;your-password&gt;&quot;</span>,
+    client_id=<span class="text-orange-700 dark:text-[#ce9178]">&quot;&lt;your-client-id&gt;&quot;</span>,
+    client_secret=<span class="text-orange-700 dark:text-[#ce9178]">&quot;&lt;your-client-secret&gt;&quot;</span>,
 )
 
 <span class="text-green-700 dark:text-[#6a9955]"># Every call returns a pandas DataFrame</span>
@@ -395,7 +395,7 @@ asyncio.<span class="text-yellow-700 dark:text-[#dcdcaa]">run</span>(<span class
                 <svg class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <p class="text-gray-600 dark:text-gray-300">Automatic token fetching and renewal from your email and password</p>
+                <p class="text-gray-600 dark:text-gray-300">Automatic token fetching and renewal with your credentials</p>
               </div>
             </div>
             <div class="flex flex-col sm:flex-row gap-4">
