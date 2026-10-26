@@ -1,13 +1,13 @@
 ---
 import LottieBackground from '../components/LottieBackground.astro';
-import { Image } from "astro:assets";
-import GreenDIGITLogo from "/src/assets/logos/external/greendigit-trusted.png";
-import AI4EOSCLogo from "/src/assets/logos/external/ai4eosc-trusted.png";
-import iMagineLogo from "/src/assets/logos/external/iMagine.png";
-import SoBigDataLogo from "/src/assets/logos/external/SoBigData_RI_3.png";
+import { Image } from 'astro:assets';
+import GreenDIGITLogo from '/src/assets/logos/external/greendigit-trusted.png';
+import AI4EOSCLogo from '/src/assets/logos/external/ai4eosc-trusted.png';
+import iMagineLogo from '/src/assets/logos/external/iMagine.png';
+import SoBigDataLogo from '/src/assets/logos/external/SoBigData_RI_3.png';
 ---
-<section class="relative -mt-18 pt-32 pb-12 md:pt-0 md:pb-0 overflow-hidden min-h-screen md:flex md:flex-col md:justify-center">
 
+<section class="relative -mt-18 pt-32 pb-12 md:pt-0 md:pb-0 overflow-hidden min-h-screen md:flex md:flex-col md:justify-center">
   <!-- Lottie Animation Background -->
   <LottieBackground />
 
@@ -16,24 +16,40 @@ import SoBigDataLogo from "/src/assets/logos/external/SoBigData_RI_3.png";
       <div>
         <h1 class="mb-6 text-2xl sm:text-3xl md:text-6xl">
           <span class="bg-gradient-to-br from-primary-800 via-primary-600 to-primary-400 dark:from-primary-200 dark:via-primary-400 dark:to-primary-300 bg-clip-text text-transparent">
-            Explore environmental <span class="hidden md:inline"><br></span> footprint of electricity <span class="hidden md:inline"><br></span> powered by open data
+            Explore environmental{' '}
+            <span class="hidden md:inline">
+              <br />
+            </span>{' '}
+            footprint of electricity{' '}
+            <span class="hidden md:inline">
+              <br />
+            </span>{' '}
+            powered by open data
           </span>
         </h1>
         <div class="w-full md:w-1/2 flex flex-col gap-3 mb-6 mt-2 md:mt-4">
           <h4 class="text-base md:text-2xl text-gray-700 dark:text-gray-300">
-            Access real-time, historical, and forecasted data <span class="hidden xl:inline"><br></span> on the carbon and water impact of electricity consumption across Europe.
+            Access real-time, historical, and forecasted data{' '}
+            <span class="hidden xl:inline">
+              <br />
+            </span>{' '}
+            on the carbon and water impact of electricity consumption across Europe.
           </h4>
           <h5 class="text-base md:text-2xl text-gray-700 dark:text-gray-300">
-            Designed for data-driven research, supporting informed decision-making for a more sustainable future.
+            Designed for data-driven research, supporting informed decision-making for a more
+            sustainable future.
           </h5>
         </div>
         <div class="flex flex-col md:flex-row gap-3 md:gap-4 w-full mt-8 md:mt-16">
-          <a href="https://dashboard.wattnet.eu" target="_blank" rel="noopener noreferrer" class="btn-primary w-full md:w-auto text-lg">
+          <a
+            href="https://dashboard.wattnet.eu"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary w-full md:w-auto text-lg"
+          >
             <span class="inline-flex items-center gap-1">
               Discover&nbsp;
-              <span class="text-xl font-extrabold text-primary leading-none">
-                wattnet
-              </span>
+              <span class="text-xl font-extrabold text-primary leading-none">wattnet</span>
             </span>
           </a>
           <a href="#trusted" class="btn-outline text-lg w-full md:w-auto text-center">
@@ -55,38 +71,128 @@ import SoBigDataLogo from "/src/assets/logos/external/SoBigData_RI_3.png";
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
         <h4 class="text-3xl md:text-4xl text-[#0B1C38] dark:text-[#0B1C38]">
-          Transforming energy data <span class="hidden xl:inline"><br></span> into actionable insights for building a greener Europe.
+          Transforming energy data{' '}
+          <span class="hidden xl:inline">
+            <br />
+          </span>{' '}
+          into actionable insights for building a greener Europe.
         </h4>
       </div>
 
       <div class="flex flex-col items-start md:items-end justify-center">
-        <p class="text-sm uppercase tracking-wider text-[#0B1C38] dark:text-[#0B1C38] font-medium mb-6">TRUSTED BY</p>
+        <p class="text-sm uppercase tracking-wider text-[#0B1C38] dark:text-[#0B1C38] font-medium mb-6">
+          TRUSTED BY
+        </p>
         <div class="marquee-container overflow-hidden w-full">
           <div class="marquee-track flex items-center gap-x-12">
-            <a href="https://ai4eosc.eu/" target="_blank" aria-label="AI4EOSC Project" class="shrink-0">
-              <Image src={AI4EOSCLogo} alt="AI4EOSC Logo" class="h-14 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://ai4eosc.eu/"
+              target="_blank"
+              aria-label="AI4EOSC Project"
+              class="shrink-0"
+            >
+              <Image
+                src={AI4EOSCLogo}
+                alt="AI4EOSC Logo"
+                class="h-14 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
-            <a href="https://imagine-ai.eu/" target="_blank" aria-label="iMagine Project" class="shrink-0">
-              <Image src={iMagineLogo} alt="iMagine Logo" class="h-13 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://imagine-ai.eu/"
+              target="_blank"
+              aria-label="iMagine Project"
+              class="shrink-0"
+            >
+              <Image
+                src={iMagineLogo}
+                alt="iMagine Logo"
+                class="h-13 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
-            <a href="https://sobigdata.eu/" target="_blank" aria-label="SoBigData Project" class="shrink-0">
-              <Image src={SoBigDataLogo} alt="SoBigData Logo" class="h-10 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://sobigdata.eu/"
+              target="_blank"
+              aria-label="SoBigData Project"
+              class="shrink-0"
+            >
+              <Image
+                src={SoBigDataLogo}
+                alt="SoBigData Logo"
+                class="h-10 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
-            <a href="https://greendigit-project.eu/" target="_blank" aria-label="GreenDIGIT Project" class="shrink-0">
-              <Image src={GreenDIGITLogo} alt="GreenDigit Logo" class="h-11 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://greendigit-project.eu/"
+              target="_blank"
+              aria-label="GreenDIGIT Project"
+              class="shrink-0"
+            >
+              <Image
+                src={GreenDIGITLogo}
+                alt="GreenDigit Logo"
+                class="h-11 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
             <!-- duplicado para loop continuo -->
-            <a href="https://ai4eosc.eu/" target="_blank" aria-label="AI4EOSC Project" class="shrink-0" aria-hidden="true">
-              <Image src={AI4EOSCLogo} alt="" class="h-14 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://ai4eosc.eu/"
+              target="_blank"
+              aria-label="AI4EOSC Project"
+              class="shrink-0"
+              aria-hidden="true"
+            >
+              <Image
+                src={AI4EOSCLogo}
+                alt=""
+                class="h-14 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
-            <a href="https://imagine-ai.eu/" target="_blank" aria-label="iMagine Project" class="shrink-0" aria-hidden="true">
-              <Image src={iMagineLogo} alt="" class="h-13 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://imagine-ai.eu/"
+              target="_blank"
+              aria-label="iMagine Project"
+              class="shrink-0"
+              aria-hidden="true"
+            >
+              <Image
+                src={iMagineLogo}
+                alt=""
+                class="h-13 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
-            <a href="https://sobigdata.eu/" target="_blank" aria-label="SoBigData Project" class="shrink-0" aria-hidden="true">
-              <Image src={SoBigDataLogo} alt="" class="h-10 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://sobigdata.eu/"
+              target="_blank"
+              aria-label="SoBigData Project"
+              class="shrink-0"
+              aria-hidden="true"
+            >
+              <Image
+                src={SoBigDataLogo}
+                alt=""
+                class="h-10 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
-            <a href="https://greendigit-project.eu/" target="_blank" aria-label="GreenDIGIT Project" class="shrink-0" aria-hidden="true">
-              <Image src={GreenDIGITLogo} alt="" class="h-11 w-auto filter invert brightness-0 grayscale" height={500} />
+            <a
+              href="https://greendigit-project.eu/"
+              target="_blank"
+              aria-label="GreenDIGIT Project"
+              class="shrink-0"
+              aria-hidden="true"
+            >
+              <Image
+                src={GreenDIGITLogo}
+                alt=""
+                class="h-11 w-auto filter invert brightness-0 grayscale"
+                height={500}
+              />
             </a>
           </div>
         </div>
@@ -97,8 +203,12 @@ import SoBigDataLogo from "/src/assets/logos/external/SoBigData_RI_3.png";
 
 <style>
   @keyframes marquee {
-    from { transform: translate3d(0, 0, 0); }
-    to { transform: translate3d(-50%, 0, 0); }
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
   }
   .marquee-track {
     animation: marquee 20s linear infinite;
@@ -113,9 +223,15 @@ import SoBigDataLogo from "/src/assets/logos/external/SoBigData_RI_3.png";
   }
 
   @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
   .lottie-bg {
     width: 100%;

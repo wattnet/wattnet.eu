@@ -24,9 +24,9 @@
       }
     });
 
-    let direction = 1;
+    let direction: 1 | -1 = 1;
     anim.addEventListener('complete', () => {
-      direction *= -1;
+      direction = direction === 1 ? -1 : 1;
       anim.setDirection(direction);
       anim.play();
     });

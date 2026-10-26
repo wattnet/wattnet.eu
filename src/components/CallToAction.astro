@@ -23,12 +23,8 @@ const {
       <div class="absolute -bottom-10 -left-10 w-72 h-72 rounded-full bg-primary-400/10 blur-3xl pointer-events-none"></div>
       <div class="relative z-10 md:flex items-center justify-between gap-8">
         <div class="mb-6 md:mb-0">
-          <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
-            {title}
-          </h3>
-          <p class="text-white/80 max-w-2xl">
-            {description}
-          </p>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h3>
+          <p class="text-white/80 max-w-2xl">{description}</p>
         </div>
         <a
           href={href}
@@ -37,8 +33,17 @@ const {
           class="shrink-0 btn bg-white text-primary-800 hover:bg-gray-100 hover:shadow-[0_0_10px_rgba(255,255,255,0.35)] active:shadow-[0_0_6px_rgba(255,255,255,0.55)] active:scale-[0.98]"
         >
           {buttonText}
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 ml-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
           </svg>
         </a>
       </div>

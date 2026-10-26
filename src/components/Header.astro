@@ -1,16 +1,16 @@
 ---
 const pages = [
-  { name: "About", href: "/about" },
-  { name: "Features", href: "/features" },
-  { name: "Services", href: "/services" },
-  { name: "Resources", href: "/resources" },
-  { name: "Docs", href: "https://docs.wattnet.eu", external: true },
-  { name: "Contact", href: "/contact" },
+  { name: 'About', href: '/about' },
+  { name: 'Features', href: '/features' },
+  { name: 'Services', href: '/services' },
+  { name: 'Resources', href: '/resources' },
+  { name: 'Docs', href: 'https://docs.wattnet.eu', external: true },
+  { name: 'Contact', href: '/contact' },
 ];
 
-import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-transparent.png";
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import wattnetLogo from '/src/assets/logos/wattnet/wattnet-logo-icon-color-transparent.png';
 ---
 
 <header
@@ -43,8 +43,8 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
       {pages.map((page) => (
         <a
           href={page.href}
-          target={page.external ? "_blank" : undefined}
-          rel={page.external ? "noopener noreferrer" : undefined}
+          target={page.external ? '_blank' : undefined}
+          rel={page.external ? 'noopener noreferrer' : undefined}
           class="relative font-medium transition-colors
                 text-secondary-600 hover:text-primary-600
                 dark:text-secondary-300 dark:hover:text-primary-400
@@ -53,7 +53,7 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
                 dark:after:bg-primary-400
                 after:transition-all after:duration-200
                 hover:after:w-full"
-      >
+        >
           {page.name}
         </a>
       ))}
@@ -88,15 +88,39 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
       </a>
 
       <button
-        x-on:click="darkMode = !darkMode" 
+        x-on:click="darkMode = !darkMode"
         class="p-2 rounded-full text-secondary-500 hover:text-secondary-700 dark:text-secondary-400 dark:hover:text-secondary-200 focus:outline-hidden focus:ring-2 focus:ring-primary-500"
         aria-label="Toggle dark mode"
       >
-        <svg x-show="!darkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        <svg
+          x-show="!darkMode"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          />
         </svg>
-        <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        <svg
+          x-show="darkMode"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
         </svg>
       </button>
 
@@ -127,8 +151,12 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
         <svg
           x-show="open"
@@ -138,8 +166,12 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M6 18L18 6M6 6l12 12" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
         </svg>
       </button>
     </div>
@@ -157,8 +189,8 @@ import wattnetLogo from "/src/assets/logos/wattnet/wattnet-logo-icon-color-trans
       {pages.map((page) => (
         <a
           href={page.href}
-          target={page.external ? "_blank" : undefined}
-          rel={page.external ? "noopener noreferrer" : undefined}
+          target={page.external ? '_blank' : undefined}
+          rel={page.external ? 'noopener noreferrer' : undefined}
           @click="open = false"
           class="px-6 py-2.5
                 text-base font-medium

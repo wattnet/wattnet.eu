@@ -1,11 +1,11 @@
 ---
-const dashboardBase = "https://dashboard.wattnet.eu/map";
+const dashboardBase = 'https://dashboard.wattnet.eu/map';
 const dashboardUrl = dashboardBase;
 ---
+
 <section class="section bg-gray-100/10 dark:bg-gray-900/10">
   <div class="container-custom slide-up">
     <div class="grid lg:[grid-template-columns:48fr_52fr] gap-8 lg:gap-12 items-stretch">
-
       <!-- Left: text + CTA -->
       <div class="flex flex-col justify-center text-left">
         <span class="inline-block self-start px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-6">
@@ -15,32 +15,70 @@ const dashboardUrl = dashboardBase;
           Explore the Wattnet Dashboard
         </h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">
-          Explore the environmental footprint of electricity consumption across Europe through an interactive map. Wattnet provides transparent, open-source indicators to support research, analysis, and sustainability decision-making.
+          Explore the environmental footprint of electricity consumption across Europe through an
+          interactive map. Wattnet provides transparent, open-source indicators to support research,
+          analysis, and sustainability decision-making.
         </p>
         <ul class="space-y-3 mb-8 text-left">
           <li class="flex items-start gap-3 text-gray-600 dark:text-gray-300">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg
+              class="w-5 h-5 mt-0.5 shrink-0 text-primary-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span>Carbon footprint of electricity consumption per European grid zone, based on the actual generation mix in real time.</span>
+            <span>
+              Carbon footprint of electricity consumption per European grid zone, based on the
+              actual generation mix in real time.
+            </span>
           </li>
           <li class="flex items-start gap-3 text-gray-600 dark:text-gray-300">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg
+              class="w-5 h-5 mt-0.5 shrink-0 text-primary-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span>Water footprint associated with electricity generation, covering both consumptive and withdrawal water use across technologies.</span>
+            <span>
+              Water footprint associated with electricity generation, covering both consumptive and
+              withdrawal water use across technologies.
+            </span>
           </li>
           <li class="flex items-start gap-3 text-gray-600 dark:text-gray-300">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg
+              class="w-5 h-5 mt-0.5 shrink-0 text-primary-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span>Water impact indicator that weights water footprint by the local availability of freshwater resources in each region.</span>
+            <span>
+              Water impact indicator that weights water footprint by the local availability of
+              freshwater resources in each region.
+            </span>
           </li>
           <li class="flex items-start gap-3 text-gray-600 dark:text-gray-300">
-            <svg class="w-5 h-5 mt-0.5 shrink-0 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg
+              class="w-5 h-5 mt-0.5 shrink-0 text-primary-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span>Environmental Score — a multidimensional environmental indicator that combines carbon footprint and water impact into a single comparable metric.</span>
+            <span>
+              Environmental Score — a multidimensional environmental indicator that combines carbon
+              footprint and water impact into a single comparable metric.
+            </span>
           </li>
         </ul>
         <div class="self-start flex flex-wrap gap-4">
@@ -51,13 +89,31 @@ const dashboardUrl = dashboardBase;
             class="btn-primary inline-flex items-center gap-2"
           >
             Open Web Dashboard
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
             </svg>
           </a>
           <a href="/services" class="btn-outline inline-flex items-center gap-2">
             Discover more services
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </a>
@@ -83,8 +139,19 @@ const dashboardUrl = dashboardBase;
             class="shrink-0 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors"
             aria-label="Open dashboard in new tab"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
             </svg>
           </a>
         </div>
@@ -92,10 +159,29 @@ const dashboardUrl = dashboardBase;
         <!-- iframe wrapper -->
         <div class="relative bg-gray-100 dark:bg-gray-800 flex-1 min-h-0">
           <!-- Loading skeleton -->
-          <div id="iframe-skeleton" class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-            <svg class="w-10 h-10 text-gray-300 dark:text-gray-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          <div
+            id="iframe-skeleton"
+            class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800"
+          >
+            <svg
+              class="w-10 h-10 text-gray-300 dark:text-gray-600 animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              ></path>
             </svg>
           </div>
           <iframe
@@ -107,7 +193,6 @@ const dashboardUrl = dashboardBase;
           ></iframe>
         </div>
       </div>
-
     </div>
   </div>
 </section>
