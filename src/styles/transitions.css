@@ -10,7 +10,7 @@
 
 .page-loaded {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* View Transitions Animations */
@@ -53,6 +53,180 @@ header {
 
 footer {
   view-transition-name: footer;
+}
+
+/* Coming back from the Get Started page: bring the navbar back down */
+html.nav-returning::view-transition-group(header) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.nav-returning::view-transition-new(header) {
+  animation: 420ms cubic-bezier(0.4, 0, 0.2, 1) both header-slide-in;
+}
+
+/* Coming back from the Get Started page: the split view closes towards the centre line */
+html.nav-returning::view-transition-old(main-content) {
+  animation: 420ms cubic-bezier(0.4, 0, 0.2, 1) both split-close;
+}
+
+/* The view transition owns the animation, so keep the wrapper fully opaque */
+html.nav-returning .page-transition-wrapper {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+@keyframes header-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes split-close {
+  from {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    opacity: 0;
+    clip-path: inset(0 50% 0 50%);
+  }
+}
+
+/* Soft focus pull on the page behind the split: it blurs as the overlay opens
+   and sharpens again as it closes. Sits under the overlay, over the navbar. */
+#gs-blur {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  visibility: hidden;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  transition:
+    -webkit-backdrop-filter 520ms ease,
+    backdrop-filter 520ms ease,
+    visibility 0s linear 520ms;
+}
+
+html.gs-open #gs-blur {
+  visibility: visible;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition:
+    -webkit-backdrop-filter 560ms ease,
+    backdrop-filter 560ms ease,
+    visibility 0s;
+}
+
+/* Fullscreen Get Started overlay (opened at the current scroll position) */
+#get-started-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  filter: blur(40px);
+  /* Closing: contract towards the centre line while the overlay melts back into
+     a heavy blur and fades out over the softened page behind. */
+  transition:
+    clip-path 540ms cubic-bezier(0.65, 0, 0.35, 1),
+    filter 540ms ease-in,
+    opacity 380ms ease-in 160ms,
+    visibility 0s linear 540ms;
+}
+
+html.gs-open #get-started-overlay {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  filter: blur(0);
+  transition:
+    clip-path 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 340ms ease-out,
+    visibility 0s;
+}
+
+/* Slow ambient drift of the glow in the active panel */
+@keyframes gs-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(48px, -36px) scale(1.12);
+  }
+}
+
+/* Paused until its panel is hovered or focused, so only the active one moves */
+.gs-root .gs-drift {
+  animation: gs-drift 16s ease-in-out infinite paused;
+}
+
+.gs-root .group:is(:hover, :focus-visible) .gs-drift {
+  animation-play-state: running;
+}
+
+/* Hovering or focusing one panel dims the other to guide the choice */
+.gs-panels:has(> a:is(:hover, :focus-visible)) > a:not(:hover, :focus-visible) {
+  opacity: 0.6;
+}
+
+/* Panel content rises in once the split has opened, and drops out quickly on
+   close so it never lingers over the contracting panels. */
+#get-started-overlay .gs-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+html.gs-open #get-started-overlay .gs-reveal {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 420ms ease 200ms,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1) 200ms;
+}
+
+html.gs-open #get-started-overlay a:nth-of-type(2) .gs-reveal {
+  transition-delay: 280ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-root .gs-drift {
+    animation: none;
+  }
+
+  #get-started-overlay .gs-reveal {
+    transition-duration: 1ms;
+    transition-delay: 0s !important;
+    transform: none;
+  }
+
+  #gs-blur {
+    display: none;
+  }
+
+  #get-started-overlay,
+  html.gs-open #get-started-overlay {
+    filter: none;
+    transition-duration: 1ms;
+    transition-delay: 0s;
+  }
 }
 
 /* Custom transitions for specific elements */

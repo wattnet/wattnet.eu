@@ -3,17 +3,27 @@ import '../styles/global.css';
 import '../styles/transitions.css';
 import backgroundSvg from '../assets/wattnet-background.svg?raw';
 import { ClientRouter } from 'astro:transitions';
+import GetStartedChooser from '../components/GetStartedChooser.astro';
 
 export interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  /** Slides the navbar out (and back in) when navigating to this page. */
+  hideNav?: boolean;
+  /** Hides the development banner on this page. */
+  hideBanner?: boolean;
+  /** Skips the fullscreen Get Started overlay (used by the standalone page). */
+  hideGetStartedOverlay?: boolean;
 }
 
 const {
   title,
   description = 'An open-source service for tracking the environmental footprint of electricity across Europe.',
   ogImage,
+  hideNav = false,
+  hideBanner = false,
+  hideGetStartedOverlay = false,
 } = Astro.props;
 
 const canonicalUrl = Astro.url.href;
@@ -25,6 +35,7 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
 <!doctype html>
 <html
   lang="en"
+  class:list={[{ 'nav-hidden': hideNav }]}
   x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
   x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
   :class="{ 'dark': darkMode }"
@@ -136,33 +147,51 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
         }
       </style>
 
-      <div class="dev-banner" aria-hidden="true">
-        <span class="desktop-text">
-          <span>
-            The dashboard is <strong>now live</strong>.
-          </span>
-          <span class="ml-4">
-            This service is under <strong>active development</strong>.
-          </span>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://dashboard.wattnet.eu"
-            class="ml-4"
-          >
-            Open dashboard → <strong>dashboard.wattnet.eu</strong>
-          </a>
-        </span>
-        <span class="mobile-text">
-          Dashboard is <strong>live</strong>.
-          <a target="_blank" rel="noopener noreferrer" href="https://dashboard.wattnet.eu">
-            Open →
-          </a>
-        </span>
-      </div>
+      {!hideBanner && (
+        <div class="dev-banner-shell">
+          <div class="dev-banner" aria-hidden="true">
+            <span class="desktop-text">
+              <span>
+                The dashboard is <strong>now live</strong>.
+              </span>
+              <span class="ml-4">
+                This service is under <strong>active development</strong>.
+              </span>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://dashboard.wattnet.eu"
+                class="ml-4"
+              >
+                Open dashboard → <strong>dashboard.wattnet.eu</strong>
+              </a>
+            </span>
+            <span class="mobile-text">
+              Dashboard is <strong>live</strong>.{' '}
+              <a target="_blank" rel="noopener noreferrer" href="https://dashboard.wattnet.eu">
+                Open →
+              </a>
+            </span>
+          </div>
+        </div>
+      )}
 
       <slot />
     </div>
+    {!hideGetStartedOverlay && (
+      <>
+        <div id="gs-blur" aria-hidden="true"></div>
+        <div
+          id="get-started-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Get started with Wattnet"
+          aria-hidden="true"
+        >
+          <GetStartedChooser />
+        </div>
+      </>
+    )}
     <script>
       // Check for user preference
       if (localStorage.getItem('darkMode') === null) {
@@ -201,6 +230,7 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
       });
     </script>
     <script src="../scripts/transitions.js"></script>
+    <script src="../scripts/get-started-overlay.js"></script>
     <script>
       import { init, track } from '@plausible-analytics/tracker';
 

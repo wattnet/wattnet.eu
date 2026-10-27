@@ -154,7 +154,7 @@
 }
 
 @utility btn-primary {
-  @apply btn bg-accent-400 hover:bg-accent-500 text-black shadow-md hover:shadow-[0_0_10px_rgba(148,206,36,0.3)] active:shadow-[0_0_6px_rgba(148,206,36,0.5)] active:scale-[0.98];
+  @apply btn bg-accent-500 hover:bg-accent-600 text-black shadow-md hover:shadow-[0_0_10px_rgba(148,206,36,0.3)] active:shadow-[0_0_6px_rgba(148,206,36,0.5)] active:scale-[0.98];
 }
 
 @utility btn-secondary {
@@ -167,6 +167,52 @@
 
 @utility btn-outline {
   @apply btn border-2 border-secondary-300 dark:border-secondary-700 hover:bg-secondary-100 dark:hover:bg-secondary-800 text-secondary-900 dark:text-secondary-100;
+}
+
+/*
+  Button arrows: straight (→) for internal pages, diagonal (↗) for another app or
+  subdomain, down (↓) for in-page anchors. Detected from the href, so any
+  .btn-* link gets one; use data-arrow="internal|external" on non-link elements
+  and data-arrow="none" to opt out. Unlayered on purpose: it must beat the px-6
+  inside the btn utility, while px-*! overrides (navbar, back button) still win.
+*/
+:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(
+    a[href^='/'],
+    a[href^='#'],
+    a[href^='http'],
+    [data-arrow='internal'],
+    [data-arrow='external']
+  ):not([data-arrow='none']) {
+  padding-right: 1.125rem;
+}
+
+:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(
+    a[href^='/'],
+    a[href^='#'],
+    a[href^='http'],
+    [data-arrow='internal'],
+    [data-arrow='external']
+  ):not([data-arrow='none'])::after {
+  content: '';
+  flex-shrink: 0;
+  width: 1.1em;
+  height: 1.1em;
+  margin-left: 0.5rem;
+  background: currentColor;
+  -webkit-mask: var(--btn-arrow) center / contain no-repeat;
+  mask: var(--btn-arrow) center / contain no-repeat;
+}
+
+:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline) {
+  --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14m-6-6 6 6-6 6'/%3E%3C/svg%3E");
+}
+
+:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(a[href^='#']) {
+  --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14m-6-6 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(a[href^='http'], [data-arrow='external']) {
+  --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
 }
 
 @utility container-custom {

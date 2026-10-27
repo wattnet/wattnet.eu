@@ -83,6 +83,16 @@ document.addEventListener('astro:before-preparation', ({ from, to, direction }) 
   }
 });
 
+// Slides the navbar back in when leaving a page that hides it (e.g. Get Started)
+document.addEventListener('astro:before-swap', (event) => {
+  const wasNavHidden = document.documentElement.classList.contains('nav-hidden');
+  const willNavHide = event.newDocument.documentElement.classList.contains('nav-hidden');
+
+  if (wasNavHidden && !willNavHide) {
+    event.newDocument.documentElement.classList.add('nav-returning');
+  }
+});
+
 // Apply direction-specific transitions
 document.addEventListener('astro:page-load', () => {
   const navDirection = localStorage.getItem('navigationDirection');
@@ -95,4 +105,9 @@ document.addEventListener('astro:page-load', () => {
       localStorage.removeItem('navigationDirection');
     }, 1000);
   }
+
+  // Drop the temporary class used to animate the navbar back in
+  setTimeout(() => {
+    document.documentElement.classList.remove('nav-returning');
+  }, 700);
 });

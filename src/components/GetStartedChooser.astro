@@ -1,0 +1,256 @@
+---
+import { Image } from 'astro:assets';
+import wattnetLogo from '../assets/logos/wattnet/wattnet-logo-icon-color-transparent.png';
+
+export interface Props {
+  /** Renders the chooser as a standalone page (links back to the site). */
+  standalone?: boolean;
+}
+
+const { standalone = false } = Astro.props;
+
+// Both modes share markup and classes; only the wrapper element and the
+// navigation behaviour change, so the overlay and /get-started stay identical.
+const Root = standalone ? 'main' : 'div';
+const BackTag = standalone ? 'a' : 'button';
+const BrandTag = standalone ? 'a' : 'div';
+
+const backAttrs = standalone
+  ? { href: '/', 'data-arrow': 'none' }
+  : { type: 'button' as const, 'data-gs-close': true };
+const brandAttrs = standalone ? { href: '/', 'aria-label': 'Wattnet home' } : {};
+
+const dashboardTags = ['Real-time', 'Historical', 'Forecast'];
+const developerTags = ['REST API', 'OAuth 2.0', 'OpenAPI 3.1'];
+
+const dashboardPill =
+  'rounded-full border border-primary-200/80 bg-white/60 px-3 py-1 text-primary-700 backdrop-blur-sm transition-colors group-hover:border-primary-300/90 group-hover:bg-white/80 dark:border-primary-800/60 dark:bg-primary-900/20 dark:text-primary-200 dark:group-hover:border-primary-600/70';
+
+const developerPill =
+  'rounded-full border border-accent-500/40 bg-accent-500/15 px-3 py-1 backdrop-blur-sm transition-colors group-hover:border-accent-400/60 group-hover:bg-accent-400/20';
+
+const backClasses = 'btn-outline pointer-events-auto group gap-2 rounded-full! px-4! py-2! text-sm';
+
+const brandClasses =
+  'pointer-events-auto absolute left-1/2 block -translate-x-1/2 rounded-full bg-secondary-950/90 p-1 shadow-lg ring-1 ring-white/10 backdrop-blur-md transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:outline-hidden';
+---
+
+<Root class="gs-root relative w-full overflow-hidden bg-white dark:bg-secondary-950">
+  <h1 class="sr-only">Get started with Wattnet</h1>
+
+  <!-- Shared top bar: keeps both columns perfectly aligned -->
+  <div class="pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between gap-3 px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-5 lg:px-10 lg:pt-12">
+    <BackTag {...backAttrs} class={backClasses}>
+      <svg
+        class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 12H5m6 6-6-6 6-6"
+        />
+      </svg>
+      Back to site
+    </BackTag>
+
+    <BrandTag {...brandAttrs} class={brandClasses}>
+      <Image
+        src={wattnetLogo}
+        alt={standalone ? '' : 'Wattnet'}
+        class="h-9 w-9"
+        width={72}
+        height={72}
+      />
+    </BrandTag>
+  </div>
+
+  <div class="gs-panels grid w-full grid-cols-1 md:min-h-dvh md:grid-cols-2">
+    <!-- Dashboard -->
+    <a
+      href="https://dashboard.wattnet.eu"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open the Wattnet web dashboard"
+      class="group relative flex flex-col justify-between overflow-hidden
+             border-b border-secondary-200/70 px-7 pt-24 pb-12
+             bg-gradient-to-br from-primary-50 via-white to-primary-100
+             transition-[background-color,box-shadow,opacity] duration-300
+             hover:ring-1 hover:ring-primary-400/40 hover:ring-inset
+             focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-inset
+             focus-visible:outline-hidden
+             sm:px-12 sm:pt-28 sm:pb-16
+             md:border-r md:border-b-0 md:border-secondary-200/70 md:px-8
+             lg:px-16 lg:pt-32 lg:pb-20
+             dark:border-secondary-800/70
+             dark:from-secondary-950 dark:via-secondary-950 dark:to-primary-950/50"
+    >
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(currentColor_1px,transparent_1px)] [background-size:26px_26px] text-secondary-900/[0.14] [mask-image:radial-gradient(ellipse_at_50%_45%,black,transparent_80%)] dark:text-white/[0.1]"
+      ></span>
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl transition-transform duration-700 ease-out group-hover:scale-110 dark:bg-primary-600/22"
+      ></span>
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute gs-drift -bottom-40 -left-24 h-96 w-96 rounded-full bg-accent-300/22 blur-3xl dark:bg-accent-700/14"
+      ></span>
+
+      <div class="gs-reveal relative">
+        <p class="font-mono text-sm font-medium tracking-[0.28em] text-primary-700 uppercase md:text-base dark:text-primary-300">
+          01 &middot; Product
+        </p>
+
+        <div class="mt-10 flex h-14 w-14 items-center justify-center rounded-xl bg-white/80 shadow-lg shadow-primary-900/5 ring-1 ring-primary-200/80 backdrop-blur-sm transition-[transform,box-shadow] duration-500 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-primary-900/10 group-hover:ring-primary-300 dark:bg-primary-900/30 dark:ring-primary-700/50 dark:group-hover:ring-primary-500/60">
+          <svg
+            class="h-8 w-8 text-primary-600 dark:text-primary-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.75"
+              d="M3 3v18h18M7 15l3.5-3.5 3 3L21 7"
+            ></path>
+          </svg>
+        </div>
+
+        <h2 class="mt-8 text-3xl font-bold tracking-tight text-balance text-secondary-900 lg:text-4xl xl:text-5xl dark:text-white">
+          Web Dashboard
+        </h2>
+        <p class="mt-5 max-w-md text-base text-pretty text-secondary-600 sm:text-lg md:min-h-[7.5rem] lg:min-h-[5.5rem] dark:text-secondary-300">
+          Explore real-time, historical and forecasted carbon and water footprints across 60
+          European zones.
+        </p>
+
+        <ul class="mt-8 flex flex-wrap gap-2 text-sm font-medium">
+          {dashboardTags.map((tag) => (
+            <li class={dashboardPill}>{tag}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="gs-reveal relative mt-12 flex flex-col items-start gap-4 border-t border-secondary-900/10 pt-6 md:mt-16 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-3 dark:border-white/10">
+        <span data-arrow="external" class="btn-secondary group-hover:bg-primary-700 group-hover:shadow-[0_0_10px_rgba(58,120,224,0.3)]">
+          Open web dashboard
+        </span>
+        <span class="inline-flex items-center gap-2 font-mono text-sm text-secondary-500 transition-colors group-hover:text-secondary-700 dark:text-secondary-400 dark:group-hover:text-secondary-200">
+          <svg
+            class="h-3.5 w-3.5 shrink-0 opacity-70"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.75"
+              d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.4 2.4 3.5 5.4 3.5 9s-1.1 6.6-3.5 9m0-18c-2.4 2.4-3.5 5.4-3.5 9s1.1 6.6 3.5 9M3.5 9h17M3.5 15h17"
+            ></path>
+          </svg>
+          dashboard.wattnet.eu
+        </span>
+      </div>
+    </a>
+
+    <!-- Developer Portal -->
+    <a
+      href="https://developers.wattnet.eu"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open the Wattnet developer portal"
+      class="group relative flex flex-col justify-between overflow-hidden
+             bg-gradient-to-br from-secondary-950 via-secondary-950 to-primary-950 px-7 pt-24 pb-12
+             transition-[background-color,box-shadow,opacity] duration-300
+             hover:ring-1 hover:ring-accent-400/35 hover:ring-inset
+             focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-inset
+             focus-visible:outline-hidden
+             sm:px-12 sm:pt-28 sm:pb-16
+             md:px-8
+             lg:px-16 lg:pt-32 lg:pb-20"
+    >
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(currentColor_1px,transparent_1px)] [background-size:26px_26px] text-white/[0.1] [mask-image:radial-gradient(ellipse_at_50%_45%,black,transparent_80%)]"
+      ></span>
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-accent-500/18 blur-3xl transition-transform duration-700 ease-out group-hover:scale-110"
+      ></span>
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute gs-drift -bottom-40 -left-24 h-96 w-96 rounded-full bg-primary-500/26 blur-3xl"
+      ></span>
+
+      <div class="gs-reveal relative">
+        <p class="font-mono text-sm font-medium tracking-[0.28em] text-accent-300 uppercase md:text-base">
+          02 &middot; Developers
+        </p>
+
+        <div class="mt-10 flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition-[transform,box-shadow] duration-500 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-accent-950/40 group-hover:ring-accent-400/40">
+          <svg
+            class="h-8 w-8 text-accent-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.75"
+              d="M8 9l-4 3 4 3m8-6 4 3-4 3M14 4l-4 16"
+            ></path>
+          </svg>
+        </div>
+
+        <h2 class="mt-8 text-3xl font-bold tracking-tight text-balance text-white lg:text-4xl xl:text-5xl">
+          Developer Portal
+        </h2>
+        <p class="mt-5 max-w-md text-base text-pretty text-secondary-300 sm:text-lg md:min-h-[7.5rem] lg:min-h-[5.5rem]">
+          Request API access, manage your tokens and build on top of Wattnet data with a modern,
+          well‑documented API.
+        </p>
+
+        <ul class="mt-8 flex flex-wrap gap-2 text-sm font-medium text-accent-200">
+          {developerTags.map((tag) => (
+            <li class={developerPill}>{tag}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="gs-reveal relative mt-12 flex flex-col items-start gap-4 border-t border-white/10 pt-6 md:mt-16 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-3">
+        <span data-arrow="external" class="btn-accent group-hover:bg-accent-600 group-hover:shadow-[0_0_10px_rgba(148,206,36,0.3)]">
+          Open developer portal
+        </span>
+        <span class="inline-flex items-center gap-2 font-mono text-sm text-secondary-400 transition-colors group-hover:text-secondary-200">
+          <svg
+            class="h-3.5 w-3.5 shrink-0 opacity-70"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.75"
+              d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.4 2.4 3.5 5.4 3.5 9s-1.1 6.6-3.5 9m0-18c-2.4 2.4-3.5 5.4-3.5 9s1.1 6.6 3.5 9M3.5 9h17M3.5 15h17"
+            ></path>
+          </svg>
+          developers.wattnet.eu
+        </span>
+      </div>
+    </a>
+  </div>
+</Root>
