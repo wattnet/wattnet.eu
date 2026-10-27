@@ -110,9 +110,9 @@ html.nav-returning .page-transition-wrapper {
   -webkit-backdrop-filter: blur(0px);
   backdrop-filter: blur(0px);
   transition:
-    -webkit-backdrop-filter 520ms ease,
-    backdrop-filter 520ms ease,
-    visibility 0s linear 520ms;
+    -webkit-backdrop-filter 540ms cubic-bezier(0.4, 0, 1, 1),
+    backdrop-filter 540ms cubic-bezier(0.4, 0, 1, 1),
+    visibility 0s linear 540ms;
 }
 
 html.gs-open #gs-blur {
@@ -140,9 +140,9 @@ html.gs-open #gs-blur {
   /* Closing: contract towards the centre line while the overlay melts back into
      a heavy blur and fades out over the softened page behind. */
   transition:
-    clip-path 540ms cubic-bezier(0.65, 0, 0.35, 1),
-    filter 540ms ease-in,
-    opacity 380ms ease-in 160ms,
+    clip-path 540ms cubic-bezier(0.37, 0, 0.63, 1),
+    filter 540ms cubic-bezier(0.4, 0, 1, 1),
+    opacity 340ms ease-in 200ms,
     visibility 0s linear 540ms;
 }
 
@@ -190,8 +190,8 @@ html.gs-open #get-started-overlay {
   opacity: 0;
   transform: translateY(14px);
   transition:
-    opacity 160ms ease,
-    transform 160ms ease;
+    opacity 240ms ease-in,
+    transform 240ms ease-in;
 }
 
 html.gs-open #get-started-overlay .gs-reveal {
