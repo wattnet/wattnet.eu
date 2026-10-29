@@ -13,12 +13,15 @@ const { standalone = false } = Astro.props;
 // navigation behaviour change, so the overlay and /get-started stay identical.
 const Root = standalone ? 'main' : 'div';
 const BackTag = standalone ? 'a' : 'button';
-const BrandTag = standalone ? 'a' : 'div';
+const BrandTag = standalone ? 'a' : 'button';
 
 const backAttrs = standalone
   ? { href: '/', 'data-arrow': 'none' }
   : { type: 'button' as const, 'data-gs-close': true };
-const brandAttrs = standalone ? { href: '/', 'aria-label': 'Wattnet home' } : {};
+// Like the back button: a link on the standalone page, closes the overlay otherwise.
+const brandAttrs = standalone
+  ? { href: '/', 'aria-label': 'Back to site' }
+  : { type: 'button' as const, 'data-gs-close': true, 'aria-label': 'Back to site' };
 
 const dashboardTags = ['Real-time', 'Historical', 'Forecast'];
 const developerTags = ['REST API', 'OAuth 2.0', 'OpenAPI 3.1'];
@@ -29,10 +32,10 @@ const dashboardPill =
 const developerPill =
   'rounded-full border border-accent-500/40 bg-accent-500/15 px-3 py-1 backdrop-blur-sm transition-colors group-hover:border-accent-400/60 group-hover:bg-accent-400/20';
 
-const backClasses = 'btn-outline pointer-events-auto group gap-2 rounded-full! px-4! py-2! text-sm';
+const backClasses = 'btn-outline pointer-events-auto group gap-2 rounded-full! bg-white px-4! py-2! text-sm dark:bg-secondary-900';
 
 const brandClasses =
-  'pointer-events-auto absolute left-1/2 block -translate-x-1/2 rounded-full bg-secondary-950/90 p-1 shadow-lg ring-1 ring-white/10 backdrop-blur-md transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:outline-hidden';
+  'pointer-events-auto absolute left-1/2 block -translate-x-1/2 rounded-full bg-secondary-950/90 p-1 shadow-lg ring-1 ring-white/10 backdrop-blur-md gs-brand transition-transform duration-300 hover:scale-125 focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:outline-hidden';
 ---
 
 <Root class="gs-root relative w-full overflow-hidden bg-white dark:bg-secondary-950">
@@ -61,7 +64,7 @@ const brandClasses =
     <BrandTag {...brandAttrs} class={brandClasses}>
       <Image
         src={wattnetLogo}
-        alt={standalone ? '' : 'Wattnet'}
+        alt=""
         class="h-9 w-9"
         width={72}
         height={72}
@@ -77,15 +80,15 @@ const brandClasses =
       rel="noopener noreferrer"
       aria-label="Open the Wattnet web dashboard"
       class="group relative flex flex-col justify-between overflow-hidden
-             border-b border-secondary-200/70 px-7 pt-24 pb-12
+             border-b border-secondary-200/70 px-7 pt-32 pb-12
              bg-gradient-to-br from-primary-50 via-white to-primary-100
-             transition-[background-color,box-shadow,opacity] duration-300
+             transition-[background-color,box-shadow,filter] duration-300
              hover:ring-1 hover:ring-primary-400/40 hover:ring-inset
              focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-inset
              focus-visible:outline-hidden
-             sm:px-12 sm:pt-28 sm:pb-16
+             sm:px-12 sm:pt-36 sm:pb-16
              md:border-r md:border-b-0 md:border-secondary-200/70 md:px-8
-             lg:px-16 lg:pt-32 lg:pb-20
+             lg:px-16 lg:pt-44 lg:pb-20
              dark:border-secondary-800/70
              dark:from-secondary-950 dark:via-secondary-950 dark:to-primary-950/50"
     >
@@ -170,14 +173,14 @@ const brandClasses =
       rel="noopener noreferrer"
       aria-label="Open the Wattnet developer portal"
       class="group relative flex flex-col justify-between overflow-hidden
-             bg-gradient-to-br from-secondary-950 via-secondary-950 to-primary-950 px-7 pt-24 pb-12
-             transition-[background-color,box-shadow,opacity] duration-300
+             bg-gradient-to-br from-secondary-950 via-secondary-950 to-primary-950 px-7 pt-32 pb-12
+             transition-[background-color,box-shadow,filter] duration-300
              hover:ring-1 hover:ring-accent-400/35 hover:ring-inset
              focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-inset
              focus-visible:outline-hidden
-             sm:px-12 sm:pt-28 sm:pb-16
+             sm:px-12 sm:pt-36 sm:pb-16
              md:px-8
-             lg:px-16 lg:pt-32 lg:pb-20"
+             lg:px-16 lg:pt-44 lg:pb-20"
     >
       <span
         aria-hidden="true"

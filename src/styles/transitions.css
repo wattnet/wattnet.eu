@@ -179,9 +179,24 @@ html.gs-open #get-started-overlay {
   animation-play-state: running;
 }
 
-/* Hovering or focusing one panel dims the other to guide the choice */
+/* Logo button in the middle: grows on hover and sends out a soft, diffuse green glow pulse */
+@keyframes gs-pulse {
+  from {
+    box-shadow: 0 0 8px 1px rgba(148, 206, 36, 0.6);
+  }
+  to {
+    box-shadow: 0 0 28px 12px rgba(148, 206, 36, 0);
+  }
+}
+
+.gs-brand:is(:hover, :focus-visible) {
+  animation: gs-pulse 1.5s ease-out infinite;
+}
+
+/* Hovering or focusing one panel darkens the other to guide the choice. Opacity
+   would let the white page show through and lighten it in light mode. */
 .gs-panels:has(> a:is(:hover, :focus-visible)) > a:not(:hover, :focus-visible) {
-  opacity: 0.6;
+  filter: brightness(0.7) saturate(0.8);
 }
 
 /* Panel content rises in once the split has opened, and drops out quickly on
@@ -207,6 +222,10 @@ html.gs-open #get-started-overlay a:nth-of-type(2) .gs-reveal {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .gs-brand:is(:hover, :focus-visible) {
+    animation: none;
+  }
+
   .gs-root .gs-drift {
     animation: none;
   }
