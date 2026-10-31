@@ -16,7 +16,8 @@
     "format": "prettier --write \"src/**/*.{astro,ts,js,jsx,tsx,css}\" astro.config.mjs package.json tsconfig.json",
     "format:check": "prettier --check \"src/**/*.{astro,ts,js,jsx,tsx,css}\" astro.config.mjs package.json tsconfig.json",
     "preview": "astro build && astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node --test src/lib/*.test.js"
   },
   "overrides": {
     "esbuild": "0.28.1",
@@ -24,12 +25,10 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.5.0",
-    "@astrojs/check": "^0.9.9",
     "@astrojs/mdx": "^7.0.5",
     "@astrojs/preact": "^6.0.1",
     "@astrojs/sitemap": "^3.7.3",
     "@iconify-json/simple-icons": "^1.2.86",
-    "@lottiefiles/dotlottie-web": "^0.72.1",
     "@plausible-analytics/tracker": "^0.4.5",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.1",
@@ -39,11 +38,12 @@
     "lottie-web": "^5.13.0",
     "lucide-preact": "^1.16.0",
     "preact": "^10.29.1",
-    "tailwindcss": "^4.3.1",
-    "typescript": "^6.0.3"
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
     "prettier": "^3.9.10",
-    "prettier-plugin-astro": "^1.1.2"
+    "prettier-plugin-astro": "^1.1.2",
+    "typescript": "^6.0.3"
   }
 }

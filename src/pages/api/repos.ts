@@ -1,12 +1,10 @@
 import type { APIRoute } from 'astro';
+import { pypiBelongsTo, runStatus, sumDownloads } from '../../lib/repo-stats.js';
 
 const EXCLUDED_REPOS = ['.github', 'wattnet.eu', 'wattnet-brand'];
 
 const GITHUB_USERNAME = 'wattnet';
 const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
-const CACHE_DURATION_MS = 5 * 60 * 1000;
-
-let cache: { timestamp: number; data: any } | null = null;
 
 const TIMEOUT_MS = 4000;
 
@@ -40,7 +38,7 @@ async function checkPyPI(name: string): Promise<{ url: string; downloads: number
         signal: AbortSignal.timeout(TIMEOUT_MS),
       }),
     ]);
-    if (!pkgRes.ok) return null;
+    if (!pkgRes.ok || !pypiBelongsTo(GITHUB_USERNAME, (await pkgRes.json()).info)) return null;
     const downloads = pepyRes.ok ? ((await pepyRes.json()).total_downloads ?? null) : null;
     return { url: `https://pypi.org/project/${name}`, downloads };
   } catch {
@@ -124,7 +122,7 @@ async function fetchWorkflowStatuses(
         const runData = await runRes.json();
         const run = runData.workflow_runs?.[0];
         if (!run) return { name: w.name, status: null as WorkflowStatus, url: w.html_url };
-        const status: WorkflowStatus = run.status === 'completed' ? run.conclusion : run.status;
+        const status: WorkflowStatus = runStatus(run);
         return { name: w.name, status, url: run.html_url ?? w.html_url };
       }),
     );
@@ -149,12 +147,6 @@ async function fetchCodecovCoverage(repo: string): Promise<number | null> {
 
 export const GET: APIRoute = async () => {
   const PACKAGES_TOKEN = import.meta.env.PACKAGES_TOKEN;
-
-  if (cache && Date.now() - cache.timestamp < CACHE_DURATION_MS) {
-    return new Response(JSON.stringify(cache.data), {
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
 
   try {
     const ghHeaders: Record<string, string> = {
@@ -189,7 +181,7 @@ export const GET: APIRoute = async () => {
         if (ghcr) links.ghcr = ghcr;
         if (dockerhub) links.dockerhub = dockerhub.url;
 
-        const downloads = (pypi?.downloads ?? 0) + (dockerhub?.pulls ?? 0) || null;
+        const downloads = sumDownloads(pypi?.downloads, dockerhub?.pulls);
 
         return {
           id: r.id,
@@ -215,15 +207,11 @@ export const GET: APIRoute = async () => {
       }),
     );
 
-    cache = { timestamp: Date.now(), data: repos };
-
     return new Response(JSON.stringify(repos), {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: (err as Error).message }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    // The site is static: fail the build instead of baking an error into the page.
+    throw err;
   }
 };
