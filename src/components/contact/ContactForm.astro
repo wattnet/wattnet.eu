@@ -9,10 +9,8 @@ const WEB3FORMS_ACCESS_KEY = '7ecb29f9-8ec0-4ef2-b5fb-a75ffb62f9a0';
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
       <!-- Intro -->
       <div class="lg:col-span-2">
-        <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
-          Send Us a Message
-        </span>
-        <h2 class="mb-4 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+        <span class="eyebrow">Send Us a Message</span>
+        <h2 class="mb-4 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
           Get in touch
         </h2>
         <p class="text-gray-600 dark:text-gray-300">
@@ -372,17 +370,6 @@ const WEB3FORMS_ACCESS_KEY = '7ecb29f9-8ec0-4ef2-b5fb-a75ffb62f9a0';
       submit(event: SubmitEvent) {
         this.sending = true;
         this.error = false;
-
-        // TEMP: mock submit for local testing, no email is sent. Remove before shipping.
-        const DEV_MOCK_SUBMIT = false;
-        if (DEV_MOCK_SUBMIT) {
-          setTimeout(() => {
-            this.sent = true;
-            this.sending = false;
-          }, 1600);
-          return;
-        }
-
         fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { Accept: 'application/json' },

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 import * as Icons from 'lucide-preact';
 import { ExternalLink, ChevronDown, ChevronUp } from 'lucide-preact';
-import orcidIcon from '../assets/logos/external/orcid.svg';
+import orcidIcon from '../../assets/logos/external/orcid.svg';
 
 interface Link {
   title: string;

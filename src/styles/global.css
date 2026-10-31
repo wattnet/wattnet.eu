@@ -211,7 +211,10 @@
   --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14m-6-6 6 6 6-6'/%3E%3C/svg%3E");
 }
 
-:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(a[href^='http'], [data-arrow='external']) {
+:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(
+  a[href^='http'],
+  [data-arrow='external']
+) {
   --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
 }
 
@@ -221,6 +224,15 @@
 
 @utility section {
   @apply py-20 md:py-32;
+}
+
+/* Section label pill shown above section headings */
+@utility eyebrow {
+  @apply inline-block px-4 py-1 mb-4 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 font-medium text-sm;
+}
+
+@utility eyebrow-custom {
+  @apply inline-block px-4 py-1 mb-4 rounded-full bg-[#18bcf2]/15 dark:bg-[#18bcf2]/20 text-[#0b7aa3] dark:text-[#18bcf2] font-medium text-sm;
 }
 
 @utility card {
@@ -279,4 +291,15 @@
 /* Focus styles for keyboard navigation */
 :focus-visible {
   @apply outline-hidden ring-2 ring-primary-500 dark:ring-primary-400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::after,
+  ::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

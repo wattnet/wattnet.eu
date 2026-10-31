@@ -1,0 +1,564 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import wattnetLogo from '../../assets/logos/wattnet/wattnet-logo-icon-color-transparent.png';
+---
+
+<section
+  id="home-assistant"
+  class="section bg-gray-100/10 dark:bg-gray-900/10 relative overflow-hidden"
+>
+  <div class="container-custom slide-up">
+    <div class="grid md:[grid-template-columns:36fr_64fr] gap-12 lg:gap-16 items-center">
+      <div class="px-4 sm:px-0">
+        <span class="eyebrow-custom">Home Assistant</span>
+        <h2 class="mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+          Bring Wattnet Home
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 text-justify">
+          Add the carbon footprint, water footprint, water impact, and environmental score of the
+          electricity in your zone to <strong>Home Assistant</strong>, and cross them with your own
+          consumption in the Energy dashboard.
+        </p>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start">
+            <svg
+              class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-300">
+              Live sensors and long-term statistics for any Wattnet zone
+            </p>
+          </div>
+          <div class="flex items-start">
+            <svg
+              class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-300">
+              Ready-made Wattnet dashboard, generated for your zones
+            </p>
+          </div>
+          <div class="flex items-start">
+            <svg
+              class="w-5 h-5 text-green-500 mt-1 mr-3 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-300">
+              Water and carbon of your grid consumption, from the Energy dashboard
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="https://docs.wattnet.eu/user-guide/home-assistant/home-assistant-installation/#with-hacs-recommended"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            Install from the Home Assistant Marketplace
+          </a>
+          <a
+            href="https://github.com/wattnet/wattnet-home-assistant"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary"
+          >
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Home Assistant dashboard mockup -->
+      <div class="rounded-xl overflow-hidden shadow-2xl border border-gray-200/60 dark:border-white/10 flex flex-col bg-gray-100/80 dark:bg-gray-800/40 backdrop-blur-md">
+        <!-- Browser chrome -->
+        <div class="flex items-center gap-3 px-4 py-3 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md border-b border-gray-200/60 dark:border-white/10 shrink-0">
+          <div class="flex gap-1.5 shrink-0">
+            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+            <span class="w-3 h-3 rounded-full bg-green-400"></span>
+          </div>
+          <div class="flex-1 bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm rounded-full h-6 flex items-center px-3 text-xs text-gray-500 dark:text-gray-300 border border-gray-200/50 dark:border-white/10 font-mono truncate">
+            http://homeassistant.local:8123/dashboard-wattnet
+          </div>
+        </div>
+        <div class="flex">
+          <!-- Home Assistant sidebar -->
+          <div
+            class="flex flex-col items-center gap-1 w-14 sm:w-16 py-3 bg-white/50 dark:bg-gray-900/40 border-r border-gray-200/60 dark:border-white/10 shrink-0"
+            aria-hidden="true"
+          >
+            <div class="w-10 h-10 flex items-center justify-center mb-2">
+              <Icon name="simple-icons:homeassistant" class="w-5 h-5 text-[#18bcf2]" />
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 11l9-8 9 8" />
+                <path d="M5 10v10h14V10" />
+              </svg>
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" />
+                <circle cx="12" cy="9" r="2.5" />
+              </svg>
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 12h4l3-8 4 16 3-8h4" />
+              </svg>
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />
+              </svg>
+            </div>
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-500/15">
+              <Image
+                src={wattnetLogo}
+                alt=""
+                width={26}
+                height={26}
+                class="w-[26px] h-[26px] brightness-0 opacity-50 dark:invert dark:opacity-60"
+              />
+            </div>
+            <div class="mt-auto w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0 flex flex-col">
+            <!-- Home Assistant toolbar -->
+            <div class="flex items-center gap-3 px-4 h-16 bg-white/50 dark:bg-gray-900/40 border-b border-gray-200/60 dark:border-white/10 text-gray-800 dark:text-white shrink-0">
+              <Image src={wattnetLogo} alt="" width={72} height={72} class="w-9 h-9 shrink-0" />
+              <span class="text-2xl font-bold lowercase tracking-tight -ml-1">wattnet</span>
+              <!-- Zone selector -->
+              <div
+                class="ml-auto flex items-center gap-2 pl-3 pr-2.5 py-1.5 rounded-lg bg-white/70 dark:bg-white/5 border border-gray-300/70 dark:border-white/15 shadow-sm text-sm"
+                aria-hidden="true"
+              >
+                <svg
+                  class="w-4 h-4 text-primary-600 dark:text-primary-300 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" />
+                  <circle cx="12" cy="9" r="2.5" />
+                </svg>
+                <span class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400 hidden sm:inline">
+                  Zone
+                </span>
+                <span class="font-medium whitespace-nowrap">Spain (ES)</span>
+                <svg
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <!-- Dashboard content -->
+            <div class="p-4 sm:p-5 flex flex-col gap-3.5 text-gray-900 dark:text-white">
+              <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-5 py-4">
+                <p class="text-xl font-semibold">Every kWh in Spain</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                  92 g of CO₂ · 2.9 L of water · 0.5 stress-L of water stress · environmental score
+                  63 out of 100
+                </p>
+                <p class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  <span class="w-2 h-2 rounded-full bg-accent-500"></span> Consolidated data
+                </p>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                  <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                    <path
+                      d="M10.0 50.0 A40 40 0 0 1 28.7 16.1"
+                      fill="none"
+                      stroke="#94ce24"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"
+                    />
+                    <path
+                      d="M31.3 14.6 A40 40 0 0 1 68.7 14.6"
+                      fill="none"
+                      stroke="#f5c518"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"
+                    />
+                    <path
+                      d="M71.3 16.1 A40 40 0 0 1 90.0 50.0"
+                      fill="none"
+                      stroke="#ef4444"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"
+                    />
+                    <line
+                      x1="50"
+                      y1="50"
+                      x2="17"
+                      y2="50"
+                      style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(20.7deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)"
+                      stroke="currentColor"
+                      class="text-gray-800 dark:text-white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="3.5"
+                      fill="currentColor"
+                      class="text-gray-800 dark:text-white"
+                    />
+                  </svg>
+                  <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">
+                    92
+                  </span>
+                  <span class="text-[11px] text-gray-500 dark:text-gray-400">gCO2/kWh</span>
+                  <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">
+                    Carbon footprint
+                  </span>
+                </div>
+                <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                  <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                    <path
+                      d="M10.0 50.0 A40 40 0 0 1 28.7 16.1"
+                      fill="none"
+                      stroke="#94ce24"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"
+                    />
+                    <path
+                      d="M31.3 14.6 A40 40 0 0 1 68.7 14.6"
+                      fill="none"
+                      stroke="#f5c518"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"
+                    />
+                    <path
+                      d="M71.3 16.1 A40 40 0 0 1 90.0 50.0"
+                      fill="none"
+                      stroke="#ef4444"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"
+                    />
+                    <line
+                      x1="50"
+                      y1="50"
+                      x2="17"
+                      y2="50"
+                      style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(52.2deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)"
+                      stroke="currentColor"
+                      class="text-gray-800 dark:text-white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="3.5"
+                      fill="currentColor"
+                      class="text-gray-800 dark:text-white"
+                    />
+                  </svg>
+                  <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">
+                    2.9
+                  </span>
+                  <span class="text-[11px] text-gray-500 dark:text-gray-400">L/kWh</span>
+                  <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">
+                    Water footprint
+                  </span>
+                </div>
+                <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                  <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                    <path
+                      d="M10.0 50.0 A40 40 0 0 1 28.7 16.1"
+                      fill="none"
+                      stroke="#94ce24"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"
+                    />
+                    <path
+                      d="M31.3 14.6 A40 40 0 0 1 68.7 14.6"
+                      fill="none"
+                      stroke="#f5c518"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"
+                    />
+                    <path
+                      d="M71.3 16.1 A40 40 0 0 1 90.0 50.0"
+                      fill="none"
+                      stroke="#ef4444"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"
+                    />
+                    <line
+                      x1="50"
+                      y1="50"
+                      x2="17"
+                      y2="50"
+                      style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(45.0deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)"
+                      stroke="currentColor"
+                      class="text-gray-800 dark:text-white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="3.5"
+                      fill="currentColor"
+                      class="text-gray-800 dark:text-white"
+                    />
+                  </svg>
+                  <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">
+                    0.5
+                  </span>
+                  <span class="text-[11px] text-gray-500 dark:text-gray-400">stress-L/kWh</span>
+                  <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">
+                    Water impact
+                  </span>
+                </div>
+                <div class="flex flex-col items-center rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-2 pt-4 pb-4">
+                  <svg viewBox="0 0 100 58" class="w-full max-w-[120px]" aria-hidden="true">
+                    <path
+                      d="M10.0 50.0 A40 40 0 0 1 28.7 16.1"
+                      fill="none"
+                      stroke="#ef4444"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f25050]"
+                    />
+                    <path
+                      d="M31.3 14.6 A40 40 0 0 1 68.7 14.6"
+                      fill="none"
+                      stroke="#f5c518"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#f7c01a]"
+                    />
+                    <path
+                      d="M71.3 16.1 A40 40 0 0 1 90.0 50.0"
+                      fill="none"
+                      stroke="#94ce24"
+                      stroke-width="8"
+                      class="opacity-85 dark:opacity-95 dark:[stroke:#8ed11c]"
+                    />
+                    <line
+                      x1="50"
+                      y1="50"
+                      x2="17"
+                      y2="50"
+                      style="transform-box: view-box; transform-origin: 50px 50px; transform: rotate(113.4deg); transition: transform 0.6s cubic-bezier(.4,0,.2,1)"
+                      stroke="currentColor"
+                      class="text-gray-800 dark:text-white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="3.5"
+                      fill="currentColor"
+                      class="text-gray-800 dark:text-white"
+                    />
+                  </svg>
+                  <span class="text-lg font-semibold leading-tight text-gray-900 dark:text-white">
+                    63
+                  </span>
+                  <span class="text-[11px] text-gray-500 dark:text-gray-400">/ 100</span>
+                  <span class="text-xs font-medium text-gray-700 dark:text-gray-200 mt-1.5 text-center">
+                    Environmental score
+                  </span>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                  <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">
+                    Carbon · 7 days
+                  </p>
+                  <svg
+                    viewBox="0 0 100 36"
+                    class="w-full h-11"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <polygon
+                      fill="#03a9f4"
+                      fill-opacity="0.15"
+                      points="0,36 0,26 12,20 25,27 38,14 50,18 62,8 75,16 88,22 100,12 100,36"
+                    />
+                    <polyline
+                      fill="none"
+                      stroke="#03a9f4"
+                      stroke-width="1.8"
+                      vector-effect="non-scaling-stroke"
+                      stroke-linejoin="round"
+                      points="0,26 12,20 25,27 38,14 50,18 62,8 75,16 88,22 100,12"
+                    />
+                  </svg>
+                </div>
+                <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                  <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">
+                    Water · 7 days
+                  </p>
+                  <svg
+                    viewBox="0 0 100 36"
+                    class="w-full h-11"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <polygon
+                      fill="#03a9f4"
+                      fill-opacity="0.15"
+                      points="0,36 0,20 12,24 25,16 38,22 50,12 62,18 75,10 88,14 100,18 100,36"
+                    />
+                    <polyline
+                      fill="none"
+                      stroke="#03a9f4"
+                      stroke-width="1.8"
+                      vector-effect="non-scaling-stroke"
+                      stroke-linejoin="round"
+                      points="0,20 12,24 25,16 38,22 50,12 62,18 75,10 88,14 100,18"
+                    />
+                  </svg>
+                </div>
+                <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                  <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">
+                    Impact · 7 days
+                  </p>
+                  <svg
+                    viewBox="0 0 100 36"
+                    class="w-full h-11"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <polygon
+                      fill="#03a9f4"
+                      fill-opacity="0.15"
+                      points="0,36 0,22 12,16 25,20 38,10 50,16 62,22 75,14 88,18 100,10 100,36"
+                    />
+                    <polyline
+                      fill="none"
+                      stroke="#03a9f4"
+                      stroke-width="1.8"
+                      vector-effect="non-scaling-stroke"
+                      stroke-linejoin="round"
+                      points="0,22 12,16 25,20 38,10 50,16 62,22 75,14 88,18 100,10"
+                    />
+                  </svg>
+                </div>
+                <div class="rounded-xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 px-3 py-3">
+                  <p class="text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 truncate">
+                    Score · 7 days
+                  </p>
+                  <svg
+                    viewBox="0 0 100 36"
+                    class="w-full h-11"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <polygon
+                      fill="#03a9f4"
+                      fill-opacity="0.15"
+                      points="0,36 0,18 12,14 25,20 38,12 50,16 62,10 75,14 88,8 100,12 100,36"
+                    />
+                    <polyline
+                      fill="none"
+                      stroke="#03a9f4"
+                      stroke-width="1.8"
+                      vector-effect="non-scaling-stroke"
+                      stroke-linejoin="round"
+                      points="0,18 12,14 25,20 38,12 50,16 62,10 75,14 88,8 100,12"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-center justify-between gap-4 pt-1 text-[11px] text-gray-500 dark:text-gray-400">
+                <span>Data provided by Wattnet · illustrative values</span>
+                <span class="hidden sm:inline">wattnet.eu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

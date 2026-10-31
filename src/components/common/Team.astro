@@ -52,9 +52,9 @@ const people = [
 ];
 
 import { Image } from 'astro:assets';
-import jaimeAvatar from '../assets/team/jaime-iglesias.jpg';
-import orcidIcon from '../assets/logos/external/orcid.svg';
-import ifcaBanner from '../assets/profile-background.png';
+import jaimeAvatar from '../../assets/team/jaime-iglesias.jpg';
+import orcidIcon from '../../assets/logos/external/orcid.svg';
+import ifcaBanner from '../../assets/profile-background.png';
 ---
 
 <section id="team" class="section bg-gray-100/10 dark:bg-gray-900/10 relative overflow-hidden">
@@ -62,10 +62,8 @@ import ifcaBanner from '../assets/profile-background.png';
     <div class="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 mb-12 max-w-5.4xl">
       <!-- Texto -->
       <div class="flex-1">
-        <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-4">
-          {badge}
-        </span>
-        <h2 class="mb-6 text-3xl font-bold bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+        <span class="eyebrow">{badge}</span>
+        <h2 class="mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
           {heading}
         </h2>
         <p class="text-gray-600 dark:text-gray-300">{intro}</p>

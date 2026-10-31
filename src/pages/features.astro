@@ -1,108 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import HeroSection from '../components/HeroSection.astro';
-import CallToAction from '../components/CallToAction.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import HeroSection from '../components/common/HeroSection.astro';
+import CallToAction from '../components/common/CallToAction.astro';
 
-const featuresComplete = [
-  {
-    title: 'Real-Time Insights',
-    description:
-      'Live updates on electricity generation, flows, and environmental footprint across all European zones.',
-    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
-    bgClass: 'bg-primary-100 dark:bg-primary-900/30',
-    iconClass: 'text-primary-600 dark:text-primary-400',
-  },
-  {
-    title: 'Historical Data',
-    description:
-      'Explore past electricity patterns and footprint evolution to analyze trends across regions.',
-    icon: 'M3 5h18M3 12h18M3 19h18',
-    bgClass: 'bg-accent-100 dark:bg-accent-900/30',
-    iconClass: 'text-accent-600 dark:text-accent-400',
-  },
-  {
-    title: 'Forecast & Planning',
-    description:
-      'Short-term forecasts of carbon and water footprints to plan energy usage efficiently.',
-    icon: 'M3 17l6-6 4 4 8-8M21 21H3V3',
-    bgClass: 'bg-primary-100 dark:bg-primary-900/30',
-    iconClass: 'text-primary-600 dark:text-primary-400',
-  },
-  {
-    title: 'Transparency & Reliability',
-    description:
-      'Data is validated and processed consistently, ensuring accuracy, comparability, and reliable insights.',
-    icon: 'M5 13l4 4L19 7',
-    bgClass: 'bg-accent-100 dark:bg-accent-900/30',
-    iconClass: 'text-accent-600 dark:text-accent-400',
-  },
-  {
-    title: 'Cross-Zone Comparisons',
-    description:
-      'Compare energy mixes, flows, and footprints between multiple European zones quickly and easily.',
-    icon: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z',
-    bgClass: 'bg-primary-100 dark:bg-primary-900/30',
-    iconClass: 'text-primary-600 dark:text-primary-400',
-  },
-  {
-    title: 'Research & Policy Support',
-    description:
-      'Actionable insights for scientists, businesses, and policymakers to drive sustainable decisions.',
-    icon: 'M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z',
-    bgClass: 'bg-accent-100 dark:bg-accent-900/30',
-    iconClass: 'text-accent-600 dark:text-accent-400',
-  },
-  {
-    title: 'High-Resolution Data',
-    description:
-      '60 European zones monitored every 15 minutes, delivering detailed, granular, and actionable insights.',
-    icon: 'M6 2h12M6 22h12M6 2v6a6 6 0 006 6 6 6 0 006-6V2M6 22v-6a6 6 0 006-6 6 6 0 006 6v6',
-    bgClass: 'bg-primary-100 dark:bg-primary-900/30',
-    iconClass: 'text-primary-600 dark:text-primary-400',
-  },
-  {
-    title: 'Generation by Production Type',
-    description:
-      'Detailed breakdown of electricity generation by production type: solar, wind, biomass, nuclear, gas, and more.',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    bgClass: 'bg-accent-100 dark:bg-accent-900/30',
-    iconClass: 'text-accent-600 dark:text-accent-400',
-  },
-  {
-    title: 'Cross-Border Flows',
-    description:
-      'Track electricity imports and exports, including flow share distribution between all zones.',
-    icon: 'M5 7h14m0 0l-3-3m3 3l-3 3M19 17H5m0 0l3-3m-3 3l3 3',
-    bgClass: 'bg-primary-100 dark:bg-primary-900/30',
-    iconClass: 'text-primary-600 dark:text-primary-400',
-  },
-  {
-    title: 'Footprint Metrics',
-    description:
-      'Carbon and water footprints for each zone, locally and globally, including operation and lifecycle scopes.',
-    icon: 'M12 21V12M12 12C7 12 4 8 4 5c0 0 4 1 8 4c4-3 8-4 8-4c0 4-4 8-8 8z',
-    bgClass: 'bg-accent-100 dark:bg-accent-900/30',
-    iconClass: 'text-accent-600 dark:text-accent-400',
-  },
-  {
-    title: 'Emission Factors',
-    description:
-      'Current emission and impact factors per generation type for precise environmental analysis.',
-    icon: 'M3 3v18h20M9 14v4M15 10v8M21 6v12',
-    bgClass: 'bg-primary-100 dark:bg-primary-900/30',
-    iconClass: 'text-primary-600 dark:text-primary-400',
-  },
-  {
-    title: 'Zone Mix & Flow Share',
-    description:
-      "Analyze each zone's energy mix and flow share to see contributions to other zones’ footprints.",
-    icon: 'M12 2C6 2 2 6 2 12s4 10 10 10 10-4 10-10-4-10-10z',
-    bgClass: 'bg-accent-100 dark:bg-accent-900/30',
-    iconClass: 'text-accent-600 dark:text-accent-400',
-  },
-];
+import FeatureList from '../components/features/FeatureList.astro';
 ---
 
 <Layout
@@ -118,61 +21,7 @@ const featuresComplete = [
       description="Explore the innovative features of Wattnet that provide deep insights into electricity consumption and its environmental impact."
     />
 
-    <section id="features" class="section bg-white/70 dark:bg-gray-800/50">
-      <div class="container-custom">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <span class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 font-medium text-sm mb-6">
-            Key Features
-          </span>
-          <h2 class="mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
-            Comprehensive Features for Electricity Insights
-          </h2>
-          <p class="text-gray-600 dark:text-gray-300">
-            Discover the full range of capabilities offered by <strong>Wattnet</strong>, delivering
-            detailed, high-resolution insights into electricity consumption and its environmental
-            footprint across Europe.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 divide-y divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 bg-gray-100 dark:bg-gray-900/40">
-          {featuresComplete.map((feature, index) => {
-            const isPrimary = feature.bgClass.includes('primary');
-            const iconGradient = isPrimary
-              ? 'from-primary-100 to-primary-200 dark:from-primary-900/50 dark:to-primary-800/30'
-              : 'from-accent-100 to-accent-200 dark:from-accent-900/50 dark:to-accent-800/30';
-
-            return (
-              <div class="relative p-6 sm:p-8">
-                <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div
-                  class={`w-12 h-12 rounded-xl bg-gradient-to-br ${iconGradient} flex items-center justify-center mb-5`}
-                >
-                  <svg
-                    class={`w-6 h-6 ${feature.iconClass}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d={feature.icon}
-                    />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                  {feature.title}
-                </h3>
-                <p class="text-gray-600 dark:text-gray-300">{feature.description}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <FeatureList />
     <CallToAction
       title="Ready to Explore Europe's Electricity Footprint?"
       description="Access high-resolution electricity data, carbon and water footprints, and interactive dashboards – all ready to use for your research or projects."

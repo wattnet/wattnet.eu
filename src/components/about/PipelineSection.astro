@@ -1,0 +1,80 @@
+---
+const pipeline = [
+  {
+    step: '01',
+    title: 'Collect',
+    description:
+      'Generation, demand, and cross-border flow data is pulled continuously from European grid operators, including ENTSO-E, Elexon, and EPIAS.',
+    icon: 'M22 12h-4l-3 9L9 3l-3 9H2',
+  },
+  {
+    step: '02',
+    title: 'Clean',
+    description:
+      "Raw grid data isn't perfect: readings can be missing, delayed, or clearly wrong. Outliers are detected and gaps estimated before any number is published.",
+    icon: 'M5 13l4 4L19 7',
+  },
+  {
+    step: '03',
+    title: 'Compute',
+    description:
+      "Flow-tracing attributes each zone's electricity, and its footprint, back to where it was actually generated, accounting for imports and exports.",
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+  {
+    step: '04',
+    title: 'Forecast',
+    description:
+      "The same pipeline feeds a 72-hour forecasting model, so a zone's footprint can be anticipated, not just tracked after the fact.",
+    icon: 'M3 17l6-6 4 4 8-8M21 21H3V3',
+  },
+];
+---
+
+<section class="section bg-gray-100/10 dark:bg-gray-900/10 relative overflow-hidden">
+  <div class="container-custom slide-up">
+    <div class="max-w-3xl mx-auto text-center mb-14">
+      <span class="eyebrow">The Pipeline</span>
+      <h2 class="mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+        From Raw Grid Data to a Footprint Number
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300">
+        Turning raw electricity data into a trustworthy footprint figure takes more than one step.
+        Here's what happens behind the scenes, several times an hour, for every zone Wattnet covers.
+      </p>
+    </div>
+
+    <div
+      class="grid sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-secondary-200/60 dark:divide-secondary-800/60 border-y border-secondary-200/60 dark:border-secondary-800/60 bg-gray-100 dark:bg-gray-900/40"
+      x-data="{ active: 0 }"
+      x-init={`let intervalId = setInterval(() => active = (active + 1) % ${pipeline.length}, 1600); $cleanup(() => clearInterval(intervalId))`}
+    >
+      {pipeline.map((item, index) => (
+        <div
+          class="relative p-6 sm:p-8 transition-colors duration-500"
+          x-bind:class={`{ 'bg-primary-50/60 dark:bg-primary-950/30': active === ${index} }`}
+        >
+          <span class="absolute top-6 right-6 sm:top-8 sm:right-8 text-xs font-mono font-medium text-gray-300 dark:text-gray-600 select-none">
+            {item.step}
+          </span>
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/50 dark:to-primary-800/30 flex items-center justify-center mb-5 transition-colors duration-500"
+            x-bind:class={`{ '!from-accent-400 !to-accent-500 dark:!from-accent-500 dark:!to-accent-600': active === ${index} }`}
+          >
+            <svg
+              class="w-6 h-6 text-primary-600 dark:text-primary-400 transition-colors duration-500"
+              x-bind:class={`{ '!text-white': active === ${index} }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{item.title}</h3>
+          <p class="text-base text-gray-600 dark:text-gray-300 text-justify">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

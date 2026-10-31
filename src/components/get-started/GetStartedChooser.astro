@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import wattnetLogo from '../assets/logos/wattnet/wattnet-logo-icon-color-transparent.png';
+import wattnetLogo from '../../assets/logos/wattnet/wattnet-logo-icon-color-transparent.png';
 
 export interface Props {
   /** Renders the chooser as a standalone page (links back to the site). */
@@ -32,7 +32,8 @@ const dashboardPill =
 const developerPill =
   'rounded-full border border-accent-500/40 bg-accent-500/15 px-3 py-1 backdrop-blur-sm transition-colors group-hover:border-accent-400/60 group-hover:bg-accent-400/20';
 
-const backClasses = 'btn-outline pointer-events-auto group gap-2 rounded-full! bg-white px-4! py-2! text-sm dark:bg-secondary-900';
+const backClasses =
+  'btn-outline pointer-events-auto group gap-2 rounded-full! bg-white px-4! py-2! text-sm dark:bg-secondary-900';
 
 const brandClasses =
   'pointer-events-auto absolute left-1/2 block -translate-x-1/2 rounded-full bg-secondary-950/90 p-1 shadow-lg ring-1 ring-white/10 backdrop-blur-md gs-brand transition-transform duration-300 hover:scale-125 focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:outline-hidden';
@@ -62,13 +63,7 @@ const brandClasses =
     </BackTag>
 
     <BrandTag {...brandAttrs} class={brandClasses}>
-      <Image
-        src={wattnetLogo}
-        alt=""
-        class="h-9 w-9"
-        width={72}
-        height={72}
-      />
+      <Image src={wattnetLogo} alt="" class="h-9 w-9" width={72} height={72} />
     </BrandTag>
   </div>
 
@@ -143,7 +138,10 @@ const brandClasses =
       </div>
 
       <div class="gs-reveal relative mt-12 flex flex-col items-start gap-4 border-t border-secondary-900/10 pt-6 md:mt-16 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-3 dark:border-white/10">
-        <span data-arrow="external" class="btn-secondary group-hover:bg-primary-700 group-hover:shadow-[0_0_10px_rgba(58,120,224,0.3)]">
+        <span
+          data-arrow="external"
+          class="btn-secondary group-hover:bg-primary-700 group-hover:shadow-[0_0_10px_rgba(58,120,224,0.3)]"
+        >
           Open web dashboard
         </span>
         <span class="inline-flex items-center gap-2 font-mono text-sm text-secondary-500 transition-colors group-hover:text-secondary-700 dark:text-secondary-400 dark:group-hover:text-secondary-200">
@@ -233,7 +231,10 @@ const brandClasses =
       </div>
 
       <div class="gs-reveal relative mt-12 flex flex-col items-start gap-4 border-t border-white/10 pt-6 md:mt-16 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-3">
-        <span data-arrow="external" class="btn-accent group-hover:bg-accent-600 group-hover:shadow-[0_0_10px_rgba(148,206,36,0.3)]">
+        <span
+          data-arrow="external"
+          class="btn-accent group-hover:bg-accent-600 group-hover:shadow-[0_0_10px_rgba(148,206,36,0.3)]"
+        >
           Open developer portal
         </span>
         <span class="inline-flex items-center gap-2 font-mono text-sm text-secondary-400 transition-colors group-hover:text-secondary-200">
