@@ -43,36 +43,10 @@
   --color-accent-900: #316814;
   --color-accent-950: #184f10;
 
-  /* Reference colors from the provided palette */
-  --color-ref-software: #1d488c;
-  --color-ref-person: #143262;
-  --color-ref-container: #5374a7;
-  --color-ref-component: #9db2d0;
-  --color-ref-group: #94ce24;
-  --color-ref-webapp: #5374a7;
-  --color-ref-webapp-ops: #b4cbee;
-  --color-ref-repository: #5374a7;
-  --color-ref-external: #0b1c38;
-  --color-ref-model: #94ce24;
-
-  /* Warning colors - Vibrant yellow-greens */
-  --color-warning-50: #fffde5;
-  --color-warning-100: #fff9c2;
-  --color-warning-200: #fff59f;
-  --color-warning-300: #fff17c;
-  --color-warning-400: #ffed59;
-  --color-warning-500: #ffe936;
-  --color-warning-600: #e6d12d;
-  --color-warning-700: #ccb924;
-  --color-warning-800: #b3a11b;
-  --color-warning-900: #998912;
-  --color-warning-950: #807109;
-
   --font-sans: 'Red Hat Text', system-ui, sans-serif;
   --font-display: 'Red Hat Display', system-ui, sans-serif;
   --font-mono: 'Red Hat Mono', ui-monospace, monospace;
 
-  --animate-fade-in: fadeIn 0.5s ease-in-out;
   --animate-slide-up: slideUp 0.5s ease-in-out;
   --animate-slide-down: slideDown 0.5s ease-in-out;
   --animate-status-pulse: statusPulse 2.4s ease-out infinite;
@@ -101,14 +75,6 @@
     }
   }
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
   @keyframes slideUp {
     0% {
       transform: translateY(20px);
@@ -161,10 +127,6 @@
   @apply btn bg-primary-600 hover:bg-primary-700 text-white shadow-md hover:shadow-[0_0_10px_rgba(58,120,224,0.3)] active:shadow-[0_0_6px_rgba(58,120,224,0.5)] active:scale-[0.98];
 }
 
-@utility btn-accent {
-  @apply btn bg-accent-500 hover:bg-accent-600 text-black shadow-md hover:shadow-[0_0_10px_rgba(148,206,36,0.3)] active:shadow-[0_0_6px_rgba(148,206,36,0.5)] active:scale-[0.98];
-}
-
 @utility btn-outline {
   @apply btn border-2 border-secondary-300 dark:border-secondary-700 hover:bg-secondary-100 dark:hover:bg-secondary-800 text-secondary-900 dark:text-secondary-100;
 }
@@ -176,7 +138,7 @@
   and data-arrow="none" to opt out. Unlayered on purpose: it must beat the px-6
   inside the btn utility, while px-*! overrides (navbar, back button) still win.
 */
-:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(
+:is(.btn-primary, .btn-secondary, .btn-outline):is(
     a[href^='/'],
     a[href^='#'],
     a[href^='http'],
@@ -186,7 +148,7 @@
   padding-right: 1.125rem;
 }
 
-:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(
+:is(.btn-primary, .btn-secondary, .btn-outline):is(
     a[href^='/'],
     a[href^='#'],
     a[href^='http'],
@@ -203,18 +165,15 @@
   mask: var(--btn-arrow) center / contain no-repeat;
 }
 
-:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline) {
+:is(.btn-primary, .btn-secondary, .btn-outline) {
   --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14m-6-6 6 6-6 6'/%3E%3C/svg%3E");
 }
 
-:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(a[href^='#']) {
+:is(.btn-primary, .btn-secondary, .btn-outline):is(a[href^='#']) {
   --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14m-6-6 6 6 6-6'/%3E%3C/svg%3E");
 }
 
-:is(.btn-primary, .btn-secondary, .btn-accent, .btn-outline):is(
-  a[href^='http'],
-  [data-arrow='external']
-) {
+:is(.btn-primary, .btn-secondary, .btn-outline):is(a[href^='http'], [data-arrow='external']) {
   --btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E");
 }
 
@@ -271,21 +230,8 @@
 }
 
 /* Animations */
-.fade-in {
-  @apply animate-fade-in;
-}
-
 .slide-up {
   @apply animate-slide-up;
-}
-
-.slide-down {
-  @apply animate-slide-down;
-}
-
-/* Accessibility */
-.sr-only {
-  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
 }
 
 /* Focus styles for keyboard navigation */
