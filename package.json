@@ -5,7 +5,7 @@
 	"homepage": "https://wattnet.eu",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/jaimeib/wattnet.eu"
+		"url": "https://github.com/wattnet/wattnet.eu"
 	},
 	"type": "module",
 	"version": "1.0.0",
