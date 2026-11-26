@@ -14,6 +14,8 @@ const { standalone = false } = Astro.props;
 const Root = standalone ? 'main' : 'div';
 const BackTag = standalone ? 'a' : 'button';
 const BrandTag = standalone ? 'a' : 'button';
+// The overlay lives inside every page, which already has its own h1.
+const Heading = standalone ? 'h1' : 'h2';
 
 const backAttrs = standalone
   ? { href: '/', 'data-arrow': 'none' }
@@ -40,7 +42,7 @@ const brandClasses =
 ---
 
 <Root class="gs-root relative w-full overflow-hidden bg-white dark:bg-secondary-950">
-  <h1 class="sr-only">Get started with Wattnet</h1>
+  <Heading class="sr-only">Get started with Wattnet</Heading>
 
   <!-- Shared top bar: keeps both columns perfectly aligned -->
   <div class="pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between gap-3 px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-5 lg:px-10 lg:pt-12">

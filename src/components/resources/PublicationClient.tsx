@@ -159,6 +159,7 @@ export default function PublicationClient({ publications }: Props) {
                   <a
                     href={`https://doi.org/${pub.doi}`}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-blue-600 dark:text-blue-400"
                   >
                     {pub.doi}
@@ -190,6 +191,7 @@ export default function PublicationClient({ publications }: Props) {
                   key={link.url}
                   href={link.url}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className={`flex items-center gap-3 pl-4 pr-6 py-1.5 text-sm rounded-md bg-gray-200 dark:bg-gray-700/50 ${link.color} hover:bg-gray-300 dark:hover:bg-gray-600 transition w-full`}
                 >
                   <img src={link.icon} alt="Link Icon" class="w-4 h-4 shrink-0" />

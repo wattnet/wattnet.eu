@@ -27,7 +27,7 @@ const {
 } = Astro.props;
 
 const canonicalUrl = Astro.url.href;
-const siteName = 'wattnet.eu';
+const siteName = 'Wattnet';
 const defaultOgImage = new URL('/og/wattnet-og.png', Astro.url).href;
 const resolvedOgImage = ogImage ?? defaultOgImage;
 ---
@@ -59,7 +59,6 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={resolvedOgImage} />
     <meta property="og:image:alt" content={title} />
-    <meta property="og:image:type" content="image/svg+xml" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
