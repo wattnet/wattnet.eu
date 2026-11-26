@@ -8,6 +8,9 @@ const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
 
 const TIMEOUT_MS = 4000;
 
+// Repos whose PyPI package name differs from the repo name.
+const PYPI_NAMES: Record<string, string> = { 'wattnet-client-python': 'wattnet-client' };
+
 async function fetchLatestRelease(
   repo: string,
   headers: Record<string, string>,
@@ -169,7 +172,7 @@ export const GET: APIRoute = async () => {
           await Promise.all([
             fetchLatestRelease(r.name, ghHeaders),
             fetchOpenPRs(r.name, ghHeaders),
-            checkPyPI(r.name),
+            checkPyPI(PYPI_NAMES[r.name] ?? r.name),
             checkDockerHub(r.name),
             PACKAGES_TOKEN ? checkGHCR(r.name, ghHeaders) : Promise.resolve(null),
             fetchCodecovCoverage(r.name),
