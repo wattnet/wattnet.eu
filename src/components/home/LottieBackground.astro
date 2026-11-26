@@ -1,0 +1,65 @@
+<div id="lottie-container" class="lottie-container"></div>
+
+<script>
+  import lottie from 'lottie-web';
+
+  function initLottie() {
+    const container = document.getElementById('lottie-container');
+    if (!container) return;
+
+    const anim = lottie.loadAnimation({
+      container,
+      renderer: 'svg',
+      loop: false,
+      autoplay: true,
+      path: '/animations/wattnet-hero-full.json',
+    });
+
+    anim.setSpeed(0.5);
+
+    anim.addEventListener('DOMLoaded', () => {
+      const svg = container.querySelector('svg');
+      if (svg) {
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+      }
+    });
+
+    let direction: 1 | -1 = 1;
+    anim.addEventListener('complete', () => {
+      direction = direction === 1 ? -1 : 1;
+      anim.setDirection(direction);
+      anim.play();
+    });
+  }
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initLottie, { timeout: 2000 });
+  } else {
+    setTimeout(initLottie, 200);
+  }
+</script>
+
+<style>
+  .lottie-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10%;
+    right: -5%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .lottie-container :global(svg) {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .lottie-container {
+      display: none;
+    }
+  }
+</style>

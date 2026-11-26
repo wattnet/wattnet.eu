@@ -1,0 +1,395 @@
+---
+const agents = [
+  { y: 90, name: 'AI assistant' },
+  { y: 205, name: 'Code agent' },
+  { y: 320, name: 'Your agent' },
+];
+const chips = [
+  { y: 85, name: 'get_generation', d: 'M13 2L4 14h7l-1 8 9-12h-7l1-8z' },
+  { y: 165, name: 'get_imports', d: 'M7 7h13M16 3l4 4-4 4M17 17H4M8 13l-4 4 4 4' },
+  { y: 245, name: 'get_footprints', d: 'M5 19C5 9 11 4 20 4c0 9-5 15-14 15zM5 19l8-8' },
+  { y: 325, name: 'get_impacts', d: 'M12 3s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z' },
+];
+const left = agents.map((a) => `M76 ${a.y} C140 ${a.y} 150 205 214 205`);
+const right = chips.map((c) => `M306 205 C340 205 340 ${c.y} 376 ${c.y}`);
+---
+
+<section id="mcp" class="section bg-white/70 dark:bg-gray-800/50 relative overflow-hidden">
+  <div class="container-custom slide-up">
+    <div class="grid md:[grid-template-columns:55fr_45fr] gap-12 items-center">
+      <div class="px-4 sm:px-0 order-1 md:order-2">
+        <span class="eyebrow">MCP</span>
+        <h2 class="mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
+          Connect Your AI Agents
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 text-justify">
+          <strong>Wattnet</strong> also speaks the Model Context Protocol. Give an AI agent the same
+          data as the API, through tools it discovers by itself, with the same access levels and
+          limits.
+        </p>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start">
+            <svg
+              class="w-5 h-5 text-green-500 mt-1 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-300">
+              15 tools for generation, flows, footprints, impacts and shares
+            </p>
+          </div>
+          <div class="flex items-start">
+            <svg
+              class="w-5 h-5 text-green-500 mt-1 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-300">
+              A remote server over HTTP: nothing to install
+            </p>
+          </div>
+          <div class="flex items-start">
+            <svg
+              class="w-5 h-5 text-green-500 mt-1 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <p class="text-gray-600 dark:text-gray-300">
+              The same credentials and OAuth 2.0 authentication as the API
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="https://docs.wattnet.eu/user-guide/mcp/mcp-interface/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            MCP Guide
+          </a>
+          <a
+            href="https://developers.wattnet.eu"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary"
+          >
+            Developer Portal
+          </a>
+        </div>
+      </div>
+
+      <!-- Diagram: AI agents asking the MCP server (hidden on phones, where its labels shrink to ~6px) -->
+      <div class="hidden sm:block order-2 md:order-1 rounded-xl overflow-hidden shadow-2xl border border-gray-200/60 dark:border-white/10 bg-gray-100/80 dark:bg-gray-800/40 backdrop-blur-md p-4 sm:p-6">
+        <svg
+          viewBox="0 0 560 450"
+          role="img"
+          aria-label="AI agents ask the Wattnet MCP server at mcp.wattnet.eu, which calls its tools for generation, flows, footprints and impacts and sends the data back"
+          class="w-full h-auto font-sans"
+        >
+          <!-- Question -->
+          <rect
+            x="10"
+            y="8"
+            width="200"
+            height="30"
+            rx="15"
+            class="fill-white dark:fill-gray-900 stroke-gray-300 dark:stroke-white/20"
+          ></rect>
+          <text
+            x="110"
+            y="27"
+            font-size="12"
+            text-anchor="middle"
+            class="fill-gray-700 dark:fill-gray-200"
+          >
+            How green is Spain now?
+          </text>
+
+          <!-- Answer -->
+          <rect
+            x="10"
+            y="408"
+            width="200"
+            height="30"
+            rx="15"
+            class="fill-accent-500/15 stroke-accent-500"
+          ></rect>
+          <text
+            x="110"
+            y="427"
+            font-size="12"
+            text-anchor="middle"
+            class="fill-gray-700 dark:fill-gray-200"
+          >
+            91.9 gCO₂/kWh, mostly wind
+          </text>
+
+          <!-- Paths -->
+          <g fill="none" class="stroke-primary-500/40" stroke-width="2" stroke-linecap="round">
+            {left.map((d) => (
+              <path d={d} />
+            ))}
+            {right.map((d) => (
+              <path d={d} />
+            ))}
+          </g>
+
+          <!-- Agents -->
+          {agents.map((a, n) => (
+            <g>
+              <circle
+                cx="52"
+                cy={a.y}
+                r="24"
+                class="fill-white dark:fill-gray-900 stroke-primary-500"
+                stroke-width="2"
+              ></circle>
+              <g transform={`translate(${52 - 12} ${a.y - 10})`}>
+                <path
+                  class="stroke-primary-500 fill-primary-500/20 twinkle"
+                  style={`animation-delay:${n * 0.8}s`}
+                  stroke-width="1.6"
+                  stroke-linejoin="round"
+                  d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"
+                ></path>
+              </g>
+              <text
+                x="52"
+                y={a.y + 42}
+                font-size="11"
+                text-anchor="middle"
+                class="fill-gray-600 dark:fill-gray-300"
+              >
+                {a.name}
+              </text>
+            </g>
+          ))}
+
+          <!-- Hub -->
+          <rect
+            x="214"
+            y="155"
+            width="92"
+            height="100"
+            rx="18"
+            class="pulse fill-none stroke-primary-500"
+            stroke-width="2"
+          ></rect>
+          <rect
+            x="214"
+            y="155"
+            width="92"
+            height="100"
+            rx="18"
+            class="fill-primary-500/15 stroke-primary-500"
+            stroke-width="2.5"
+          ></rect>
+          <g class="fill-primary-500/30">
+            <rect x="230" y="169" width="60" height="8" rx="4"></rect>
+            <rect x="230" y="183" width="60" height="8" rx="4"></rect>
+          </g>
+          <circle cx="238" cy="173" r="2.5" class="fill-accent-500"></circle>
+          <circle cx="238" cy="187" r="2.5" class="fill-accent-500"></circle>
+          <text
+            x="260"
+            y="222"
+            font-size="20"
+            font-weight="700"
+            text-anchor="middle"
+            class="fill-gray-800 dark:fill-gray-100"
+          >
+            MCP
+          </text>
+          <text
+            x="260"
+            y="241"
+            font-size="10"
+            text-anchor="middle"
+            class="fill-gray-500 dark:fill-gray-400"
+          >
+            server
+          </text>
+          <rect
+            x="196"
+            y="270"
+            width="128"
+            height="22"
+            rx="11"
+            class="fill-white dark:fill-gray-900 stroke-primary-500/60"
+          ></rect>
+          <text
+            x="260"
+            y="285"
+            font-size="11"
+            text-anchor="middle"
+            font-family="ui-monospace, monospace"
+            class="fill-primary-700 dark:fill-primary-300"
+          >
+            mcp.wattnet.eu
+          </text>
+
+          <!-- Tools -->
+          {chips.map((c) => (
+            <g>
+              <rect
+                x="376"
+                y={c.y - 20}
+                width="176"
+                height="40"
+                rx="20"
+                class="fill-white dark:fill-gray-900 stroke-primary-500/60"
+                stroke-width="2"
+              ></rect>
+              <g transform={`translate(${396 - 11} ${c.y - 11}) scale(0.92)`}>
+                <path
+                  class="stroke-primary-600 dark:stroke-primary-300"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d={c.d}
+                ></path>
+              </g>
+              <text
+                x="418"
+                y={c.y + 4}
+                font-size="12"
+                font-family="ui-monospace, monospace"
+                class="fill-gray-700 dark:fill-gray-200"
+              >
+                {c.name}
+              </text>
+            </g>
+          ))}
+          <text
+            x="464"
+            y="372"
+            font-size="11"
+            text-anchor="middle"
+            class="fill-gray-500 dark:fill-gray-400"
+          >
+            + 11 more tools
+          </text>
+
+          <!-- Moving data: requests in blue, answers in green -->
+          <g class="flow">
+            {left.map((d, n) => (
+              <>
+                <circle r="4.5" class="fill-primary-500">
+                  <animateMotion
+                    dur="2.6s"
+                    begin={`-${(n * 0.9) % 2.6}s`}
+                    repeatCount="indefinite"
+                    path={d}
+                  ></animateMotion>
+                </circle>
+                <circle r="4.5" class="fill-accent-500">
+                  <animateMotion
+                    dur="2.6s"
+                    begin={`-${(n * 0.9 + 1.3) % 2.6}s`}
+                    repeatCount="indefinite"
+                    path={d}
+                    keyPoints="1;0"
+                    keyTimes="0;1"
+                    calcMode="linear"
+                  ></animateMotion>
+                </circle>
+              </>
+            ))}
+            {right.map((d, n) => (
+              <>
+                <circle r="4.5" class="fill-primary-500">
+                  <animateMotion
+                    dur="2.2s"
+                    begin={`-${(n * 0.5 + 0.6) % 2.2}s`}
+                    repeatCount="indefinite"
+                    path={d}
+                  ></animateMotion>
+                </circle>
+                <circle r="4.5" class="fill-accent-500">
+                  <animateMotion
+                    dur="2.2s"
+                    begin={`-${(n * 0.5 + 1.7) % 2.2}s`}
+                    repeatCount="indefinite"
+                    path={d}
+                    keyPoints="1;0"
+                    keyTimes="0;1"
+                    calcMode="linear"
+                  ></animateMotion>
+                </circle>
+              </>
+            ))}
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pulse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: mcp-pulse 2.4s ease-out infinite;
+  }
+  .twinkle {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: mcp-twinkle 2.4s ease-in-out infinite;
+  }
+  @keyframes mcp-pulse {
+    from {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.35);
+    }
+  }
+  @keyframes mcp-twinkle {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(0.85);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pulse,
+    .flow {
+      display: none;
+    }
+    .twinkle {
+      animation: none;
+    }
+  }
+</style>

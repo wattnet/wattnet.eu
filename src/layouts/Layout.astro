@@ -3,31 +3,47 @@ import '../styles/global.css';
 import '../styles/transitions.css';
 import backgroundSvg from '../assets/wattnet-background.svg?raw';
 import { ClientRouter } from 'astro:transitions';
+import GetStartedChooser from '../components/get-started/GetStartedChooser.astro';
 
 export interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  /** Slides the navbar out (and back in) when navigating to this page. */
+  hideNav?: boolean;
+  /** Hides the development banner on this page. */
+  hideBanner?: boolean;
+  /** Skips the fullscreen Get Started overlay (used by the standalone page). */
+  hideGetStartedOverlay?: boolean;
 }
 
-const { 
-  title, 
-  description = "An open-source service for tracking the environmental footprint of electricity across Europe.",
-  ogImage
+const {
+  title,
+  description = 'An open-source service for tracking the environmental footprint of electricity across Europe.',
+  ogImage,
+  hideNav = false,
+  hideBanner = false,
+  hideGetStartedOverlay = false,
 } = Astro.props;
 
 const canonicalUrl = Astro.url.href;
-const siteName = "wattnet.eu";
+const siteName = 'Wattnet';
 const defaultOgImage = new URL('/og/wattnet-og.png', Astro.url).href;
 const resolvedOgImage = ogImage ?? defaultOgImage;
 ---
 
 <!doctype html>
-<html lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" :class="{ 'dark': darkMode }">
+<html
+  lang="en"
+  class:list={[{ 'nav-hidden': hideNav }]}
+  x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
+  x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+  :class="{ 'dark': darkMode }"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
@@ -43,16 +59,16 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={resolvedOgImage} />
     <meta property="og:image:alt" content={title} />
-    <meta property="og:image:type" content="image/svg+xml" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={resolvedOgImage} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;800&family=Red+Hat+Text:wght@500;800&family=Red+Hat+Mono:wght@500;800&display=swap" 
-      rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;800&family=Red+Hat+Text:wght@500;800&family=Red+Hat+Mono:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
     <ClientRouter />
   </head>
   <body class="antialiased bg-white dark:bg-secondary-950 text-secondary-900 dark:text-secondary-100 transition-colors duration-300">
@@ -68,7 +84,9 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
         align-items: center;
         justify-content: center;
         background: white;
-        transition: opacity 0.4s ease, visibility 0.4s ease;
+        transition:
+          opacity 0.4s ease,
+          visibility 0.4s ease;
       }
       .dark #page-loader {
         background: #020617;
@@ -82,64 +100,97 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
       id="background"
       aria-hidden="true"
       style={{
-        position: "fixed",
-        top: "0",
-        left: "0",
-        width: "100%",
-        height: "100%",
-        zIndex: "-1",
-        filter: "blur(100px)",
-        opacity: "1",
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        zIndex: '-1',
+        filter: 'blur(100px)',
+        opacity: '1',
       }}
-      set:html={backgroundSvg.replace("<svg ", '<svg viewBox="0 0 1440 1024" preserveAspectRatio="none" style="width:100%;height:100%;display:block" ')}
+      set:html={backgroundSvg.replace(
+        '<svg ',
+        '<svg viewBox="0 0 1440 1024" preserveAspectRatio="none" style="width:100%;height:100%;display:block" ',
+      )}
     />
     <div id="page-wrapper" class="page-transition-wrapper">
-    
-    <!-- DEVELOPMENT BANNER --> 
-   <style>
-      .dev-banner {
-        background: #94CE24;
-        color: #1f2937;
-        text-align: center;
-        padding: 0.3rem 1rem;
-        font-size: 0.85rem;
-        font-weight: 500;
-      }
+      <!-- DEVELOPMENT BANNER -->
+      <style>
+        .dev-banner {
+          background: #94ce24;
+          color: #1f2937;
+          text-align: center;
+          padding: 0.3rem 1rem;
+          font-size: 0.85rem;
+          font-weight: 500;
+        }
 
-      .dev-banner strong {
-        font-weight: 800;
-      }
+        .dev-banner strong {
+          font-weight: 800;
+        }
 
-      /* Texto alternativo en móvil */
-      .dev-banner .mobile-text {
-        display: none;
-      }
-
-      @media (max-width: 640px) {
-        .dev-banner .desktop-text {
+        /* Texto alternativo en móvil */
+        .dev-banner .mobile-text {
           display: none;
         }
-        .dev-banner .mobile-text {
-          display: inline;
-          font-size: 0.75rem;
-        }
-      }
-    </style>
 
-    <div class="dev-banner" aria-hidden="true">
-      <span class="desktop-text">
-        <span>The dashboard is <strong>now live</strong>.</span>
-        <span class="ml-4">This service is under <strong>active development</strong>.</span>
-        <a target="_blank" rel="noopener noreferrer" href="https://dashboard.wattnet.eu" class="ml-4">Open dashboard → <strong>dashboard.wattnet.eu</strong></a>
-      </span>
-      <span class="mobile-text">
-        Dashboard is <strong>live</strong>.
-        <a target="_blank" rel="noopener noreferrer" href="https://dashboard.wattnet.eu">Open →</a>
-      </span>
-    </div>
+        @media (max-width: 640px) {
+          .dev-banner .desktop-text {
+            display: none;
+          }
+          .dev-banner .mobile-text {
+            display: inline;
+            font-size: 0.75rem;
+          }
+        }
+      </style>
+
+      {!hideBanner && (
+        <div class="dev-banner-shell">
+          <div class="dev-banner" aria-hidden="true">
+            <span class="desktop-text">
+              <span>
+                The dashboard is <strong>now live</strong>.
+              </span>
+              <span class="ml-4">
+                This service is under <strong>active development</strong>.
+              </span>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://dashboard.wattnet.eu"
+                class="ml-4"
+              >
+                Open dashboard → <strong>dashboard.wattnet.eu</strong>
+              </a>
+            </span>
+            <span class="mobile-text">
+              Dashboard is <strong>live</strong>.{' '}
+              <a target="_blank" rel="noopener noreferrer" href="https://dashboard.wattnet.eu">
+                Open →
+              </a>
+            </span>
+          </div>
+        </div>
+      )}
 
       <slot />
     </div>
+    {!hideGetStartedOverlay && (
+      <>
+        <div id="gs-blur" aria-hidden="true"></div>
+        <div
+          id="get-started-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Get started with Wattnet"
+          aria-hidden="true"
+        >
+          <GetStartedChooser />
+        </div>
+      </>
+    )}
     <script>
       // Check for user preference
       if (localStorage.getItem('darkMode') === null) {
@@ -154,7 +205,7 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
 
       // Handle page transitions
       const loaderStart = Date.now();
-      const loaderMinMs = 1000;
+      const loaderMinMs = 700;
 
       document.addEventListener('astro:page-load', () => {
         const pageWrapper = document.getElementById('page-wrapper');
@@ -178,6 +229,7 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
       });
     </script>
     <script src="../scripts/transitions.js"></script>
+    <script src="../scripts/get-started-overlay.js"></script>
     <script>
       import { init, track } from '@plausible-analytics/tracker';
 
@@ -188,7 +240,7 @@ const resolvedOgImage = ogImage ?? defaultOgImage;
       });
 
       document.addEventListener('astro:page-load', () => {
-        track('pageview');
+        track('pageview', {});
       });
     </script>
   </body>

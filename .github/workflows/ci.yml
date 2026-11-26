@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, dev]
   push:
     branches: [main]
   workflow_dispatch:
@@ -24,4 +24,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run format:check
+      - run: npm run check
+      - run: npm test
       - run: npm run build
+        env:
+          PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
