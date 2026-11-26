@@ -3,10 +3,10 @@
 
 <section
   id="python-client"
-  class="section bg-white/70 dark:bg-gray-800/50 relative overflow-hidden"
+  class="section bg-gray-100/10 dark:bg-gray-900/10 relative overflow-hidden"
 >
   <div class="container-custom slide-up">
-    <div class="grid md:[grid-template-columns:60fr_40fr] gap-12 lg:gap-16 items-center">
+    <div class="grid md:[grid-template-columns:40fr_60fr] gap-12 lg:gap-16 items-center">
       <!-- IDE mockup -->
       <div
         x-data="{ tab: 'quickstart', file: 'quickstart.py', auto: !window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused: false, order: [['quickstart', 'quickstart.py'], ['score', 'by_location.py'], ['async', 'async_example.py']], next() { const i = this.order.findIndex(t => t[0] === this.tab); [this.tab, this.file] = this.order[(i + 1) % this.order.length] } }"
@@ -15,7 +15,7 @@
         @mouseleave="paused = false"
         @focusin="paused = true"
         @focusout="paused = false"
-        class="rounded-xl overflow-hidden shadow-2xl border border-gray-200/60 dark:border-white/10 flex flex-col order-2 md:order-1 bg-gray-100/80 dark:bg-gray-800/40 backdrop-blur-md font-mono text-[13px]"
+        class="rounded-xl overflow-hidden shadow-2xl border border-gray-200/60 dark:border-white/10 flex flex-col order-2 bg-gray-100/80 dark:bg-gray-800/40 backdrop-blur-md font-mono text-[13px]"
       >
         <!-- Title bar -->
         <div class="flex items-center gap-3 px-4 py-2.5 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md border-b border-gray-200/60 dark:border-white/10 shrink-0">
@@ -344,7 +344,7 @@ asyncio.<span class="text-yellow-700 dark:text-[#dcdcaa]">run</span>(<span class
         </div>
       </div>
 
-      <div class="px-4 sm:px-0 order-1 md:order-2">
+      <div class="px-4 sm:px-0 order-1">
         <span class="eyebrow">Python Client</span>
         <h2 class="mb-6 bg-gradient-to-r from-gray-900 via-primary-700 to-primary-500 dark:from-white dark:via-primary-200 dark:to-primary-400 bg-clip-text text-transparent">
           Official Python Client

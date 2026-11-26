@@ -5,6 +5,7 @@ interface Props {
   buttonText?: string;
   href?: string;
   target?: '_blank' | '_self';
+  tinted?: boolean;
 }
 
 const {
@@ -13,10 +14,13 @@ const {
   buttonText = 'Get Started Now',
   href = 'https://dashboard.wattnet.eu',
   target = '_blank',
+  tinted = false,
 } = Astro.props;
 ---
 
-<section class="section bg-gray-100/10 dark:bg-gray-900/10">
+<section
+  class={`section ${tinted ? 'bg-white/70 dark:bg-gray-800/50' : 'bg-gray-100/10 dark:bg-gray-900/10'}`}
+>
   <div class="container-custom slide-up">
     <div class="bg-gradient-to-br from-primary-950 via-primary-800 to-primary-700 rounded-2xl p-8 md:p-12 relative overflow-hidden">
       <div class="absolute -top-10 -right-10 w-56 h-56 rounded-full bg-accent-500/20 blur-3xl pointer-events-none"></div>

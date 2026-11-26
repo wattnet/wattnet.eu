@@ -9,6 +9,7 @@ import HomeAssistantSection from '../components/services/HomeAssistantSection.as
 import DashboardSection from '../components/services/DashboardSection.astro';
 import StatusStrip from '../components/services/StatusStrip.astro';
 import ApiSection from '../components/services/ApiSection.astro';
+import McpSection from '../components/services/McpSection.astro';
 import DatasetsSection from '../components/services/DatasetsSection.astro';
 ---
 
@@ -33,6 +34,9 @@ import DatasetsSection from '../components/services/DatasetsSection.astro';
     <!-- API Section -->
     <ApiSection />
 
+    <!-- MCP Section -->
+    <McpSection />
+
     <!-- Python Client Section -->
     <PythonClientSection />
 
@@ -42,6 +46,7 @@ import DatasetsSection from '../components/services/DatasetsSection.astro';
     <!-- Curated Datasets Section -->
     <DatasetsSection />
     <CallToAction
+      tinted
       title="Ready to explore all energy insights?"
       description="Everything you need to track electricity generation, cross-zone flows, and environmental footprints."
     />
